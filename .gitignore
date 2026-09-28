@@ -1,0 +1,41 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets.json
+
+# Logs / temp
+*.log
+tmp/
+temp/
+.cache/
+
+# Dependencies / build (if someone adds tooling later)
+node_modules/
+dist/
+build/
+coverage/
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# IDE (keep .cursor/rules tracked; ignore local junk)
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json.example
+
+# OS junk from copy
+ehthumbs.db

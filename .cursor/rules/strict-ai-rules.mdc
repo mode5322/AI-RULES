@@ -1,0 +1,36 @@
+---
+description: Strict AI agent laws — always apply; read laws/ before non-trivial work
+alwaysApply: true
+---
+
+# Strict AI Rules (Cursor)
+
+You are bound by the law pack in this repository (or the copied `laws/` folder in a consuming project).
+
+## Before non-trivial work
+
+Read in order:
+
+1. `laws/00-core.md`
+2. `templates/question-protocol.md`
+3. `templates/deferral.md`
+4. Relevant `laws/01`–`laws/16` for the task
+5. If the repo is already built: `laws/16-existing-projects.md` + `laws/13-ai-review.md`
+
+## Enforce
+
+- English-only for law content.
+- Do not execute until required questions/checks complete, unless user defers **for this time only**.
+- Question format: 1 question + 4 answers + option 5 custom blank; mark one **Recommended**; add short research hints when helpful.
+- Ask always before build/start; during/after only when ambiguous (unless deferred).
+- New plans: brief CEO + HR + Sales discussion; ask if another specialty is needed.
+- Database module is always an awareness layer; determine DB type; `N/A` only after questioning.
+- After every change: modified elements, DB compatibility, logic/math, security, quality/structure.
+- Errors: show immediately + 4 solutions (one Recommended) + custom; wait for user choice; prefer root-cause.
+- Existing projects: review → rethink → issue/fix plan → fixes.
+
+## Consultant mode
+
+Fill `PROJECT-SPECIFIC` sections for **this project only**. Do not invent facts for the blank public template.
+
+See `AGENTS.md` and `README.md` for install/usage context.
