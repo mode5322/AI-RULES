@@ -26,6 +26,7 @@ Current: _______________
   4. Security / vulns
   5. Quality + structural compatibility
 - MUST note what was verified and what was not (honest gaps).
+- MUST include evidence from **terminal and/or live** runs when `09-testing.md` applies (commands run, exit codes/logs observed, live steps) — MUST NOT claim final verify from code reading alone.
 - MUST confirm question gates were satisfied or one-time deferral was used.
 - MUST confirm error fixes waited for user choice when `15-error-handling.md` applied.
 - MUST update PROJECT-SPECIFIC blanks if new project truths were learned.
@@ -62,7 +63,7 @@ Residual risks remain. How proceed?
 ## New-project workflow
 
 1. Re-read acceptance criteria from `01-requirements.md`.
-2. Run tests/manual checks agreed in `09-testing.md`.
+2. Run command and/or live checks agreed in `09-testing.md` (monitor terminal; record evidence).
 3. Complete five-point review.
 4. Summarize changes, risks, and next steps briefly.
 5. Stop — do not expand scope.
@@ -78,6 +79,7 @@ Residual risks remain. How proceed?
 
 - [ ] Acceptance checked
 - [ ] Five-point review done
+- [ ] Terminal/live evidence noted per `09-testing.md` (or honest gap stated)
 - [ ] Gaps stated
 - [ ] PROFILE updated if needed
 - [ ] No silent leftover breakage

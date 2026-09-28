@@ -89,6 +89,7 @@ How should bulk import rows fail?
 - [ ] Messages clear
 - [ ] No trust of client-only enforcement
 - [ ] Ranges/formats covered
+- [ ] Post-change validation of critical paths uses command/live proof when required (`09-testing.md`) — not theory-only
 
 ## PROJECT-SPECIFIC
 
