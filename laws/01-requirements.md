@@ -25,6 +25,7 @@ Current: _______________
 - MUST record confirmed requirements in PROJECT-SPECIFIC / project profile.
 - MUST NOT expand scope beyond agreed requirements without a new question gate.
 - During/after build: ask only when requirements become ambiguous.
+- For complex requests after gates: MAY ship the minimum that satisfies agreed acceptance criteria and, in the same response, ask whether the fuller variant is required (see `12-code-quality.md` intensity). MUST NOT silently drop accepted must-haves.
 
 ## Question protocol
 

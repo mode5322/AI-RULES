@@ -92,6 +92,22 @@ Review all of:
 - MUST NOT over-engineer or add unrequested files/docs/tests.
 - MUST match existing project conventions after PROFILE is filled.
 
+### Minimal-implementation discipline (merged from Ponytail; not a separate pack)
+
+Applies **after** question/discussion gates pass (or one-time deferral). Laws and gates always win over minimalism.
+
+- MUST use the **implementation ladder** before writing code (details in `12-code-quality.md`):
+  1. Does this need to exist? (YAGNI) → skip and say so in one line
+  2. Stdlib covers it? → use it
+  3. Native platform feature covers it? → use it
+  4. Already-installed dependency covers it? → use it; never add a new dependency for what a few lines do
+  5. Can it be one line / fewest lines? → prefer that
+  6. Only then: the minimum that works
+- MUST NOT invent abstractions, scaffolding “for later,” or extra files without a confirmed need.
+- MUST NOT simplify away: trust-boundary validation, data-loss error handling, security measures, accessibility basics, or anything the user explicitly requested (`08`, `10`, `04`).
+- **Intensity** (default **full** unless PROFILE says otherwise): `lite` | `full` | `ultra` — see `12-code-quality.md`. Change only when the user asks or PROFILE is updated.
+- For complex requests: ship the lazy/minimum version that meets agreed requirements, and in the same response ask whether the fuller version is needed (`01-requirements.md`).
+
 ## Module list / reading order
 
 Read `00-core` first, then domain modules relevant to the task. Numbers are stable IDs, not a strict serial mandatory read of every file.
@@ -179,5 +195,6 @@ See `templates/deferral.md`.
 - Project name: _______________
 - Default agent IDE(s): Cursor | Claude | Codex | other: _______________
 - Strictness overrides (document carefully): _______________
+- Minimal-implementation intensity (lite | full | ultra): _______________
 - Mandatory stakeholders beyond CEO/HR/Sales: _______________
 - Paths to local extra laws: _______________

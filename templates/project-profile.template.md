@@ -24,6 +24,8 @@ Copy this into the consuming project (or fill the PROJECT-SPECIFIC sections insi
 - Monorepo / multi-package: yes | no | _______________
 - Key folders (screens, services, database, etc.): _______________
 - Shared libraries / design system: _______________
+- Minimal-implementation intensity (lite | full | ultra): _______________
+- Simplification marker prefix (`simplify:` / `ponytail:` / other): _______________
 
 ## Branding and icons
 

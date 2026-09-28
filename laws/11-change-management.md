@@ -1,4 +1,4 @@
-# 11 — Change Management
+﻿# 11 — Change Management
 
 ## Purpose
 
@@ -20,6 +20,7 @@ Current: _______________
 
 - MUST state the intent of a change before editing when the task is non-trivial.
 - MUST make the smallest correct change.
+- MUST apply the `12-code-quality.md` implementation ladder to the chosen approach (after gates).
 - MUST NOT mix unrelated refactors into a bugfix.
 - MUST assess blast radius: screens, services, DB, callers.
 - MUST run the mandatory post-change review:

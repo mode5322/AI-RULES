@@ -41,6 +41,8 @@ See `USAGE.md` for a short install playbook.
 - **Branding / icons** — desktop, mobile, and web identity assets; static vs user-changeable (`laws/17-branding-and-icons.md`).
 - **Security Laws suite** — parent policy (`laws/10-security.md`) + optional defensive tooling (`laws/18-security-tooling.md`) + authorized discovery/remediation (`laws/19-vuln-discovery-and-remediation.md`); no exploits.
 - **After every change** — review modified elements, DB compatibility, logic/math, security, quality/structure.
+- **Minimal implementation** — after gates, follow the ladder in `laws/12-code-quality.md` (YAGNI → stdlib → native → installed deps → fewest lines); intensity lite/full/ultra; never cut validation/security/accessibility/data-loss handling. Merged into laws — not a separate pack.
+- **Complexity / debt passes** — optional over-engineering tags + simplification markers ledger (`laws/13-ai-review.md`, `laws/16-existing-projects.md`).
 - **Errors** — show immediately + 4 solutions (one Recommended) + custom; wait before fixing; prefer root-cause.
 
 ## Marking modules N/A

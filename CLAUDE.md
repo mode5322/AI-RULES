@@ -21,9 +21,11 @@ Then open the domain files needed for the task (`01`–`19`). For already-built 
 5. Any new plan: short CEO + HR + Sales angles, then ask if another specialty is needed (`laws/02-discussion.md`).
 6. Keep database awareness always on (`laws/06-database.md`).
 7. After every change: five-point review (modified elements, DB compatibility, logic/math, security, quality/structure).
-8. On errors: show error + 4 solutions (one Recommended) + custom; wait for choice; prefer root-cause (`laws/15-error-handling.md`).
-9. Branding / app icons: when identity icons or changeable icon packs apply, follow `laws/17-branding-and-icons.md`.
-10. Security Laws suite: parent `laws/10-security.md`; optional defensive tooling `laws/18-security-tooling.md`; authorized discovery/remediation `laws/19-vuln-discovery-and-remediation.md` — stack-adaptive; question-gated; plan before fix; wait; no exploits.
+8. After gates: minimal implementation per `laws/12-code-quality.md` (ladder; intensity lite/full/ultra; never cut validation/security/a11y).
+9. On errors: show error + 4 solutions (one Recommended) + custom; wait for choice; prefer root-cause (`laws/15-error-handling.md`).
+10. Branding / app icons: when identity icons or changeable icon packs apply, follow `laws/17-branding-and-icons.md`.
+11. Security Laws suite: parent `laws/10-security.md`; optional defensive tooling `laws/18-security-tooling.md`; authorized discovery/remediation `laws/19-vuln-discovery-and-remediation.md` — stack-adaptive; question-gated; plan before fix; wait; no exploits.
+12. Complexity / bloat passes and simplification debt ledger: `laws/13-ai-review.md` and `laws/16-existing-projects.md`.
 
 ## Consultant mode
 

@@ -27,6 +27,8 @@ Before non-trivial work, read:
 - New plans: brief CEO + HR + Sales discussion, then ask if another specialty is needed.
 - Database laws always remain an awareness layer; determine DB type; mark `N/A` only after questioning.
 - After every change: review modified elements, DB compatibility, logic/math, security, quality/structure.
+- Minimal implementation (merged into laws, not a separate pack): after gates, use the `12` ladder (YAGNI → stdlib → native → installed dep → fewest lines); never cut validation/security/a11y/data-loss handling; intensity lite/full/ultra (default full).
+- Complexity review tags + simplification debt ledger live in `13` / `16` (optional passes).
 - Errors: show immediately + 4 solutions (one Recommended) + custom; **wait** before fixing; prefer root-cause.
 - Existing projects: review → rethink → issue/fix plan → fixes (`16-existing-projects.md`).
 - Branding / app icons: follow `17-branding-and-icons.md` when identity icons, favicons, launcher/PWA/store assets, or user-changeable icon packs are in scope.

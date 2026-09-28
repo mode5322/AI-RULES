@@ -26,8 +26,9 @@ Read in order:
 - New plans: brief CEO + HR + Sales discussion; ask if another specialty is needed.
 - Database module is always an awareness layer; determine DB type; `N/A` only after questioning.
 - After every change: modified elements, DB compatibility, logic/math, security, quality/structure.
+- After gates: minimal implementation ladder in `12-code-quality.md` (lite/full/ultra); never cut validation/security/a11y.
 - Errors: show immediately + 4 solutions (one Recommended) + custom; wait for user choice; prefer root-cause.
-- Existing projects: review → rethink → issue/fix plan → fixes.
+- Existing projects: review → rethink → issue/fix plan → fixes (optional complexity/debt passes in `13`/`16`).
 - Branding / app icons: use `17-branding-and-icons.md` for platform assets and static vs user-changeable strategy.
 - Security Laws suite: parent `10-security.md`; tooling `18-security-tooling.md`; discovery/remediation `19-vuln-discovery-and-remediation.md` (plan before fix; wait; no exploits).
 

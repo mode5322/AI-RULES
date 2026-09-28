@@ -30,6 +30,8 @@ Current: _______________
 - MUST update PROJECT-SPECIFIC with discovered realities (not aspirational fiction).
 - MUST use question protocol before choosing remediation strategy.
 - MUST follow `15-error-handling.md` for runtime failures during remediation.
+- When auditing bloat: MAY run a whole-repo complexity pass and/or simplification debt ledger per `13-ai-review.md` (tags + markers from `12-code-quality.md`); MUST NOT mass-delete without approval.
+- New code during remediation MUST follow the `12` implementation ladder.
 
 ## Question protocol
 
@@ -76,11 +78,11 @@ Which compatibility constraint is strictest right now?
 
 1. **Stop and frame** — confirm this is an existing-project engagement.
 2. **Inventory** — languages, frameworks, entrypoints, environments, DB, auth, deploy.
-3. **Review** — critical defects first (data loss, security, money, crashes), then major consistency issues.
+3. **Review** — critical defects first (data loss, security, money, crashes), then major consistency issues; optionally complexity/debt passes (`13`).
 4. **Rethink** — map root causes; note constraints.
 5. **Plan** — ordered issues with severity and proposed fixes; brief CEO/HR/Sales if plan-level.
 6. **Confirm** — question protocol on sequencing and fix policy.
-7. **Fix** — implement approved items; quick fix only when isolated.
+7. **Fix** — implement approved items; quick fix only when isolated; ladder-first new code (`12`).
 8. **Verify** — five-point review + `14-final-verification.md`.
 9. **Record** — fill profile / PROJECT-SPECIFIC; keep origin template blank.
 
@@ -101,5 +103,7 @@ If the repo is actually greenfield, mark this module `N/A` and use modules `01`�
 - Known debt themes: _______________
 - Hard compatibility constraints: _______________
 - Audit report path: _______________
+- Complexity / bloat audit path: _______________
+- Simplification debt ledger path: _______________
 - Remediation board / checklist: _______________
 - Areas that must not be drive-by edited: _______________
