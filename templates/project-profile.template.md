@@ -51,6 +51,18 @@ Copy this into the consuming project (or fill the PROJECT-SPECIFIC sections insi
 - Secrets storage: _______________
 - Threat notes: _______________
 
+## Security tooling (defensive — see `laws/18-security-tooling.md`)
+
+- Module status: ACTIVE | N/A | PROJECT-SPECIFIC | undecided
+- Tooling enabled: yes | no | partial | _______________
+- Stacks / areas present: _______________
+- Monorepo package paths: _______________
+- Web target URL(s) for ZAP baseline: _______________ | none
+- Tools enabled: deps-audit | gitleaks | trufflehog | semgrep | zap-baseline | platform-checklists | _______________
+- Default scan scope: changed-areas | whole-repo | per-package: _______________
+- Excluded paths: _______________
+- Why N/A (if marked): _______________
+
 ## Quality gates
 
 - Required tests before merge: _______________
@@ -86,6 +98,7 @@ Copy this into the consuming project (or fill the PROJECT-SPECIFIC sections insi
 | 15-error-handling | | |
 | 16-existing-projects | | |
 | 17-branding-and-icons | | |
+| 18-security-tooling | | |
 
 ## Custom laws
 

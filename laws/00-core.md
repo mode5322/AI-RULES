@@ -79,6 +79,11 @@ Review all of:
 - When product/app identity icons or branding assets are in scope, MUST follow `17-branding-and-icons.md` (platform sizes, asset location, static vs user-changeable).
 - Mark `17` as `N/A` only after questioning confirms no visual identity surface.
 
+### Security tooling (defensive)
+
+- Policy and AI security review remain primary (`10-security.md`).
+- Optional stack-adaptive defensive scanners (deps, secrets, Semgrep, ZAP baseline, platform checklists) follow `18-security-tooling.md` — gated by question protocol; defensive only; findings via `15-error-handling.md`.
+
 ### Scope discipline
 
 - MUST make the smallest correct change.
@@ -109,6 +114,7 @@ Read `00-core` first, then domain modules relevant to the task. Numbers are stab
 | 15 | `15-error-handling.md` | Always when errors occur |
 | 16 | `16-existing-projects.md` | When AI joins an already-built repo |
 | 17 | `17-branding-and-icons.md` | `N/A` if no app/web/desktop identity icons |
+| 18 | `18-security-tooling.md` | Optional defensive tooling; supplements `10`; `N/A` if declined |
 
 Mark each module `ACTIVE`, `N/A`, or `PROJECT-SPECIFIC` in the law file and in `templates/project-profile.template.md`. Keep `N/A` files in tree as reminders.
 
@@ -143,7 +149,7 @@ See `templates/deferral.md`.
 2. Create or fill `templates/project-profile.template.md` (or inline PROJECT-SPECIFIC sections).
 3. Run `01-requirements.md` question gates before coding.
 4. Run `02-discussion.md` CEO/HR/Sales brief on the plan.
-5. Resolve architecture, UI/UX, DB, security, and branding/icons (`17`) modules as needed.
+5. Resolve architecture, UI/UX, DB, security (`10` + optional `18`), and branding/icons (`17`) modules as needed.
 6. Implement only after blocking questions are answered (or deferred once).
 7. After each change, run post-change review + `14-final-verification.md` hooks.
 

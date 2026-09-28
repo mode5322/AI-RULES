@@ -15,6 +15,7 @@ Current: _______________
 - Applies: logic, API, data, and critical UI flows.
 - Do not add large test suites unprompted if the project rule is minimal — but MUST still verify acceptance criteria.
 - `N/A` only when the consuming project explicitly forbids automated tests **and** manual verification is defined.
+- Security scanners (dependency audit, secrets, Semgrep, ZAP baseline, platform checklists) are **not** functional tests — see `18-security-tooling.md` and `10-security.md`. Do not count a green security scan as acceptance-criteria verification, or a passing unit suite as a security review.
 
 ## Hard rules (MUST / MUST NOT)
 
