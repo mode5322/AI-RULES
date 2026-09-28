@@ -19,7 +19,7 @@ Pick one:
 
 ## New project flow
 
-1. Requirements (`01`) → Discussion (`02`) → Architecture / UI / UX / DB as needed.
+1. Requirements (`01`) → Discussion (`02`) → Architecture / UI / UX / DB / branding-icons (`17`) as needed.
 2. Implement only after blocking questions are answered (or one-time deferral).
 3. After each change: five-point review → final verification (`14`).
 

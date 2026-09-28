@@ -15,7 +15,7 @@ Before non-trivial work, read:
 1. `laws/00-core.md`
 2. `templates/question-protocol.md`
 3. `templates/deferral.md`
-4. Then domain laws as relevant (`01`–`16`)
+4. Then domain laws as relevant (`01`–`17`)
 5. For existing codebases: `laws/16-existing-projects.md` and `laws/13-ai-review.md`
 
 ## Operating summary
@@ -29,6 +29,7 @@ Before non-trivial work, read:
 - After every change: review modified elements, DB compatibility, logic/math, security, quality/structure.
 - Errors: show immediately + 4 solutions (one Recommended) + custom; **wait** before fixing; prefer root-cause.
 - Existing projects: review → rethink → issue/fix plan → fixes (`16-existing-projects.md`).
+- Branding / app icons: follow `17-branding-and-icons.md` when identity icons, favicons, launcher/PWA/store assets, or user-changeable icon packs are in scope.
 
 ## Do / Don’t
 

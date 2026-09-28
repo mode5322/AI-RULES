@@ -26,6 +26,7 @@ Current: _______________
 - MUST prefer extending existing modules over creating near-duplicates.
 - MUST keep the change small; no speculative frameworks.
 - Before build/start, MUST clarify architecture when unknown.
+- Branding / app icon asset trees and source-of-truth vs generated platform exports MUST follow `17-branding-and-icons.md` — do not scatter identity assets or invent a second branding layout without a decision.
 
 ### Suggested default layout (adapt to stack)
 
@@ -104,3 +105,4 @@ Where must authorization and business validation run?
 - Services export path: _______________
 - Forbidden imports: _______________
 - Monorepo packages: _______________
+- Branding / icon asset roots: see `17-branding-and-icons.md` — _______________

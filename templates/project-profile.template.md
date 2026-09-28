@@ -25,6 +25,16 @@ Copy this into the consuming project (or fill the PROJECT-SPECIFIC sections insi
 - Key folders (screens, services, database, etc.): _______________
 - Shared libraries / design system: _______________
 
+## Branding and icons
+
+- Module status: ACTIVE | N/A | PROJECT-SPECIFIC | undecided
+- Platform type(s): desktop | mobile | web | multi: _______________
+- Icon strategy: static | changeable-pack | changeable-pack+upload | build-time flavors | _______________
+- Icon set location (source of truth): _______________
+- Default icon (filename or id): _______________
+- Generated / platform export paths: _______________
+- Why N/A (if marked): _______________
+
 ## Database
 
 - Module status: ACTIVE | N/A | undecided
@@ -75,6 +85,7 @@ Copy this into the consuming project (or fill the PROJECT-SPECIFIC sections insi
 | 14-final-verification | | |
 | 15-error-handling | | |
 | 16-existing-projects | | |
+| 17-branding-and-icons | | |
 
 ## Custom laws
 

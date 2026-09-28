@@ -11,7 +11,7 @@ Works for:
 
 | Path | Role |
 |---|---|
-| `laws/` | Executable protocols `00`–`16` |
+| `laws/` | Executable protocols `00`–`17` |
 | `templates/question-protocol.md` | Canonical clarifying-question format |
 | `templates/deferral.md` | One-time deferral wording |
 | `templates/project-profile.template.md` | Project truth index (blanks) |
@@ -38,6 +38,7 @@ See `USAGE.md` for a short install playbook.
 - **UI** — not a fixed visual identity; question protocol for buttons, icons, menus, containers, aesthetics when unclear.
 - **Discussion** — new plans get brief CEO + HR + Sales angles; ask if another specialty is needed.
 - **Database** — always-on awareness; determine DB type; `N/A` only after questioning.
+- **Branding / icons** — desktop, mobile, and web identity assets; static vs user-changeable (`laws/17-branding-and-icons.md`).
 - **After every change** — review modified elements, DB compatibility, logic/math, security, quality/structure.
 - **Errors** — show immediately + 4 solutions (one Recommended) + custom; wait before fixing; prefer root-cause.
 

@@ -14,7 +14,7 @@ Read in order:
 1. `laws/00-core.md`
 2. `templates/question-protocol.md`
 3. `templates/deferral.md`
-4. Relevant `laws/01`–`laws/16` for the task
+4. Relevant `laws/01`–`laws/17` for the task
 5. If the repo is already built: `laws/16-existing-projects.md` + `laws/13-ai-review.md`
 
 ## Enforce
@@ -28,6 +28,7 @@ Read in order:
 - After every change: modified elements, DB compatibility, logic/math, security, quality/structure.
 - Errors: show immediately + 4 solutions (one Recommended) + custom; wait for user choice; prefer root-cause.
 - Existing projects: review → rethink → issue/fix plan → fixes.
+- Branding / app icons: use `17-branding-and-icons.md` for platform assets and static vs user-changeable strategy.
 
 ## Consultant mode
 

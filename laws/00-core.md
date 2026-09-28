@@ -74,11 +74,43 @@ Review all of:
 - When AI is introduced into an already-built project, MUST follow `16-existing-projects.md` (and `13-ai-review.md`): review → rethink → error/issue plan → fixes.
 - Quick fix ONLY if no project-wide impact; otherwise root-cause fix that preserves compatibility.
 
+### Branding and icons
+
+- When product/app identity icons or branding assets are in scope, MUST follow `17-branding-and-icons.md` (platform sizes, asset location, static vs user-changeable).
+- Mark `17` as `N/A` only after questioning confirms no visual identity surface.
+
 ### Scope discipline
 
 - MUST make the smallest correct change.
 - MUST NOT over-engineer or add unrequested files/docs/tests.
 - MUST match existing project conventions after PROFILE is filled.
+
+## Module list / reading order
+
+Read `00-core` first, then domain modules relevant to the task. Numbers are stable IDs, not a strict serial mandatory read of every file.
+
+| ID | File | Typical enable / disable |
+|---|---|---|
+| 00 | `00-core.md` | Always `ACTIVE` — never N/A |
+| 01 | `01-requirements.md` | `ACTIVE` / `PROJECT-SPECIFIC`; rarely N/A |
+| 02 | `02-discussion.md` | `ACTIVE` for new plans |
+| 03 | `03-ui.md` | `N/A` if no UI surface |
+| 04 | `04-ux.md` | `N/A` if no human flows |
+| 05 | `05-architecture.md` | Usually on for code work |
+| 06 | `06-database.md` | Always-on awareness; `N/A` only after questioning |
+| 07 | `07-logic-and-math.md` | When calculations / rules apply |
+| 08 | `08-validation.md` | When inputs / contracts apply |
+| 09 | `09-testing.md` | Per project quality bar |
+| 10 | `10-security.md` | Nearly always on |
+| 11 | `11-change-management.md` | When changing behavior/scope |
+| 12 | `12-code-quality.md` | When writing/reviewing code |
+| 13 | `13-ai-review.md` | Reviews / existing-project audits |
+| 14 | `14-final-verification.md` | After changes / before done |
+| 15 | `15-error-handling.md` | Always when errors occur |
+| 16 | `16-existing-projects.md` | When AI joins an already-built repo |
+| 17 | `17-branding-and-icons.md` | `N/A` if no app/web/desktop identity icons |
+
+Mark each module `ACTIVE`, `N/A`, or `PROJECT-SPECIFIC` in the law file and in `templates/project-profile.template.md`. Keep `N/A` files in tree as reminders.
 
 ## Question protocol (core)
 
@@ -111,7 +143,7 @@ See `templates/deferral.md`.
 2. Create or fill `templates/project-profile.template.md` (or inline PROJECT-SPECIFIC sections).
 3. Run `01-requirements.md` question gates before coding.
 4. Run `02-discussion.md` CEO/HR/Sales brief on the plan.
-5. Resolve architecture, UI/UX, DB, security modules as needed.
+5. Resolve architecture, UI/UX, DB, security, and branding/icons (`17`) modules as needed.
 6. Implement only after blocking questions are answered (or deferred once).
 7. After each change, run post-change review + `14-final-verification.md` hooks.
 
