@@ -26,7 +26,7 @@ If `N/A`, reason: _______________
 - Applies on new-project security setup and on existing-project audits — depth scales with risk and user choice.
 - Skip running tools when: module is `N/A` after questioning; user declined tooling for this session; no installable/runnable target for a given tool; or scope is pure docs with no code/deps/secrets surface.
 - MUST NOT treat tooling as a substitute for `10-security.md` review (secrets, authz, validation, least privilege).
-- Cross-links: policy/review → `10-security.md`; findings presentation → `15-error-handling.md`; existing audits → `16-existing-projects.md` / `13-ai-review.md`; functional tests ≠ security scans → `09-testing.md`.
+- Cross-links: policy/review → `10-security.md`; findings presentation → `15-error-handling.md`; discovery findings MUST enter remediation → `19-vuln-discovery-and-remediation.md`; existing audits → `16-existing-projects.md` / `13-ai-review.md`; functional tests ≠ security scans → `09-testing.md`.
 
 ## Hard rules (MUST / MUST NOT)
 
@@ -44,12 +44,12 @@ If `N/A`, reason: _______________
 - MUST prefer localhost / staging targets over production; MUST get explicit confirmation before scanning any non-local URL.
 - MUST wait for user choice before acting on tool enablement or finding remediations.
 
-### Findings → error-handling flow
+### Findings → remediation + error-handling flow
 
-- MUST present each actionable finding (or grouped finding theme) using `15-error-handling.md` style: issue → 4 fix options + **Recommended** + custom blank → **wait** before fixing.
+- MUST route each actionable finding (or grouped finding theme) into `19-vuln-discovery-and-remediation.md`: triage → remediation plan → gate related laws → present via `15-error-handling.md` (4 fix options + **Recommended** + custom blank) → **wait** before fixing.
 - MUST prefer root-cause fixes when findings indicate structural impact (systemic secret leakage, missing authz pattern, dependency class-wide failure).
 - MUST NOT silently “fix all” scanner noise; triage severity and false positives with the user when ambiguous.
-- After the chosen fix: run the mandatory five-point post-change review (`00-core.md`).
+- After the chosen fix: run the mandatory five-point post-change review (`00-core.md`) and `19` re-verify hooks.
 
 ### Stack adaptation & mixed repos
 
@@ -225,7 +225,7 @@ Which secret scanner should we prefer?
 3. Detect stacks / monorepo layout; ask to confirm mixed areas if unclear.
 4. If web exists, ask ZAP target (prefer localhost/staging).
 5. Ask scope (often whole-repo once at bootstrap, then changed-areas later).
-6. On approval: run the mapped basic set; present findings via `15-error-handling.md`; wait before fixes.
+6. On approval: run the mapped basic set; send actionable findings into `19-vuln-discovery-and-remediation.md` (then `15-error-handling.md`); wait before fixes.
 7. Fill PROJECT-SPECIFIC: enabled tools, targets, excludes.
 8. Do not claim “secure” from green scanners alone — still complete `10` review.
 
@@ -234,7 +234,7 @@ Which secret scanner should we prefer?
 1. Follow `16-existing-projects.md` / `13-ai-review.md` for audit framing.
 2. Inventory existing CI scanners; prefer extending them over adding duplicates.
 3. Ask enablement + stacks + scope (full-repo baseline often **Recommended** on first AI onboarding audit).
-4. Run relevant subset per area; triage findings into the issue/fix plan.
+4. Run relevant subset per area; triage findings into `19` remediation plans and the issue/fix plan.
 5. Structural secret or authz patterns → root-cause remediation with compatibility notes.
 6. Update PROJECT-SPECIFIC with discovered tool commands and exclusions.
 7. Quick ignore of a finding only when user chooses that option and residual risk is accepted.
@@ -247,7 +247,7 @@ Which secret scanner should we prefer?
 - [ ] Secrets + Semgrep applied or explicitly skipped with reason
 - [ ] ZAP baseline only, and only with confirmed web target (or skipped)
 - [ ] Platform checklists done for mobile/desktop areas in scope
-- [ ] Findings presented with 4 options + Recommended; user choice before fixes
+- [ ] Findings entered `19` remediation flow; presented with 4 options + Recommended; user choice before fixes
 - [ ] `10-security.md` policy review still completed (tooling did not replace it)
 - [ ] PROFILE / PROJECT-SPECIFIC updated when decisions confirmed
 

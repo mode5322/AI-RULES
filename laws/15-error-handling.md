@@ -14,6 +14,7 @@ Current: _______________
 
 - Applies to build failures, runtime errors, test failures, migration errors, and logical defects discovered mid-work.
 - Applies when the agent is unsure which fix strategy to use.
+- Applies to **security findings** from reviews or defensive scanners: present the finding + solutions and wait — after (or with) the remediation plan in `19-vuln-discovery-and-remediation.md`. Policy remains `10-security.md`; scanners remain `18-security-tooling.md`.
 - Never skip waiting for user choice unless one-time deferral explicitly covers fix selection.
 
 ## Hard rules (MUST / MUST NOT)
@@ -26,6 +27,7 @@ Current: _______________
 - MUST NOT silently retry destructive operations.
 - MUST NOT hide errors behind “it works on my machine” assumptions.
 - Quick fix may be Recommended only when impact is isolated and residual risk is low; otherwise Recommend root-cause.
+- For security findings: MUST NOT skip `19-vuln-discovery-and-remediation.md` plan + law gates before offering solutions.
 - After the chosen fix: run mandatory five-point review.
 
 ## Error response template

@@ -63,6 +63,17 @@ Copy this into the consuming project (or fill the PROJECT-SPECIFIC sections insi
 - Excluded paths: _______________
 - Why N/A (if marked): _______________
 
+## Vuln discovery & remediation (see `laws/19-vuln-discovery-and-remediation.md`)
+
+- Module status: ACTIVE | N/A | PROJECT-SPECIFIC | undecided
+- Authorized discovery targets: this-repo | localhost | staging URLs: _______________ | none
+- Production scan allowed: no | yes (explicit only): _______________
+- Discovery cadence: on-audit | per-PR / changed-areas | scheduled: _______________ | ad-hoc
+- Default discovery inputs: `18` tooling | AI review (`10`/`13`) | both | _______________
+- Extra scanners beyond `18`: _______________ | none
+- Finding log / issue tracker path: _______________
+- Why N/A (if marked): _______________
+
 ## Quality gates
 
 - Required tests before merge: _______________
@@ -99,6 +110,7 @@ Copy this into the consuming project (or fill the PROJECT-SPECIFIC sections insi
 | 16-existing-projects | | |
 | 17-branding-and-icons | | |
 | 18-security-tooling | | |
+| 19-vuln-discovery-and-remediation | | |
 
 ## Custom laws
 

@@ -11,7 +11,7 @@ Works for:
 
 | Path | Role |
 |---|---|
-| `laws/` | Executable protocols `00`–`18` |
+| `laws/` | Executable protocols `00`–`19` |
 | `templates/question-protocol.md` | Canonical clarifying-question format |
 | `templates/deferral.md` | One-time deferral wording |
 | `templates/project-profile.template.md` | Project truth index (blanks) |
@@ -40,6 +40,7 @@ See `USAGE.md` for a short install playbook.
 - **Database** — always-on awareness; determine DB type; `N/A` only after questioning.
 - **Branding / icons** — desktop, mobile, and web identity assets; static vs user-changeable (`laws/17-branding-and-icons.md`).
 - **Security tooling** — optional stack-adaptive defensive scanners supplement policy review (`laws/10-security.md` + `laws/18-security-tooling.md`); no exploits.
+- **Vuln discovery / remediation** — authorized discovery → triage → remediation plan → wait → fix (`laws/19-vuln-discovery-and-remediation.md`).
 - **After every change** — review modified elements, DB compatibility, logic/math, security, quality/structure.
 - **Errors** — show immediately + 4 solutions (one Recommended) + custom; wait before fixing; prefer root-cause.
 

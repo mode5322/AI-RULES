@@ -10,7 +10,7 @@ Treat everything under `laws/` as mandatory. Start with:
 - `templates/question-protocol.md`
 - `templates/deferral.md`
 
-Then open the domain files needed for the task (`01`–`18`). For already-built repos, also read `laws/16-existing-projects.md` and `laws/13-ai-review.md`.
+Then open the domain files needed for the task (`01`–`19`). For already-built repos, also read `laws/16-existing-projects.md` and `laws/13-ai-review.md`.
 
 ## Strict behavior
 
@@ -24,6 +24,7 @@ Then open the domain files needed for the task (`01`–`18`). For already-built 
 8. On errors: show error + 4 solutions (one Recommended) + custom; wait for choice; prefer root-cause (`laws/15-error-handling.md`).
 9. Branding / app icons: when identity icons or changeable icon packs apply, follow `laws/17-branding-and-icons.md`.
 10. Security tooling: optional defensive layer in `laws/18-security-tooling.md` supplements `laws/10-security.md` — stack-adaptive, question-gated, findings via error-handling; no exploits.
+11. Vuln discovery / remediation: authorized findings follow `laws/19-vuln-discovery-and-remediation.md` (plan before fix; gate other laws; wait).
 
 ## Consultant mode
 

@@ -83,6 +83,7 @@ Review all of:
 
 - Policy and AI security review remain primary (`10-security.md`).
 - Optional stack-adaptive defensive scanners (deps, secrets, Semgrep, ZAP baseline, platform checklists) follow `18-security-tooling.md` — gated by question protocol; defensive only; findings via `15-error-handling.md`.
+- Actionable discovery findings MUST enter the authorized discovery → remediation pipeline in `19-vuln-discovery-and-remediation.md` (plan before fix; wait for user choice).
 
 ### Scope discipline
 
@@ -115,6 +116,7 @@ Read `00-core` first, then domain modules relevant to the task. Numbers are stab
 | 16 | `16-existing-projects.md` | When AI joins an already-built repo |
 | 17 | `17-branding-and-icons.md` | `N/A` if no app/web/desktop identity icons |
 | 18 | `18-security-tooling.md` | Optional defensive tooling; supplements `10`; `N/A` if declined |
+| 19 | `19-vuln-discovery-and-remediation.md` | Authorized discovery → remediation plans; `N/A` if no security surface |
 
 Mark each module `ACTIVE`, `N/A`, or `PROJECT-SPECIFIC` in the law file and in `templates/project-profile.template.md`. Keep `N/A` files in tree as reminders.
 
@@ -149,7 +151,7 @@ See `templates/deferral.md`.
 2. Create or fill `templates/project-profile.template.md` (or inline PROJECT-SPECIFIC sections).
 3. Run `01-requirements.md` question gates before coding.
 4. Run `02-discussion.md` CEO/HR/Sales brief on the plan.
-5. Resolve architecture, UI/UX, DB, security (`10` + optional `18`), and branding/icons (`17`) modules as needed.
+5. Resolve architecture, UI/UX, DB, security (`10` + optional `18` + vuln pipeline `19`), and branding/icons (`17`) modules as needed.
 6. Implement only after blocking questions are answered (or deferred once).
 7. After each change, run post-change review + `14-final-verification.md` hooks.
 
