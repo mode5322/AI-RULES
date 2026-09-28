@@ -44,14 +44,16 @@ Copy this into the consuming project (or fill the PROJECT-SPECIFIC sections insi
 - Hosting: _______________
 - Why N/A (if marked): _______________
 
-## Security & access
+## Security Laws suite (see `laws/10-security.md` — parent)
+
+Parent policy / access (`10`):
 
 - Auth method: _______________
 - Roles / RBAC model: _______________
 - Secrets storage: _______________
 - Threat notes: _______________
 
-## Security tooling (defensive — see `laws/18-security-tooling.md`)
+### Defensive tooling (`18` — see `laws/18-security-tooling.md`)
 
 - Module status: ACTIVE | N/A | PROJECT-SPECIFIC | undecided
 - Tooling enabled: yes | no | partial | _______________
@@ -63,14 +65,15 @@ Copy this into the consuming project (or fill the PROJECT-SPECIFIC sections insi
 - Excluded paths: _______________
 - Why N/A (if marked): _______________
 
-## Vuln discovery & remediation (see `laws/19-vuln-discovery-and-remediation.md`)
+### Vuln discovery & remediation (`19` — see `laws/19-vuln-discovery-and-remediation.md`)
 
 - Module status: ACTIVE | N/A | PROJECT-SPECIFIC | undecided
+- Suite enablement noted under `10`: yes | no | _______________
 - Authorized discovery targets: this-repo | localhost | staging URLs: _______________ | none
 - Production scan allowed: no | yes (explicit only): _______________
 - Discovery cadence: on-audit | per-PR / changed-areas | scheduled: _______________ | ad-hoc
 - Default discovery inputs: `18` tooling | AI review (`10`/`13`) | both | _______________
-- Extra scanners beyond `18`: _______________ | none
+- Extra scanners beyond `18` (e.g. Nuclei opt-in): _______________ | none (default)
 - Finding log / issue tracker path: _______________
 - Why N/A (if marked): _______________
 
@@ -101,7 +104,7 @@ Copy this into the consuming project (or fill the PROJECT-SPECIFIC sections insi
 | 07-logic-and-math | | |
 | 08-validation | | |
 | 09-testing | | |
-| 10-security | | |
+| 10-security | | Security Laws suite parent |
 | 11-change-management | | |
 | 12-code-quality | | |
 | 13-ai-review | | |
@@ -109,8 +112,8 @@ Copy this into the consuming project (or fill the PROJECT-SPECIFIC sections insi
 | 15-error-handling | | |
 | 16-existing-projects | | |
 | 17-branding-and-icons | | |
-| 18-security-tooling | | |
-| 19-vuln-discovery-and-remediation | | |
+| 18-security-tooling | | Security Laws companion (tools) |
+| 19-vuln-discovery-and-remediation | | Security Laws companion (discover→remediate) |
 
 ## Custom laws
 

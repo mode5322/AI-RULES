@@ -30,8 +30,7 @@ Before non-trivial work, read:
 - Errors: show immediately + 4 solutions (one Recommended) + custom; **wait** before fixing; prefer root-cause.
 - Existing projects: review → rethink → issue/fix plan → fixes (`16-existing-projects.md`).
 - Branding / app icons: follow `17-branding-and-icons.md` when identity icons, favicons, launcher/PWA/store assets, or user-changeable icon packs are in scope.
-- Security tooling: optional defensive scanners in `18-security-tooling.md` supplement `10-security.md` (stack-adaptive; question-gated; no exploits).
-- Vuln discovery / remediation: authorized findings follow `19-vuln-discovery-and-remediation.md` (plan before fix; gate other laws; wait).
+- Security Laws suite (`10` + `18` + `19`): parent policy `10-security.md`; optional defensive scanners `18-security-tooling.md`; authorized discovery → remediation `19-vuln-discovery-and-remediation.md` (plan before fix; wait; no exploits).
 
 ## Do / Don’t
 

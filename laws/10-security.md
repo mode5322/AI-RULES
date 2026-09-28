@@ -2,7 +2,15 @@
 
 ## Purpose
 
-Enforce secure defaults: secrets handling, authorization, input safety, and least privilege. This module is the **primary** security policy and AI review protocol. Optional **defensive tooling** (dependency audits, secret scanners, light SAST, ZAP baseline, platform checklists) lives in `18-security-tooling.md` and **supplements, never replaces**, this review. Actionable discovery findings MUST enter the remediation pipeline in `19-vuln-discovery-and-remediation.md` (plan → gate → wait → fix → re-verify).
+Enforce secure defaults: secrets handling, authorization, input safety, and least privilege. This module is the **primary** security policy and AI review protocol — the **parent** of the **Security Laws** suite (قوانين الأمان). Companion modules **supplement, never replace**, this review:
+
+| Suite role | Module | Responsibility |
+|---|---|---|
+| **Parent — policy / review** | `10-security.md` (this file) | Secrets, authz, input safety, least privilege; owns the suite |
+| **Companion — defensive tools** | `18-security-tooling.md` | Optional stack-adaptive scanners (deps, secrets, Semgrep, ZAP baseline, platform checklists) |
+| **Companion — discover → remediate** | `19-vuln-discovery-and-remediation.md` | Authorized discovery → triage → Remediation Closure Prompt/Plan → fix gate → re-verify |
+
+**Reading order when security applies:** this file (`10`) first → `18` when tooling is enabled → `19` when findings exist or a discovery/remediation pass is in scope. Agents MUST treat `10` + `18` + `19` as **one Security Laws suite**, not as unrelated add-ons. MUST follow all applicable suite modules together.
 
 ## Status
 
@@ -16,6 +24,7 @@ Current: _______________
 - Never fully skip; only reduce depth for pure docs with no executable impact.
 - Security refusals (illegal/harmful) are never deferred.
 - Stack-adaptive hybrid: keep this policy/review always; add tooling from `18-security-tooling.md` only after question-protocol approval (or one-time deferral). Tool choice follows detected stacks — including mixed monorepos — see `18`.
+- When scanner or review findings need closure, MUST follow `19-vuln-discovery-and-remediation.md` (authorized targets only; no exploits/PoCs; wait before fixes).
 
 ## Hard rules (MUST / MUST NOT)
 
@@ -46,7 +55,6 @@ Current: _______________
 - MUST treat green scanner results as evidence, not as a substitute for this module’s review.
 - When automated scans are appropriate, MUST follow `18-security-tooling.md` (defensive only; gated by questions).
 - When findings (from `18` or this review) need triage/remediation, MUST follow `19-vuln-discovery-and-remediation.md` — Remediation Closure Plans, user choice before code changes (`15-error-handling.md`), no exploits or attack PoCs.
-- When a scan or review yields an actionable vulnerability, MUST follow `19-vuln-discovery-and-remediation.md` before fixing (remediation plan + user choice).
 
 ## Question protocol
 
@@ -97,6 +105,7 @@ Where should secrets live?
 4. Threat-note sensitive flows in PROJECT-SPECIFIC.
 5. Run security review on first vertical slice.
 6. Optionally enable stack-adaptive defensive tooling (`18-security-tooling.md`) after question protocol.
+7. Optionally enable discovery/remediation (`19-vuln-discovery-and-remediation.md`); route findings through Closure Plans before fixes.
 
 ## Existing-project workflow
 
@@ -104,8 +113,8 @@ Where should secrets live?
 2. Treat missing service-level checks as defects.
 3. Remediate with compatibility-preserving fixes.
 4. Rotate any exposed secrets discovered (instruct user; do not print secret values).
-5. On audits, consider `18-security-tooling.md` as a supplement to the manual/AI review — not a replacement.
-6. Route actionable findings through `19-vuln-discovery-and-remediation.md` (do not silent auto-fix).
+5. On audits, use `18-security-tooling.md` as a supplement to the manual/AI review — not a replacement.
+6. Feed audit/tool findings into `19-vuln-discovery-and-remediation.md` for triage and Remediation Closure Plans (wait before code changes).
 
 ## Post-change checklist hooks
 
@@ -114,8 +123,8 @@ Where should secrets live?
 - [ ] Injection/XSS/path risks considered
 - [ ] Logging safe
 - [ ] Fail closed honored
-- [ ] Tooling (if enabled) followed `18-security-tooling.md`; findings triaged via `15-error-handling.md`
-- [ ] Actionable findings entered `19-vuln-discovery-and-remediation.md` (plan before fix)
+- [ ] Tooling (if enabled) followed `18-security-tooling.md`
+- [ ] Findings (if any) triaged/closed via `19-vuln-discovery-and-remediation.md` + `15-error-handling.md`
 
 ## PROJECT-SPECIFIC
 
@@ -125,5 +134,5 @@ Where should secrets live?
 - Security contacts: _______________
 - Known sensitive operations: _______________
 - Compliance notes: _______________
-- Defensive tooling module (`18`): ACTIVE | N/A | PROJECT-SPECIFIC | _______________
-- Vuln discovery / remediation module (`19`): ACTIVE | N/A | PROJECT-SPECIFIC | _______________
+- Security Laws suite — defensive tooling (`18`): ACTIVE | N/A | PROJECT-SPECIFIC | _______________
+- Security Laws suite — vuln discovery/remediation (`19`): ACTIVE | N/A | PROJECT-SPECIFIC | _______________

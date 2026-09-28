@@ -39,8 +39,7 @@ See `USAGE.md` for a short install playbook.
 - **Discussion** — new plans get brief CEO + HR + Sales angles; ask if another specialty is needed.
 - **Database** — always-on awareness; determine DB type; `N/A` only after questioning.
 - **Branding / icons** — desktop, mobile, and web identity assets; static vs user-changeable (`laws/17-branding-and-icons.md`).
-- **Security tooling** — optional stack-adaptive defensive scanners supplement policy review (`laws/10-security.md` + `laws/18-security-tooling.md`); no exploits.
-- **Vuln discovery / remediation** — authorized discovery → triage → remediation plan → wait → fix (`laws/19-vuln-discovery-and-remediation.md`).
+- **Security Laws suite** — parent policy (`laws/10-security.md`) + optional defensive tooling (`laws/18-security-tooling.md`) + authorized discovery/remediation (`laws/19-vuln-discovery-and-remediation.md`); no exploits.
 - **After every change** — review modified elements, DB compatibility, logic/math, security, quality/structure.
 - **Errors** — show immediately + 4 solutions (one Recommended) + custom; wait before fixing; prefer root-cause.
 

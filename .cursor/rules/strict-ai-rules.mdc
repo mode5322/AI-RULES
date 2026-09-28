@@ -29,8 +29,7 @@ Read in order:
 - Errors: show immediately + 4 solutions (one Recommended) + custom; wait for user choice; prefer root-cause.
 - Existing projects: review → rethink → issue/fix plan → fixes.
 - Branding / app icons: use `17-branding-and-icons.md` for platform assets and static vs user-changeable strategy.
-- Security tooling: use `18-security-tooling.md` for optional defensive scanners (supplements `10-security.md`; stack-adaptive; no exploits).
-- Vuln discovery / remediation: use `19-vuln-discovery-and-remediation.md` for authorized findings (plan before fix; gate other laws; wait).
+- Security Laws suite: parent `10-security.md`; tooling `18-security-tooling.md`; discovery/remediation `19-vuln-discovery-and-remediation.md` (plan before fix; wait; no exploits).
 
 ## Consultant mode
 

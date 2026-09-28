@@ -19,7 +19,7 @@ Pick one:
 
 ## New project flow
 
-1. Requirements (`01`) → Discussion (`02`) → Architecture / UI / UX / DB / security (`10`, optional tooling `18`, vuln pipeline `19`) / branding-icons (`17`) as needed.
+1. Requirements (`01`) → Discussion (`02`) → Architecture / UI / UX / DB / Security Laws suite (`10` + optional `18`/`19`) / branding-icons (`17`) as needed.
 2. Implement only after blocking questions are answered (or one-time deferral).
 3. After each change: five-point review → final verification (`14`).
 
@@ -28,8 +28,7 @@ Pick one:
 1. Start at `16-existing-projects.md` (+ `13-ai-review.md`).
 2. Audit → rethink → issue/fix plan → confirm → fix.
 3. Quick fix only when impact is isolated; otherwise root-cause with compatibility.
-4. Optional defensive scanners: `18-security-tooling.md` (supplements `10`; stack-adaptive; question-gated).
-5. Actionable vulns: `19-vuln-discovery-and-remediation.md` (plan before fix; wait).
+4. Security Laws suite: optional scanners `18-security-tooling.md` under parent `10`; actionable vulns via `19-vuln-discovery-and-remediation.md` (plan before fix; wait).
 
 ## Deferral
 

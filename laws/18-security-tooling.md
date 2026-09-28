@@ -2,7 +2,9 @@
 
 ## Purpose
 
-Add an **optional, defensive tooling layer** that supplements — never replaces — the policy and AI security review in `10-security.md`. Tools adapt to detected project type / stack, including **mixed monorepos** (e.g. Flutter app + React admin + static web). Agents run scanners only after question-protocol approval (or one-time deferral per `templates/deferral.md`).
+Add an **optional, defensive tooling layer** that supplements — never replaces — the policy and AI security review in `10-security.md`. This module is a **Security Laws** companion under parent `10` (suite: `10` policy → `18` tools → `19` discovery/remediation). Tools adapt to detected project type / stack, including **mixed monorepos** (e.g. Flutter app + React admin + static web). Agents run scanners only after question-protocol approval (or one-time deferral per `templates/deferral.md`).
+
+Actionable findings from this module **MUST feed into** `19-vuln-discovery-and-remediation.md` (triage → Remediation Closure Plan → wait → fix) — not silent auto-fix.
 
 This module encodes the **basic defensive set** (no Nuclei, no Metasploit, no exploits, no attack PoCs, no offensive procedures):
 

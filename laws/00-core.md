@@ -79,11 +79,12 @@ Review all of:
 - When product/app identity icons or branding assets are in scope, MUST follow `17-branding-and-icons.md` (platform sizes, asset location, static vs user-changeable).
 - Mark `17` as `N/A` only after questioning confirms no visual identity surface.
 
-### Security tooling (defensive)
+### Security Laws suite (`10` + `18` + `19`)
 
-- Policy and AI security review remain primary (`10-security.md`).
-- Optional stack-adaptive defensive scanners (deps, secrets, Semgrep, ZAP baseline, platform checklists) follow `18-security-tooling.md` — gated by question protocol; defensive only; findings via `15-error-handling.md`.
-- Actionable discovery findings MUST enter the authorized discovery → remediation pipeline in `19-vuln-discovery-and-remediation.md` (plan before fix; wait for user choice).
+- Treat as **one suite** under parent policy (`10-security.md`): policy/review → optional defensive tooling (`18-security-tooling.md`) → authorized discovery/triage/remediation (`19-vuln-discovery-and-remediation.md`).
+- Reading order when security applies: `10` → `18` (if tooling enabled) → `19` (when findings or a discovery/remediation pass is in scope).
+- Optional stack-adaptive defensive scanners (deps, secrets, Semgrep, ZAP baseline, platform checklists) follow `18` — gated by question protocol; defensive only; no exploits.
+- Actionable findings MUST enter `19` (Remediation Closure Plans; wait for user choice via `15-error-handling.md` before fixes).
 
 ### Scope discipline
 
@@ -107,7 +108,7 @@ Read `00-core` first, then domain modules relevant to the task. Numbers are stab
 | 07 | `07-logic-and-math.md` | When calculations / rules apply |
 | 08 | `08-validation.md` | When inputs / contracts apply |
 | 09 | `09-testing.md` | Per project quality bar |
-| 10 | `10-security.md` | Nearly always on |
+| 10 | `10-security.md` | Security Laws suite **parent** — nearly always on |
 | 11 | `11-change-management.md` | When changing behavior/scope |
 | 12 | `12-code-quality.md` | When writing/reviewing code |
 | 13 | `13-ai-review.md` | Reviews / existing-project audits |
@@ -115,8 +116,8 @@ Read `00-core` first, then domain modules relevant to the task. Numbers are stab
 | 15 | `15-error-handling.md` | Always when errors occur |
 | 16 | `16-existing-projects.md` | When AI joins an already-built repo |
 | 17 | `17-branding-and-icons.md` | `N/A` if no app/web/desktop identity icons |
-| 18 | `18-security-tooling.md` | Optional defensive tooling; supplements `10`; `N/A` if declined |
-| 19 | `19-vuln-discovery-and-remediation.md` | Authorized discovery → remediation plans; `N/A` if no security surface |
+| 18 | `18-security-tooling.md` | Security Laws companion — optional defensive tooling; supplements `10`; `N/A` if declined |
+| 19 | `19-vuln-discovery-and-remediation.md` | Security Laws companion — authorized discovery → remediation; `N/A` if no security surface |
 
 Mark each module `ACTIVE`, `N/A`, or `PROJECT-SPECIFIC` in the law file and in `templates/project-profile.template.md`. Keep `N/A` files in tree as reminders.
 
@@ -151,7 +152,7 @@ See `templates/deferral.md`.
 2. Create or fill `templates/project-profile.template.md` (or inline PROJECT-SPECIFIC sections).
 3. Run `01-requirements.md` question gates before coding.
 4. Run `02-discussion.md` CEO/HR/Sales brief on the plan.
-5. Resolve architecture, UI/UX, DB, security (`10` + optional `18` + vuln pipeline `19`), and branding/icons (`17`) modules as needed.
+5. Resolve architecture, UI/UX, DB, Security Laws suite (`10` + optional `18`/`19`), and branding/icons (`17`) modules as needed.
 6. Implement only after blocking questions are answered (or deferred once).
 7. After each change, run post-change review + `14-final-verification.md` hooks.
 

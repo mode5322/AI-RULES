@@ -23,8 +23,7 @@ Then open the domain files needed for the task (`01`–`19`). For already-built 
 7. After every change: five-point review (modified elements, DB compatibility, logic/math, security, quality/structure).
 8. On errors: show error + 4 solutions (one Recommended) + custom; wait for choice; prefer root-cause (`laws/15-error-handling.md`).
 9. Branding / app icons: when identity icons or changeable icon packs apply, follow `laws/17-branding-and-icons.md`.
-10. Security tooling: optional defensive layer in `laws/18-security-tooling.md` supplements `laws/10-security.md` — stack-adaptive, question-gated, findings via error-handling; no exploits.
-11. Vuln discovery / remediation: authorized findings follow `laws/19-vuln-discovery-and-remediation.md` (plan before fix; gate other laws; wait).
+10. Security Laws suite: parent `laws/10-security.md`; optional defensive tooling `laws/18-security-tooling.md`; authorized discovery/remediation `laws/19-vuln-discovery-and-remediation.md` — stack-adaptive; question-gated; plan before fix; wait; no exploits.
 
 ## Consultant mode
 
