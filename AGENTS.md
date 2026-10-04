@@ -44,3 +44,11 @@ Before non-trivial work, read:
 ## Profile
 
 Prefer filling `templates/project-profile.template.md` (or equivalent project copy) as the index of project truths.
+
+## Cursor Cloud specific instructions
+
+This repository is a Markdown law pack. It has no application, package manager, lockfile, Dockerfile, or process to start. `.gitignore` mentions `node_modules/`, `venv/`, and `dist/` only so a later copy can ignore tooling; those paths are unused here.
+
+- Do not install dependencies or start Docker, databases, or a dev server. Nothing in this repo listens on a port.
+- There is no lint, test, or build script. Confirm the pack by checking `laws/00-core.md` through `laws/19-vuln-discovery-and-remediation.md`, `templates/`, `AGENTS.md`, `CLAUDE.md`, and `.cursor/rules/strict-ai-rules.mdc`, and that backtick references to sibling law files resolve.
+- This public origin stays a blank template. Do not fill PROJECT-SPECIFIC sections here (see `USAGE.md`, “Keeping the origin clean”).
