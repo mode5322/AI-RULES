@@ -41,3 +41,13 @@ To skip questions once, or to skip rules setup for the current task only, say cl
 ## Keeping the origin clean
 
 Do not push your project-specific filled laws back to the public `strict-ai-rules` origin. Customize only in your project copy.
+
+## Updating from upstream
+
+When a newer pack is copied onto a project that already has filled settings, follow `laws/11-change-management.md` (Upstream law merge):
+
+1. Keep every configured value. Do not paste origin blanks over them.
+2. Add new laws and new blank settings from the newer pack.
+3. Continue setup only for the new blanks (`laws/00-core.md`, Resume in a new conversation).
+4. Record the upstream revision in the project profile.
+5. Do not push the filled result back to the public origin.

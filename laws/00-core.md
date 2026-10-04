@@ -55,6 +55,17 @@ Before mentioning, recommending, configuring, or implementing any technology, we
 - MUST configure every setting in laws `00`–`19`, every `PROJECT-SPECIFIC` bullet in `templates/`, and every field in the project profile. A blank or a skip value does not count.
 - MUST NOT apply this gate when maintaining the public origin template.
 
+### Law precedence
+
+When two laws disagree about the same action, apply the first match:
+
+1. Non-deferrable safety wins: security, secrets, data-loss, and illegal-request refusals (`templates/deferral.md`, `10-security.md`).
+2. Hard rules in this file win over every other law, including the implementation ladder in `12-code-quality.md`.
+3. A configured PROJECT-SPECIFIC value wins over a generic example in a law. It does not win over items 1 or 2.
+4. The domain law that owns the surface being changed wins over a law that only mentions that surface in passing. Ownership is the module whose “When this module applies” matches the artifact.
+5. If two domain laws both own the surface, follow the cross-link that names the owner. If none does, ask one question and wait. Do not pick silently.
+6. The implementation ladder never overrides items 1–5.
+
 ### Question protocol
 
 - MUST use `templates/question-protocol.md` for every clarifying question:
@@ -260,6 +271,19 @@ When the user asks to configure the rules (or chooses to start configuration):
 
 When every setting in `00`–`19`, `templates/`, and the project profile is configured, set rules-setup status to `complete`, say that every setting is configured, and only then resume the held request under the normal gates. On every later task, check again. If any setting is unconfigured, hold the task and continue at the first unconfigured setting.
 
+### Resume in a new conversation
+
+At the start of every conversation in a consuming project:
+
+- MUST read the profile rules-setup status, held first request, last finished section, and next section.
+- MUST scan for unconfigured settings before any product or code work.
+- If every setting is configured, MUST NOT restart rules setup.
+- If any setting is unconfigured, MUST hold product and code work and continue at the first unconfigured setting in section order.
+- MUST NOT re-ask a setting that is already configured.
+- MUST NOT skip ahead of that first unconfigured setting.
+- A new chat does not clear a held first request that is still recorded.
+- After an upstream merge adds new blank settings, resume at the first unconfigured setting. That includes the new blanks. Do not re-ask configured settings (`11-change-management.md`).
+
 ## New-project workflow
 
 0. If rules setup is incomplete, run **Rules-setup gate** before any later step.
@@ -282,6 +306,9 @@ When every setting in `00`–`19`, `templates/`, and the project profile is conf
 - [ ] Every rule setting is configured (no blank or skip left in `00`–`19`, templates, or the profile)
 - [ ] Named technologies, sites, references, features, algorithms, tools, and libraries were checked against their current authoritative source
 - [ ] Arabic conversation lines contain no embedded English term; each English term is on its own line
+- [ ] Law precedence applied when two rules overlapped
+- [ ] A new conversation resumed at the first unconfigured setting and did not re-ask configured ones
+- [ ] Product UI direction follows the confirmed locale; the conversation line-split is not a substitute (`03-ui.md`)
 - [ ] Required questions answered or one-time deferral recorded
 - [ ] Modified surfaces listed
 - [ ] DB compatibility considered

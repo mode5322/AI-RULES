@@ -10,6 +10,8 @@ Filled only in a consuming project (`laws/00-core.md`). Setup is `complete` only
 - Held first request (unexecuted): _______________
 - Last finished section: _______________
 - Next section: _______________
+- Upstream revision merged: _______________
+- Upstream merge notes: _______________
 
 ## Identity
 

@@ -20,6 +20,7 @@ Read in order:
 ## Enforce
 
 - English-only for law content. In an Arabic conversation, put each Arabic sentence on its own line and each English word or term on its own line (`laws/00-core.md`, Language). Do not embed an English term inside an Arabic line.
+- When laws conflict, follow Law precedence in `laws/00-core.md`. Resume setup at the first unconfigured setting. Keep configured values when merging a newer pack (`laws/11-change-management.md`). Product right-to-left layout is `laws/03-ui.md`, not the chat line-split.
 - Before mentioning or using any technology, website, reference, feature, algorithm, tool, or library, review its current authoritative source, then work from that (`laws/00-core.md`, Current sources). Do not present an unchecked detail as current.
 - Do not execute until required questions/checks complete, unless user defers **for this time only**.
 - Consuming project: configure every rule setting before product or code work (`laws/00-core.md`). That means every `Current:` line, every `PROJECT-SPECIFIC` bullet in `laws/` and `templates/`, and every project-profile field. Hold the request while any setting is blank. One section at a time, one unconfigured setting per turn. Existing repo: write values the code already shows (Firebase, Supabase, SQL, and any other plain fact), then ask for every remaining setting. New repo: ask; do not invent facts. `not set` and `_______________` are not configured.

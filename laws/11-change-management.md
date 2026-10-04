@@ -35,6 +35,17 @@ Current: _______________
 - MUST NOT commit unless the user explicitly asks (agent rule).
 - Schema/data changes require migration discipline from `06-database.md`.
 
+## Upstream law merge
+
+When a newer copy of this pack is brought into a consuming project that already has configured settings:
+
+- MUST NOT replace a configured setting with a blank, example, or placeholder from the public origin.
+- MUST add new law files, new hard rules, and new blank settings that the newer pack introduces.
+- MUST apply rule text that the newer pack replaced. A configured PROJECT-SPECIFIC value stays. It does not keep a deleted upstream rule alive unless that value is an explicit documented override, and **Law precedence** in `00-core.md` still applies.
+- New blank settings make setup incomplete. Continue with **Resume in a new conversation** in `00-core.md`. Do not re-ask configured settings.
+- MUST record the upstream revision merged (commit id, tag, or date) in the project profile.
+- MUST NOT push the filled project laws back to the public origin.
+
 ## Question protocol
 
 ### Example — Change strategy
@@ -88,6 +99,7 @@ What risk posture should we take?
 - [ ] Blast radius assessed
 - [ ] Five-point mandatory review done
 - [ ] Rollback idea known for risky changes
+- [ ] Upstream merge kept configured settings and recorded the revision merged
 
 ## PROJECT-SPECIFIC
 
