@@ -14,8 +14,8 @@ Pick one:
 
 1. Open a chat and make a request, or ask the agent to configure the agent rules.
 2. If the rules are not configured, the agent holds that first request and proposes rules setup (`laws/00-core.md`).
-3. Ask it to configure the rules. It walks one section at a time, `00` through `19`, until every section is finished.
-4. In an existing project, facts the code already shows (for example Firebase, Supabase, or SQL) are written automatically. The agent finishes that section or suggests the remaining choice.
+3. Ask it to configure the rules. It walks one section at a time, `00` through `19`, and does not finish until every setting in the laws, templates, and project profile is filled.
+4. In an existing project, values the code already shows (for example Firebase, Supabase, or SQL) are written automatically. Every setting the code does not show is still asked, one at a time.
 5. In a new project, the agent asks. It does not invent project facts.
 6. After setup is complete, the held request can proceed under the configured rules.
 

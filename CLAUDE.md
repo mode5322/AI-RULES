@@ -16,7 +16,7 @@ Then open the domain files needed for the task (`01`–`19`). For already-built 
 
 1. Do not build/start until required clarifying questions and checks are done.
 2. Exception: user explicitly defers **for this time only** (`templates/deferral.md`), then restore strict mode.
-3. Consuming project with incomplete rules setup: hold the first request, propose configuring the agent rules, then walk one section per turn (`00`–`19`) until all are finished (`laws/00-core.md`). Existing repo: record general facts the code already shows (database such as Firebase, Supabase, or SQL). New repo: ask; do not invent facts.
+3. Consuming project: configure every setting in laws `00`–`19`, template `PROJECT-SPECIFIC` bullets, and the project profile before product or code work (`laws/00-core.md`). Hold the request while any setting is blank. One section at a time, one unconfigured setting per turn. Existing repo: record values the code already shows (database such as Firebase, Supabase, or SQL, and any other plain fact), then ask for the rest. New repo: ask; do not invent facts. Do not skip a setting with `not set`.
 4. Clarifying questions always use: 1 question, 4 options, option 5 custom blank, one **Recommended**, optional research hints.
 5. Before build/start: always ask what is required. During/after: only if ambiguous.
 6. Any new plan: short CEO + HR + Sales angles, then ask if another specialty is needed (`laws/02-discussion.md`).

@@ -28,7 +28,8 @@ Always. Every agent session, every IDE adapter, every task type.
 
 ### Rules-setup gate
 
-- In a **consuming project**, while rules setup is incomplete, MUST hold the user’s first product or code request and MUST propose configuring the agent rules before any other work. Procedure: **Rules-setup gate** below.
+- In a **consuming project**, while any rule setting is unconfigured, MUST hold product and code requests and MUST configure every setting before resuming them. Procedure: **Rules-setup gate** below.
+- MUST configure every setting in laws `00`–`19`, every `PROJECT-SPECIFIC` bullet in `templates/`, and every field in the project profile. A blank or a skip value does not count.
 - MUST NOT apply this gate when maintaining the public origin template.
 
 ### Question protocol
@@ -172,12 +173,17 @@ See `templates/deferral.md`.
 
 Applies when this pack is copied into a **consuming project** and rules setup is incomplete. It does not apply to template maintenance on the public `strict-ai-rules` origin.
 
-Setup is **incomplete** while any of these is true:
+Setup is **incomplete** while any setting is unconfigured. Profile status `complete` does not override a remaining blank.
 
-- Profile rules-setup status is missing or not `complete`
-- Any law `00`–`19` still has an empty required PROJECT-SPECIFIC field and is not `N/A` with a written reason
+A **setting** is every fill-in line in the consuming project’s copies of:
 
-### Hold the first request
+- each law `00`–`19` `Current:` line
+- every bullet under `## PROJECT-SPECIFIC` in `laws/` and in `templates/` (including `templates/deferral.md`)
+- every field in the project profile, including the module status map
+
+A setting is **configured** only when its placeholder is replaced with a concrete value. `N/A: <reason>` is a concrete value when that setting truly does not apply. These are not configured: `_______________`, a blank, `not set`, `undecided`, `TBD`, or any skip.
+
+### Hold work until every setting is configured
 
 On the user’s first product or code request while setup is incomplete:
 
@@ -186,6 +192,8 @@ On the user’s first product or code request while setup is incomplete:
 3. MUST propose one next step: configure the agent rules so the agent works according to the requirements fixed in these laws.
 4. MUST ask with the question protocol whether to start that configuration now. Mark starting configuration as **Recommended**.
 5. The request stays held until rules setup is `complete`, or the user defers setup **for this time only** (`templates/deferral.md`). That deferral covers the current task only. The gate returns on the next task.
+
+The same hold applies to every later product or code request while any setting is still unconfigured. Resume held work only after every setting is configured, or the user defers setup **for this time only**. A deferral does not mark the skipped settings configured. The gate returns on the next task.
 
 This hold is agent-initiated. It is not a user deferral. User deferral stays the only way to skip the gate for one task.
 
@@ -211,29 +219,29 @@ Hints:
 
 When the user asks to configure the rules (or chooses to start configuration):
 
-- Walk sections in order: `00`, then `01` through `19`.
-- Update the project profile as each section is decided.
-- One section per turn. Do not open the next section in the same message.
-- One question per turn, and only when that section still has an open decision. Wait for the answer.
-- Do not stop while any section `00`–`19` is unfinished, unless the user pauses or defers **for this time only**.
-- A section is finished only when its status is `ACTIVE` and its behavior-changing PROJECT-SPECIFIC fields are filled, or status is `N/A` with a written reason. `06` stays in the tree either way.
-- Optional narrative notes that the decision and the code do not cover: write `not set`. Do not invent them, and do not ask a separate question for each note.
-- MUST NOT copy secrets, connection strings, keys, or passwords into laws or the profile.
+- Walk sections in order: `00`, then `01` through `19`, then any profile or template settings not already filled with that section.
+- One section per turn. Stay on that section across turns until every setting in it is configured. Do not open the next section in the same message.
+- One unconfigured setting per turn. Ask one question for it and wait. Do not batch settings.
+- Do not stop while any setting remains unconfigured, unless the user pauses or defers **for this time only**.
+- A section is finished only when every setting in that law and the matching profile lines are configured. `N/A` still requires every line in that section to be filled (`N/A: <reason>` where the line does not apply). `06` stays in the tree either way.
+- MUST NOT leave a setting as `not set`, blank, or `_______________` to finish faster.
+- MUST NOT copy secrets, connection strings, keys, or passwords into laws or the profile. When a setting would require a secret, record where it is stored, not the secret value.
 
-**New project:** the repo does not establish product facts. Ask. Do not invent them.
+**New project:** the repo does not establish product facts. Ask for every setting. Do not invent them.
 
-**Existing project:** if the code already establishes a general fact, write it and do not ask the user to re-confirm it. The database engine is the canonical case (Firebase, Supabase, SQL, or another engine the repo actually uses). Also write language, framework, platform, and auth provider when the repo shows them plainly.
+**Existing project:** if the code already establishes a value, write it into every matching setting and do not ask the user to re-confirm it. The database engine is the canonical case (Firebase, Supabase, SQL, or another engine the repo actually uses). Also write language, framework, platform, auth provider, and any other setting the repo shows plainly.
 
-- If those facts finish the section: write them, show what was set, mark the section done, and end the turn. Name the next section. Wait.
-- If a behavior-changing choice remains: write the known facts and ask one question. Mark the option best supported by the code as **Recommended**.
+- Known settings are written in that section’s turn.
+- Each remaining setting is still asked, one per turn, until the section is fully configured. Mark the option best supported by the code as **Recommended**.
+- When the section’s last setting is configured, name the next section and end the turn.
 
-When `19` and the profile module map are finished, set rules-setup status to `complete`, say that setup is finished, and only then resume the held request under the normal gates.
+When every setting in `00`–`19`, `templates/`, and the project profile is configured, set rules-setup status to `complete`, say that every setting is configured, and only then resume the held request under the normal gates. On every later task, check again. If any setting is unconfigured, hold the task and continue at the first unconfigured setting.
 
 ## New-project workflow
 
 0. If rules setup is incomplete, run **Rules-setup gate** before any later step.
 1. Confirm laws are present and ordered (`AGENTS.md` / IDE adapters).
-2. Configure `00`–`19` and the project profile one section per turn. That walk includes requirements (`01`), discussion (`02`), architecture, UI/UX, database, the Security Laws suite (`10` + optional `18`/`19`), and branding/icons (`17`).
+2. Configure every setting in `00`–`19`, the templates, and the project profile. One section per turn, and one unconfigured setting per turn inside that section. The walk includes requirements (`01`), discussion (`02`), architecture, UI/UX, database, the Security Laws suite (`10`, `18`, `19`), and branding/icons (`17`).
 3. Implement only after that setup is complete (or deferred once) and the held request is resumed.
 4. After each change, run post-change review + `14-final-verification.md` hooks.
 
@@ -248,7 +256,7 @@ When `19` and the profile module map are finished, set rules-setup status to `co
 
 ## Post-change checklist hooks
 
-- [ ] Rules-setup gate honored (first request held while setup is incomplete)
+- [ ] Every rule setting is configured (no blank or skip left in `00`–`19`, templates, or the profile)
 - [ ] Required questions answered or one-time deferral recorded
 - [ ] Modified surfaces listed
 - [ ] DB compatibility considered

@@ -4,7 +4,7 @@ Copy this into the consuming project (or fill the PROJECT-SPECIFIC sections insi
 
 ## Rules setup
 
-Filled only in a consuming project, one section at a time (`laws/00-core.md`). Leave these blank on the public origin.
+Filled only in a consuming project (`laws/00-core.md`). Setup is `complete` only when every field in this profile and every `PROJECT-SPECIFIC` setting in the laws and templates is configured. Leave these blank on the public origin. A blank or `not set` is not configured.
 
 - Status: not-started | in-progress | complete | _______________
 - Held first request (unexecuted): _______________

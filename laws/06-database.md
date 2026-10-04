@@ -22,7 +22,7 @@ If `N/A`, reason: _______________
 ## Hard rules (MUST / MUST NOT)
 
 - MUST determine database type (or confirmed absence) via question protocol before building data features.
-- During rules setup on an existing project (`00-core.md`): if config, migrations, or data clients already show the engine (Firebase, Supabase, SQL, or another concrete engine), MUST record that engine in PROJECT-SPECIFIC and the profile without asking the user to re-confirm it. Record hosting, access layer, and migration tool the same way when the repo shows them. If those facts finish this section, finish it and show what was set. If a behavior-changing choice remains, ask one question and mark the code-backed option **Recommended**. MUST NOT copy connection strings, keys, or passwords into the laws or profile.
+- During rules setup on an existing project (`00-core.md`): if config, migrations, or data clients already show the engine (Firebase, Supabase, SQL, or another concrete engine), MUST record that engine in PROJECT-SPECIFIC and the profile without asking the user to re-confirm it. Record hosting, access layer, and migration tool the same way when the repo shows them. Then ask, one setting at a time, until every PROJECT-SPECIFIC line in this file and the matching profile database fields is configured. Mark the code-backed option **Recommended**. MUST NOT copy connection strings, keys, or passwords into the laws or profile. MUST NOT close this section while any of its settings is blank or `not set`.
 - MUST include a **Recommended** option in every DB question.
 - MUST use migrations (or the project’s equivalent) for schema changes — no silent production edits by habit.
 - MUST NOT store secrets in the database in plaintext.
