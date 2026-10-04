@@ -18,6 +18,18 @@ Always. Every agent session, every IDE adapter, every task type.
 
 - MUST write all law file content and agent law responses that enforce these laws in **English**.
 - MUST keep PROJECT-SPECIFIC filled values in English unless the product UI language requires otherwise (product copy may differ; laws stay English).
+- When a conversation reply uses Arabic or another right-to-left language, MUST keep each Arabic sentence on its own line and MUST put each English word, term, path, or identifier on its own line.
+- MUST NOT embed an English word or other Latin-script term inside an Arabic line. One line is either right-to-left prose with no Latin letters, or a single English term.
+- This split stops bidirectional layout from reversing the Arabic line. Law files stay English. The split applies to conversation replies, including clarifying questions asked in Arabic.
+- A fenced block that is entirely English may stay one block. MUST NOT insert that block’s text into an Arabic line.
+
+Conversation sample (layout only; law prose stays English):
+
+```text
+يُراجع المصدر أولًا ثم يُستكمل العمل.
+laws/00-core.md
+بعدها يُستأنف الطلب المحبوس.
+```
 
 ### Strictness
 
@@ -269,6 +281,7 @@ When every setting in `00`–`19`, `templates/`, and the project profile is conf
 
 - [ ] Every rule setting is configured (no blank or skip left in `00`–`19`, templates, or the profile)
 - [ ] Named technologies, sites, references, features, algorithms, tools, and libraries were checked against their current authoritative source
+- [ ] Arabic conversation lines contain no embedded English term; each English term is on its own line
 - [ ] Required questions answered or one-time deferral recorded
 - [ ] Modified surfaces listed
 - [ ] DB compatibility considered

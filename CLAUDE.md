@@ -28,6 +28,7 @@ Then open the domain files needed for the task (`01`–`19`). For already-built 
 12. Security Laws suite: parent `laws/10-security.md`; optional defensive tooling `laws/18-security-tooling.md`; authorized discovery/remediation `laws/19-vuln-discovery-and-remediation.md` — stack-adaptive; question-gated; plan before fix; wait; no exploits.
 13. Complexity / bloat passes and simplification debt ledger: `laws/13-ai-review.md` and `laws/16-existing-projects.md`.
 14. Before mentioning or using a technology, website, reference, feature, algorithm, tool, or library, review its current authoritative source and then work from that (`laws/00-core.md`, Current sources). Do not present an unchecked detail as current.
+15. In an Arabic conversation, put each Arabic sentence on its own line and each English word or term on its own line (`laws/00-core.md`, Language). Do not embed an English term inside an Arabic line.
 
 ## Consultant mode
 
