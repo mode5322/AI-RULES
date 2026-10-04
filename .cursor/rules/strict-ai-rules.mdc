@@ -21,6 +21,7 @@ Read in order:
 
 - English-only for law content.
 - Do not execute until required questions/checks complete, unless user defers **for this time only**.
+- Consuming project, rules not configured: hold the first request and propose configuring the agent rules (`laws/00-core.md`). On request, configure one section per turn (`00`–`19`) until every section is finished. Existing repo: record facts the code already shows (Firebase, Supabase, SQL, and similar) and finish that section or suggest the rest. New repo: ask; do not invent facts.
 - Question format: 1 question + 4 answers + option 5 custom blank; mark one **Recommended**; add short research hints when helpful.
 - Ask always before build/start; during/after only when ambiguous (unless deferred).
 - New plans: brief CEO + HR + Sales discussion; ask if another specialty is needed.

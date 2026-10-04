@@ -2,6 +2,15 @@
 
 Copy this into the consuming project (or fill the PROJECT-SPECIFIC sections inside `laws/`). Leave blanks empty until customized for **this** project. Do not fill blanks in the public origin template beyond placeholders.
 
+## Rules setup
+
+Filled only in a consuming project, one section at a time (`laws/00-core.md`). Leave these blank on the public origin.
+
+- Status: not-started | in-progress | complete | _______________
+- Held first request (unexecuted): _______________
+- Last finished section: _______________
+- Next section: _______________
+
 ## Identity
 
 - Project name: _______________

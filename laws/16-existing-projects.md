@@ -28,6 +28,7 @@ Current: _______________
 - MUST NOT rewrite the architecture casually.
 - MUST NOT ignore existing DB engine, auth, or UI system.
 - MUST update PROJECT-SPECIFIC with discovered realities (not aspirational fiction).
+- If rules setup is incomplete, MUST follow the rules-setup gate in `00-core.md` before audit or fixes. General facts the code already shows (database engine such as Firebase, Supabase, or SQL; also language, framework, platform, and auth when plain in the repo) are written during that setup without a re-confirm question. Finish that section when the facts settle it; otherwise ask one question with the code-backed option **Recommended**.
 - MUST use question protocol before choosing remediation strategy.
 - MUST follow `15-error-handling.md` for runtime failures during remediation.
 - When auditing bloat: MAY run a whole-repo complexity pass and/or simplification debt ledger per `13-ai-review.md` (tags + markers from `12-code-quality.md`); MUST NOT mass-delete without approval.
@@ -76,6 +77,7 @@ Which compatibility constraint is strictest right now?
 
 ## Existing-project workflow (canonical)
 
+0. **Rules setup** — if agent rules are not configured, hold the user’s request and run the rules-setup gate in `00-core.md` before this audit.
 1. **Stop and frame** — confirm this is an existing-project engagement.
 2. **Inventory** — languages, frameworks, entrypoints, environments, DB, auth, deploy.
 3. **Review** — critical defects first (data loss, security, money, crashes), then major consistency issues; optionally complexity/debt passes (`13`).

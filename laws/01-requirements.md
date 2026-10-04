@@ -76,6 +76,7 @@ What should explicitly be out of scope for this pass?
 
 ## New-project workflow
 
+0. Rules-setup gate in `00-core.md` runs first when setup is incomplete. This module is configured as section `01` of that walk.
 1. Identify problem, users, platforms, and constraints.
 2. Ask blocking requirement questions (one at a time).
 3. Write short acceptance criteria.
@@ -84,6 +85,7 @@ What should explicitly be out of scope for this pass?
 
 ## Existing-project workflow
 
+0. Rules-setup gate in `00-core.md` runs first when setup is incomplete. Facts the code already shows are written in that walk.
 1. Reconstruct intended vs actual behavior from code and docs.
 2. Ask which discrepancies are bugs vs intentional drift.
 3. Define remediation requirements before coding (see `16-existing-projects.md`).

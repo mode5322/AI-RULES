@@ -22,6 +22,7 @@ Before non-trivial work, read:
 
 - English-only law content.
 - Very strict: do not execute until required questions/checks complete, unless the user defers **for this time only**.
+- Consuming project, rules not configured: hold the user’s first request and propose configuring the agent rules before any other work (`laws/00-core.md` rules-setup gate). When the user asks to configure them, do one section per turn (`00`–`19`) until every section is finished. On an existing repo, write general facts the code already shows (database engine such as Firebase, Supabase, or SQL; also stack and auth when plain) and finish that section or suggest the remaining choice. On a new repo, ask; do not invent facts.
 - Every clarifying question: 1 question + 4 answers + option 5 custom blank; mark one **Recommended**; add short research hints when helpful.
 - Ask always before build/start; during/after build only when ambiguous (unless deferred).
 - New plans: brief CEO + HR + Sales discussion, then ask if another specialty is needed.

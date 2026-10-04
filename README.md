@@ -23,9 +23,9 @@ Works for:
 
 1. Copy this repository into your project root (clone, subtree, or copy folders).
 2. Keep `laws/`, `templates/`, and the IDE entry files you need.
-3. Ask your agent to read `AGENTS.md` / `laws/00-core.md` and fill `PROJECT-SPECIFIC` sections for your app.
-4. Mark modules `ACTIVE`, `N/A`, or leave `PROJECT-SPECIFIC` with notes.
-5. For existing apps, start with `laws/16-existing-projects.md` — do not patch first.
+3. On the first request, the agent holds that request and proposes configuring the agent rules, one section at a time (`laws/00-core.md`). In an existing app, facts already visible in code (such as the database) are recorded during that walk.
+4. During that walk the agent marks each module `ACTIVE`, or `N/A` with a reason, and fills the decided fields.
+5. After rules setup is complete, an existing app follows `laws/16-existing-projects.md` — do not patch first.
 
 See `USAGE.md` for a short install playbook.
 
@@ -33,6 +33,7 @@ See `USAGE.md` for a short install playbook.
 
 - **English only** for law file content.
 - **Very strict** — no execution until required questions/checks complete, except explicit **for this time only** deferral.
+- **Rules-setup gate** — in a consuming project, the first request is held until the agent rules are configured, one section at a time (`00`–`19`). An existing repo’s code-backed facts (database engine such as Firebase, Supabase, or SQL, and similar) are recorded automatically. See `laws/00-core.md`.
 - **Question protocol** — 1 question, 4 options, option 5 custom blank, one **Recommended**, optional research hints.
 - **When to ask** — always before build/start; during/after only if ambiguous (unless deferred).
 - **UI** — not a fixed visual identity; question protocol for buttons, icons, menus, containers, aesthetics when unclear.

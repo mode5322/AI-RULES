@@ -26,6 +26,11 @@ Always. Every agent session, every IDE adapter, every task type.
 - MUST restore full strictness after a deferred task ends.
 - MUST NOT treat “just do it”, silence, or prior deferrals as standing permission.
 
+### Rules-setup gate
+
+- In a **consuming project**, while rules setup is incomplete, MUST hold the user’s first product or code request and MUST propose configuring the agent rules before any other work. Procedure: **Rules-setup gate** below.
+- MUST NOT apply this gate when maintaining the public origin template.
+
 ### Question protocol
 
 - MUST use `templates/question-protocol.md` for every clarifying question:
@@ -52,6 +57,7 @@ Always. Every agent session, every IDE adapter, every task type.
 
 - Database laws remain an always-on reminder layer (see `06-database.md`).
 - MUST determine DB type via question protocol when unknown.
+- During rules setup on an **existing** project, if the code already shows the engine, record it without asking the user to re-confirm it (see **Rules-setup gate** and `06-database.md`).
 - If the project truly has no DB need after questioning, mark the module `N/A` but keep awareness.
 
 ### Post-change review (mandatory after every change)
@@ -162,18 +168,78 @@ Hints:
 
 See `templates/deferral.md`.
 
+## Rules-setup gate
+
+Applies when this pack is copied into a **consuming project** and rules setup is incomplete. It does not apply to template maintenance on the public `strict-ai-rules` origin.
+
+Setup is **incomplete** while any of these is true:
+
+- Profile rules-setup status is missing or not `complete`
+- Any law `00`–`19` still has an empty required PROJECT-SPECIFIC field and is not `N/A` with a written reason
+
+### Hold the first request
+
+On the user’s first product or code request while setup is incomplete:
+
+1. MUST hold that request. Do not execute it, and do not start its clarifying questions.
+2. MUST say that the request is held.
+3. MUST propose one next step: configure the agent rules so the agent works according to the requirements fixed in these laws.
+4. MUST ask with the question protocol whether to start that configuration now. Mark starting configuration as **Recommended**.
+5. The request stays held until rules setup is `complete`, or the user defers setup **for this time only** (`templates/deferral.md`). That deferral covers the current task only. The gate returns on the next task.
+
+This hold is agent-initiated. It is not a user deferral. User deferral stays the only way to skip the gate for one task.
+
+### Example — First request while rules are unconfigured
+
+```markdown
+### Question
+Agent rules are not configured yet. This request is held. What should happen next?
+
+1. Configure the agent rules now, one section at a time, so later work follows the fixed requirements — **Recommended**
+2. Keep this request held; configuration starts when I ask
+3. Defer rules setup for this time only and continue this request
+4. This is template maintenance on the strict-ai-rules origin; the gate does not apply
+5. Other: _______________
+
+Hints:
+- Recommended because: the agent then follows the requirements recorded in the laws.
+- To decide: check whether PROJECT-SPECIFIC fields and the profile rules-setup status are still blank.
+- Trade-off: option 3 does this task without configured rules; the gate returns on the next task.
+```
+
+### Configure one section at a time
+
+When the user asks to configure the rules (or chooses to start configuration):
+
+- Walk sections in order: `00`, then `01` through `19`.
+- Update the project profile as each section is decided.
+- One section per turn. Do not open the next section in the same message.
+- One question per turn, and only when that section still has an open decision. Wait for the answer.
+- Do not stop while any section `00`–`19` is unfinished, unless the user pauses or defers **for this time only**.
+- A section is finished only when its status is `ACTIVE` and its behavior-changing PROJECT-SPECIFIC fields are filled, or status is `N/A` with a written reason. `06` stays in the tree either way.
+- Optional narrative notes that the decision and the code do not cover: write `not set`. Do not invent them, and do not ask a separate question for each note.
+- MUST NOT copy secrets, connection strings, keys, or passwords into laws or the profile.
+
+**New project:** the repo does not establish product facts. Ask. Do not invent them.
+
+**Existing project:** if the code already establishes a general fact, write it and do not ask the user to re-confirm it. The database engine is the canonical case (Firebase, Supabase, SQL, or another engine the repo actually uses). Also write language, framework, platform, and auth provider when the repo shows them plainly.
+
+- If those facts finish the section: write them, show what was set, mark the section done, and end the turn. Name the next section. Wait.
+- If a behavior-changing choice remains: write the known facts and ask one question. Mark the option best supported by the code as **Recommended**.
+
+When `19` and the profile module map are finished, set rules-setup status to `complete`, say that setup is finished, and only then resume the held request under the normal gates.
+
 ## New-project workflow
 
+0. If rules setup is incomplete, run **Rules-setup gate** before any later step.
 1. Confirm laws are present and ordered (`AGENTS.md` / IDE adapters).
-2. Create or fill `templates/project-profile.template.md` (or inline PROJECT-SPECIFIC sections).
-3. Run `01-requirements.md` question gates before coding.
-4. Run `02-discussion.md` CEO/HR/Sales brief on the plan.
-5. Resolve architecture, UI/UX, DB, Security Laws suite (`10` + optional `18`/`19`), and branding/icons (`17`) modules as needed.
-6. Implement only after blocking questions are answered (or deferred once).
-7. After each change, run post-change review + `14-final-verification.md` hooks.
+2. Configure `00`–`19` and the project profile one section per turn. That walk includes requirements (`01`), discussion (`02`), architecture, UI/UX, database, the Security Laws suite (`10` + optional `18`/`19`), and branding/icons (`17`).
+3. Implement only after that setup is complete (or deferred once) and the held request is resumed.
+4. After each change, run post-change review + `14-final-verification.md` hooks.
 
 ## Existing-project workflow
 
+0. If rules setup is incomplete, run **Rules-setup gate** before audit or fixes. Write general facts the code already shows during that setup.
 1. Stop. Do not “patch first.”
 2. Follow `16-existing-projects.md`.
 3. Produce issue plan + fix plan; get confirmation on approach.
@@ -182,6 +248,7 @@ See `templates/deferral.md`.
 
 ## Post-change checklist hooks
 
+- [ ] Rules-setup gate honored (first request held while setup is incomplete)
 - [ ] Required questions answered or one-time deferral recorded
 - [ ] Modified surfaces listed
 - [ ] DB compatibility considered

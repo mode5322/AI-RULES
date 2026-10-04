@@ -4,6 +4,8 @@
 
 Strict mode requires clarifying questions and checks **before** execution. The user may defer those checks **for this time only**. Deferral never becomes a standing waiver.
 
+Holding the user’s first request until agent rules are configured is the rules-setup gate in `laws/00-core.md`. That hold is agent-initiated. It is not this deferral. This deferral is still the only way to skip rules setup for the current task.
+
 ## How the user defers
 
 The user must clearly say they want to skip questions/checks **once**, for the current task. Acceptable phrasing includes:
