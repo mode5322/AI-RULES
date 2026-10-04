@@ -8,7 +8,7 @@ Use this format for **every** clarifying question before work proceeds.
 2. Offer **exactly four** concrete answer options.
 3. Offer **option 5** as a custom blank the user can fill.
 4. Mark **exactly one** of options 1–4 as **Recommended**.
-5. When helpful, add short **research-friendly suggestion hints** under options (search terms, docs to check, or trade-offs).
+5. When helpful, add short **research-friendly suggestion hints** under options (search terms, docs to check, or trade-offs). If a hint states how a technology, website, reference, feature, algorithm, tool, or library works, review its current authoritative source first (`laws/00-core.md`, Current sources).
 6. Wait for the user's choice (or custom answer) before continuing.
 7. Do not batch multiple independent questions into one message unless the user explicitly deferred clarification for this time only (see `templates/deferral.md`).
 

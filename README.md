@@ -32,6 +32,7 @@ See `USAGE.md` for a short install playbook.
 ## Core behaviors (encoded in laws)
 
 - **English only** for law file content.
+- **Current sources** — before a technology, website, reference, feature, algorithm, tool, or library is mentioned or used, its authoritative source is reviewed and the work follows what that source says now (`laws/00-core.md`).
 - **Very strict** — no execution until required questions/checks complete, except explicit **for this time only** deferral.
 - **Rules-setup gate** — in a consuming project, work is held until every rule setting is configured, one setting at a time (`00`–`19`, template fields, and the project profile). Code-backed facts (database engine such as Firebase, Supabase, or SQL, and any other plain fact) are recorded automatically; every remaining setting is still asked. See `laws/00-core.md`.
 - **Question protocol** — 1 question, 4 options, option 5 custom blank, one **Recommended**, optional research hints.

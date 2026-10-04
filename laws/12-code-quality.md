@@ -17,6 +17,7 @@ Current: _______________
 
 ## Hard rules (MUST / MUST NOT)
 
+- Before naming or adopting a library, tool, algorithm, or external feature, follow **Current sources** in `00-core.md`.
 - MUST match existing naming, formatting, and abstractions.
 - MUST reuse existing helpers/components instead of reimplementing.
 - MUST keep functions focused; avoid huge catch-all modules for new code.
