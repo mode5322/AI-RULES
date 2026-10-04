@@ -19,15 +19,64 @@ Works for:
 | `CLAUDE.md` | Claude-oriented entry |
 | `.cursor/rules/strict-ai-rules.mdc` | Cursor always-on rule pointing at `laws/` |
 
-## Quick start
+## How to use
 
-1. Copy this repository into your project root (clone, subtree, or copy folders).
-2. Keep `laws/`, `templates/`, and the IDE entry files you need.
-3. On the first request, the agent holds that request and proposes configuring every rule setting, one at a time (`laws/00-core.md`). In an existing app, values already visible in code are recorded, and every remaining setting is still asked.
-4. During that walk every setting is filled. A module may be `ACTIVE` or `N/A: <reason>`, and every line in that section is still filled.
-5. After rules setup is complete, an existing app follows `laws/16-existing-projects.md` — do not patch first.
+### 1. Install into the project root
 
-See `USAGE.md` for a short install playbook.
+Copy these into the **root** of the consuming project (a new app or an existing one):
+
+- `laws/`
+- `templates/`
+- `AGENTS.md`
+- `CLAUDE.md`
+- `.cursor/rules/strict-ai-rules.mdc`
+
+The Cursor rule file is what makes that editor load the laws on every task. Do not leave the pack in a subfolder the agent will not read.
+
+Fill settings only in that project copy. This public origin stays blank.
+
+### 2. Configure the rules before any other work
+
+Open a **new chat inside that project** and ask the agent to configure the rules. Say whether the project is new or already built.
+
+The agent holds every other request until every setting is filled: each `Current:` line in laws `00`–`19`, every `PROJECT-SPECIFIC` bullet, and every project-profile field. One section per turn, one unset field per turn.
+
+- **Existing project:** values the code already shows are written without asking again. A database engine visible in the repo (Firebase, Supabase, SQL, or another engine that is actually there) is the usual case. Every setting the code does not prove is still asked.
+- **New project:** the agent asks for every setting. It does not invent facts.
+
+A blank, `not set`, `undecided`, or `TBD` is not configured. If a module does not apply, write `N/A: <reason>` on each of its lines and keep the file.
+
+### 3. After setup is complete
+
+- **Existing project:** follow `laws/16-existing-projects.md` (review, then a fix plan). Do not patch first.
+- **New project:** implement only after the blocking questions for that work are answered.
+- A later chat must continue at the first unset field. It must not restart finished sections or re-ask values that are already set (`laws/00-core.md`, Resume).
+- Arabic chat replies keep each Arabic sentence on its own line and each English term on its own line. Product right-to-left layout is a separate rule (`laws/03-ui.md`).
+
+### 4. Bring newer laws into a project that is already configured
+
+`git pull` updates files. It does not run the agent, and it does not know that filled settings must be kept.
+
+- If this pack was **copied** into the larger project, `git pull` on the larger project does not fetch this repository. Copy the newer pack in, then tell the agent to sync.
+- If `strict-ai-rules` is its **own clone or submodule** inside the larger project, `git pull` inside that folder updates the law text only. It can overwrite filled lines with blanks, or stop on a conflict. After the pull, tell the agent to sync.
+
+Say this:
+
+> Sync the new upstream rules with the rules already configured in this project. Do not erase a configured value. Add the new settings only, and ask about those.
+
+The agent must then (`laws/11-change-management.md`, Upstream law merge):
+
+1. Keep every configured value.
+2. Add new laws and new blank settings from the newer pack.
+3. Ask only about the new blanks.
+4. Record the upstream revision in the project profile.
+5. Leave the filled copy in the consuming project. Do not push it back to this public origin.
+
+### 5. One-time skip
+
+To skip setup for the current task only, say that you defer **for this time only**. The gate returns on the next task. That sentence is not the same as the agent holding work until setup is done.
+
+Shorter install notes are also in `USAGE.md`.
 
 ## Core behaviors (encoded in laws)
 
