@@ -1,0 +1,13 @@
+---
+description: Product UI copy — conversational copy (human concise voice)
+alwaysApply: true
+---
+
+# Conversational copy
+
+When writing or editing user-facing product text (labels, buttons, cards, empty/error/success, confirms, tooltips, settings descriptions):
+
+1. Apply the `conversational-copy` skill.
+2. Keep copy short and human. Prefer the shortest clear line.
+3. Do not pad with AI-sounding filler, brochure adjectives, or redundant CTAs the control already implies (e.g. omit "فتح الإعداد" on a whole-card button).
+4. Buttons: verb (+ object if needed). Errors: what happened + what to do.

@@ -18,6 +18,8 @@ Works for:
 | `AGENTS.md` | General / Codex-oriented entry |
 | `CLAUDE.md` | Claude-oriented entry |
 | `.cursor/rules/strict-ai-rules.mdc` | Cursor always-on rule pointing at `laws/` |
+| `.cursor/rules/conversational-copy.mdc` | Always-on product UI copy voice |
+| `.cursor/skills/conversational-copy/` | Skill: short human UI copy (conversational copy) |
 
 ## How to use
 

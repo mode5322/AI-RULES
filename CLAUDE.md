@@ -24,12 +24,13 @@ Then open the domain files needed for the task (`01`–`19`). For already-built 
 8. After every change: five-point review (modified elements, DB compatibility, logic/math, security, quality/structure).
 9. After gates: minimal implementation per `laws/12-code-quality.md` (ladder; intensity lite/full/ultra; never cut validation/security/a11y).
 10. On errors: show error + 4 solutions (one Recommended) + custom; wait for choice; prefer root-cause (`laws/15-error-handling.md`).
-11. Branding / app icons: when identity icons or changeable icon packs apply, follow `laws/17-branding-and-icons.md`.
-12. Security Laws suite: parent `laws/10-security.md`; optional defensive tooling `laws/18-security-tooling.md`; authorized discovery/remediation `laws/19-vuln-discovery-and-remediation.md` — stack-adaptive; question-gated; plan before fix; wait; no exploits.
-13. Complexity / bloat passes and simplification debt ledger: `laws/13-ai-review.md` and `laws/16-existing-projects.md`.
-14. Before mentioning or using a technology, website, reference, feature, algorithm, tool, or library, review its current authoritative source and then work from that (`laws/00-core.md`, Current sources). Do not present an unchecked detail as current.
-15. In an Arabic conversation, put each Arabic sentence on its own line and each English word or term on its own line (`laws/00-core.md`, Language). Do not embed an English term inside an Arabic line.
-16. When laws conflict, follow Law precedence in `laws/00-core.md`. Resume unfinished setup at the first unconfigured setting. Merge newer pack text without wiping configured values (`laws/11-change-management.md`). Product right-to-left layout is `laws/03-ui.md`.
+11. Product UI copy: prefer conversational copy (human concise voice); use `.cursor/skills/conversational-copy/` and `laws/04-ux.md`.
+12. Branding / app icons: when identity icons or changeable icon packs apply, follow `laws/17-branding-and-icons.md`.
+13. Security Laws suite: parent `laws/10-security.md`; optional defensive tooling `laws/18-security-tooling.md`; authorized discovery/remediation `laws/19-vuln-discovery-and-remediation.md` — stack-adaptive; question-gated; plan before fix; wait; no exploits.
+14. Complexity / bloat passes and simplification debt ledger: `laws/13-ai-review.md` and `laws/16-existing-projects.md`.
+15. Before mentioning or using a technology, website, reference, feature, algorithm, tool, or library, review its current authoritative source and then work from that (`laws/00-core.md`, Current sources). Do not present an unchecked detail as current.
+16. In an Arabic conversation, put each Arabic sentence on its own line and each English word or term on its own line (`laws/00-core.md`, Language). Do not embed an English term inside an Arabic line.
+17. When laws conflict, follow Law precedence in `laws/00-core.md`. Resume unfinished setup at the first unconfigured setting. Merge newer pack text without wiping configured values (`laws/11-change-management.md`). Product right-to-left layout is `laws/03-ui.md`.
 
 ## Consultant mode
 
