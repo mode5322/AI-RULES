@@ -9,6 +9,7 @@ description: Use after finishing any feature, fix or update, and whenever someth
 1. **Manual checks.** Read `.project/settings.md` for `build_command`, `lint_command`, `test_command`, `run_command`. If unset, detect from `package.json` scripts / `composer.json` / `pubspec.yaml` and save as detected. Run what exists: typecheck, lint, build, tests, start.
 2. **MCP checks.** List the tools actually available. If a browser/automation tool exists, open the app, exercise the new feature, check console errors and failed network requests. If none exists, say so; do not claim UI verification.
 3. **Fix loop.** For each failure follow `references/diagnosing.md`. If the project has a test setup, or the user asked for tests, follow `references/tdd.md` for the regression test.
+   - Before any second attempt, write the root-cause note (cause + evidence) from `references/diagnosing.md`. No new attempt without it.
    - Maximum 3 fix attempts per issue.
    - After 3 failures stop. Show: the error, what was tried, and up to 3 options. Wait for the user's choice.
 4. **Review.** Follow `references/review.md` on the diff. If UI changed, also run the UI audit there.
