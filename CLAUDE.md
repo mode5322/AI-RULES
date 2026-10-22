@@ -24,7 +24,7 @@ Then open the domain files needed for the task (`01`–`19`). For already-built 
 8. After every change: five-point review (modified elements, DB compatibility, logic/math, security, quality/structure).
 9. After gates: minimal implementation per `laws/12-code-quality.md` (ladder; intensity lite/full/ultra; never cut validation/security/a11y).
 10. On errors: show error + 4 solutions (one Recommended) + custom; wait for choice; prefer root-cause (`laws/15-error-handling.md`).
-11. Product UI copy: prefer conversational copy (human concise voice); use `.cursor/skills/conversational-copy/` and `laws/04-ux.md`.
+11. Product UI copy: prefer conversational copy — short, precise, formal (Arabic: فصحى, not dialect); use `.cursor/skills/conversational-copy/` and `laws/04-ux.md`.
 12. Branding / app icons: when identity icons or changeable icon packs apply, follow `laws/17-branding-and-icons.md`.
 13. Security Laws suite: parent `laws/10-security.md`; optional defensive tooling `laws/18-security-tooling.md`; authorized discovery/remediation `laws/19-vuln-discovery-and-remediation.md` — stack-adaptive; question-gated; plan before fix; wait; no exploits.
 14. Complexity / bloat passes and simplification debt ledger: `laws/13-ai-review.md` and `laws/16-existing-projects.md`.

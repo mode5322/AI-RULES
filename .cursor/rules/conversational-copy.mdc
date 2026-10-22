@@ -1,5 +1,5 @@
 ---
-description: Product UI copy — conversational copy (human concise voice)
+description: Product UI copy — short, precise, formal (فصحى for Arabic)
 alwaysApply: true
 ---
 
@@ -8,6 +8,7 @@ alwaysApply: true
 When writing or editing user-facing product text (labels, buttons, cards, empty/error/success, confirms, tooltips, settings descriptions):
 
 1. Apply the `conversational-copy` skill.
-2. Keep copy short and human. Prefer the shortest clear line.
-3. Do not pad with AI-sounding filler, brochure adjectives, or redundant CTAs the control already implies (e.g. omit "فتح الإعداد" on a whole-card button).
-4. Buttons: verb (+ object if needed). Errors: what happened + what to do.
+2. Keep copy **short** and **precise**. Cut AI fluff — do not invent features or keep leftover copy from removed UI.
+3. Arabic UI: **Modern Standard Arabic (فصحى)** only. No dialect (avoid «لحظات»، «صار»، casual clitics as the whole message).
+4. Buttons: one coherent action (e.g. «أوافق», not «أوافق وأدخل»). Omit redundant card CTAs («فتح الإعداد»، «فتح القسم»).
+5. Errors / waiting: formal and clear («حدث خطأ غير متوقع»، «يرجى الانتظار»).

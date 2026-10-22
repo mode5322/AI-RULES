@@ -32,7 +32,7 @@ Read in order:
 - After gates: minimal implementation ladder in `12-code-quality.md` (lite/full/ultra); never cut validation/security/a11y.
 - Errors: show immediately + 4 solutions (one Recommended) + custom; wait for user choice; prefer root-cause.
 - Existing projects: review → rethink → issue/fix plan → fixes (optional complexity/debt passes in `13`/`16`).
-- Product UI copy: prefer conversational copy (human concise voice); use skill `conversational-copy` and `laws/04-ux.md`.
+- Product UI copy: prefer conversational copy — short, precise, formal (Arabic: فصحى); use skill `conversational-copy` and `laws/04-ux.md`.
 - Branding / app icons: use `17-branding-and-icons.md` for platform assets and static vs user-changeable strategy.
 - Security Laws suite: parent `10-security.md`; tooling `18-security-tooling.md`; discovery/remediation `19-vuln-discovery-and-remediation.md` (plan before fix; wait; no exploits).
 
