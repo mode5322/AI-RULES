@@ -49,7 +49,7 @@ To **stop the rules-setup question walk** until you later ask to configure the r
 
 The option list appears only when a decision is necessary and you say «عرض خيارات» or "Show options".
 
-To **show incomplete rule settings**, ask for them. The agent numbers every **relevant** remaining setting from 1 through the full count, then shows a category table of completed and remaining. Unrelated blanks stay hidden unless you ask to see them (`laws/00-core.md`).
+To **show rule settings**, ask «عرض الإعدادات». The agent shows the categories only. To see one category, name it, for example «عرض إعدادات قواعد السلوك» or «عرض إعدادات قواعد تصميم النظام». Unrelated blanks stay hidden unless you ask to see them (`laws/00-core.md`).
 
 ## Keeping the origin clean
 

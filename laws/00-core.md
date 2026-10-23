@@ -303,29 +303,49 @@ When the user asks to configure the rules (or chooses to start configuration):
 
 When every **relevant** **Behavior** and **System design** setting is configured, set rules-setup status to `complete`, say that setup is finished, and only then resume the held request under the normal gates. On every later task, check again. If any relevant setting is unconfigured, hold the task and continue at the first relevant unconfigured setting. A part the project does not use does not reopen setup.
 
-### Show incomplete settings
+### Show settings
 
-When the user asks to show the incomplete rule settings, including «عرض الإعدادات غير المكتملة» or "Show incomplete settings":
+When the user asks to show the rule settings and does not name a category, including «عرض الإعدادات» or "Show settings":
 
-- MUST list every **relevant** unconfigured setting as numbered points from 1 through the full count. Do not include settings that do not connect to the current project. Do not truncate the list. Do not show the question-protocol option list unless the user also says «عرض خيارات» or "Show options".
-- If the user asks to see the unrelated settings, including «عرض الإعدادات غير المتصلة» or "Show unrelated settings", list those in a separate numbered list. Do not fold them into the required incomplete list, and do not start asking them unless the user then asks to configure one.
-- Each point is one setting: its number, its category, and its name.
-- MUST then show one table grouped by category. Columns are Category, Completed, Remaining, and Total. One row per category, plus a final totals row.
-- Categories are **Behavior** and **System design** only.
+- MUST show the categories only. Do not list the individual settings in that reply.
+- Categories are **Behavior** (السلوك / السلوكيات) and **System design** (تصميم النظام) only.
+- MUST number the categories from 1 through the category count.
+- MUST then show one table. Columns are Category, Completed, Remaining, and Total. One row per category, plus a final totals row.
 - A setting is remaining when it is relevant and blank, `not set`, `undecided`, `TBD`, or `_______________`. A concrete value, `none`, or `N/A: <reason>`, is completed. An unrelated blank is not remaining.
-- Count each fill-in line once, under its own file or profile section. Do not invent values while showing the list.
+- Do not show the question-protocol option list unless the user also says «عرض خيارات» or "Show options".
 
-Example shape:
+When the user names one category, including «عرض إعدادات قواعد السلوك» or «عرض إعدادات قواعد السلوكيات» or «عرض إعدادات قواعد تصميم النظام» or "Show behavior settings" or "Show system design settings":
+
+- MUST list only that category’s settings, numbered from 1 through that category’s count.
+- Each point is the setting name and its current value. A blank stays blank. Do not invent a value.
+- Do not list the other category in that reply.
+- Accept a spelling slip for the category name, including «تصميم النضام» for تصميم النظام.
+
+«عرض الإعدادات غير المكتملة» or "Show incomplete settings" uses the same two shapes: categories when no category is named, and only the remaining settings of the named category when one is named.
+
+When the user asks to see unrelated settings, including «عرض الإعدادات غير المتصلة» or "Show unrelated settings", list those in a separate numbered list. Do not fold them into the category list, and do not start asking them unless the user then asks to configure one.
+
+Example when no category is named:
 
 ```markdown
-1. Behavior — Conversation language
-2. System design — Database
+1. Behavior
+2. System design
 
 | Category | Completed | Remaining | Total |
 |---|---|---|---|
-| Behavior | 1 | 1 | 2 |
-| System design | 3 | 1 | 4 |
-| Total | 4 | 2 | 6 |
+| Behavior | 1 | 2 | 3 |
+| System design | 4 | 1 | 5 |
+| Total | 5 | 3 | 8 |
+```
+
+Example when the user asks for System design:
+
+```markdown
+1. Database — none
+2. Framework — React
+3. External connection — _______________
+4. External connection purpose — _______________
+5. Libraries in use — _______________
 ```
 
 ### Resume in a new conversation
