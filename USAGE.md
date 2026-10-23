@@ -14,8 +14,8 @@ Pick one:
 
 1. Open a chat and make a request, or ask the agent to configure the agent rules.
 2. If the rules are not configured, the agent holds that first request and proposes rules setup (`laws/00-core.md`).
-3. Ask it to configure the rules. It walks **Behavior**, then **System design**, and does not finish until those fields are filled. Questions use the user’s language. An Arabic answer is stored in English. The Arabic line-split stays fixed.
-4. In an existing project, database, framework, connection, and libraries that the code already shows are written in English. Every remaining Behavior or System design field is still asked.
+3. Ask it to configure the rules. It walks the **relevant** **Behavior** and **System design** fields only. A field the project does not use is not asked unless you ask to see it. Questions use the user’s language. An Arabic answer is stored in English. The Arabic line-split stays fixed.
+4. In an existing project, database, framework, connection, and libraries that the code already shows are written in English. A missing part is recorded as `none` without a question.
 5. In a new project, the agent asks. It does not invent project facts.
 6. After setup is complete, the held request can proceed under the configured rules.
 
@@ -42,7 +42,7 @@ To **stop the rules-setup question walk** until you later ask to configure the r
 
 The option list appears only when a decision is necessary and you say «عرض خيارات» or "Show options".
 
-To **show incomplete rule settings**, ask for them. The agent numbers every remaining setting from 1 through the full count, then shows a category table of completed and remaining (`laws/00-core.md`).
+To **show incomplete rule settings**, ask for them. The agent numbers every **relevant** remaining setting from 1 through the full count, then shows a category table of completed and remaining. Unrelated blanks stay hidden unless you ask to see them (`laws/00-core.md`).
 
 ## Keeping the origin clean
 

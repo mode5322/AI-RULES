@@ -74,8 +74,8 @@ Before mentioning, recommending, configuring, or implementing any technology, we
 
 ### Rules-setup gate
 
-- In a **consuming project**, while any rule setting is unconfigured, MUST hold product and code requests and MUST configure every setting before resuming them. Procedure: **Rules-setup gate** below.
-- MUST configure every **Behavior** and **System design** setting in the project profile. Other `PROJECT-SPECIFIC` notes in laws `01`–`19` are not setup questions. A blank or a skip value does not count.
+- In a **consuming project**, while any **relevant** rule setting is unconfigured, MUST hold product and code requests and MUST configure those settings before resuming them. Procedure: **Rules-setup gate** below.
+- MUST configure every **relevant** **Behavior** and **System design** setting in the project profile. A setting that does not connect to the current project is not asked and does not hold work. Other `PROJECT-SPECIFIC` notes in laws `01`–`19` are not setup questions. A blank or a skip value does not count when the setting is relevant.
 - MUST NOT apply this gate when maintaining the public origin template.
 
 ### Law precedence
@@ -91,7 +91,8 @@ When two laws disagree about the same action, apply the first match:
 
 ### Question protocol
 
-- MUST NOT show the option list in `templates/question-protocol.md` unless a decision is necessary and the user asks «عرض خيارات» or "Show options".
+- MUST NOT show a question that does not connect to the current project, unless the user asks to see that question. This includes settings and any other clarifying question. Do not add settings, sections, or follow-up questions to cover parts the project does not use.
+- MUST NOT show the option list in `templates/question-protocol.md` unless a decision is necessary, it connects to the current project, and the user asks «عرض خيارات» or "Show options".
 - Until then, state the necessary point in one short line. Do not ask deferral or ignore settings (`templates/deferral.md`).
 - When the option list is shown, use that template: one question, at least four concrete options, final Other blank, one **Recommended**.
 - MUST wait for the user’s choice before acting on a shown option list.
@@ -225,9 +226,20 @@ See `templates/deferral.md`.
 
 Applies when this pack is copied into a **consuming project** and rules setup is incomplete. It does not apply to template maintenance on the public `strict-ai-rules` origin.
 
-Setup is **incomplete** while any setting is unconfigured. Profile status `complete` does not override a remaining blank.
+Setup is **incomplete** while any **relevant** setting is unconfigured. A blank that does not connect to the current project does not make setup incomplete. Profile status `complete` does not override a remaining relevant blank.
 
 A **setting** is a fill-in line in the project profile under **Behavior** or **System design** only.
+
+A setting is **relevant** only when the current project already uses that part, or the user’s current request needs it.
+
+- Conversation language is relevant. If the user is already speaking a language, record it in English and do not ask.
+- Product UI language is relevant only when the project has a user interface, or the current request is to build one, and the repo does not already show that language.
+- Rules-setup mode is not a question. A blank means `strict-hold`. Ask only when the user asks to change it.
+- Database, framework, and external connection are relevant only when the repo already has them, or the current request needs them. If the project does not use that part, record `none` in English and do not ask.
+- External connection purpose is relevant only when an external connection exists. Do not ask it when the connection is `none`.
+- Libraries in use are written from the repo. Do not ask the user to list them. If the repo has none, record `none`.
+
+A setting that is not relevant MUST NOT be asked, MUST NOT be listed as incomplete, and MUST NOT hold work. Show it only when the user asks, including «عرض الإعدادات غير المتصلة» or "Show unrelated settings", or when they name that setting and ask to configure it. If the project later gains that part, the setting becomes relevant then. Do not pre-ask it.
 
 Law files `01`–`19` stay operating rules. Their `PROJECT-SPECIFIC` blanks are not required setup questions. The Arabic line-split is fixed and is not a setting.
 
@@ -237,7 +249,7 @@ A setting is **configured** only when its placeholder is replaced with a concret
 
 Record the mode in the project profile and in this file’s PROJECT-SPECIFIC section:
 
-- `strict-hold` (default): hold product/code work until every setting is configured, or the user defers **for this time only**.
+- `strict-hold` (default): hold product/code work until every **relevant** setting is configured, or the user defers **for this time only**.
 - `configure-on-request`: do **not** hold product/code work for incomplete rules setup. Configure settings only when the user explicitly asks to configure the rules. Incomplete settings stay incomplete until that request. Other laws (security, question gates for the task itself, Candor) still apply.
 
 ### Hold work until every setting is configured
@@ -252,11 +264,11 @@ On the user’s first product or code request while setup is incomplete:
 4. MUST state that configuration is the next step, in one short line. Do not show the option list unless the user says «عرض خيارات» or "Show options".
 5. The request stays held until rules setup is `complete`, the user chooses `configure-on-request`, or the user defers setup **for this time only** (`templates/deferral.md`). A one-time deferral covers the current task only; the gate returns on the next task. Choosing `configure-on-request` persists until the user changes the mode. The fixed phrase **"Stop the question protocol until I ask to configure the rules"** (Arabic: «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد») is an accepted way to choose `configure-on-request` — see `templates/deferral.md`. That phrase is a pack-fixed allowed deferral option; do not ask the user to invent it during rules setup.
 
-The same hold applies to every later product or code request while any setting is still unconfigured **and** the mode remains `strict-hold`. Resume held work only after every setting is configured, the mode becomes `configure-on-request`, or the user defers setup **for this time only**. A one-time deferral does not mark the skipped settings configured. The gate returns on the next task under `strict-hold`.
+The same hold applies to every later product or code request while any **relevant** setting is still unconfigured **and** the mode remains `strict-hold`. Resume held work only after every relevant setting is configured, the mode becomes `configure-on-request`, or the user defers setup **for this time only**. A one-time deferral does not mark the skipped relevant settings configured. An unrelated blank does not hold the next task. The gate returns on the next task under `strict-hold` only when a relevant setting is still unconfigured.
 
 This hold is agent-initiated. It is not a user deferral. User deferral stays the way to skip the gate for one task under `strict-hold`.
 
-When the mode is `configure-on-request`, MUST NOT hold product or code requests solely because settings are blank. MUST still offer to configure the rules when the user asks, and MUST walk one section / one setting per turn when configuration is in progress.
+When the mode is `configure-on-request`, MUST NOT hold product or code requests solely because settings are blank. When the user asks to configure the rules, walk one relevant setting per turn. Do not open settings that do not connect to the current project.
 
 ### Example — Option list only after «عرض خيارات» or "Show options"
 
@@ -283,32 +295,33 @@ Hints:
 When the user asks to configure the rules (or chooses to start configuration):
 
 - Walk sections in order: **Behavior**, then **System design**.
-- One section per turn. Stay on that section across turns until every setting in it is configured. Do not open the next section in the same message.
-- One unconfigured setting per turn. Ask it in the user’s language, in one short line, and wait. Show the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not batch settings. Do not ask deferral or ignore settings. Do not ask whether to keep the Arabic line-split.
-- Do not stop while any setting remains unconfigured, unless the user pauses or defers **for this time only**.
-- A section is finished only when every **Behavior** or **System design** setting in it is configured. The Arabic line-split is not one of those settings.
+- One section per turn. Stay on that section across turns until every **relevant** setting in it is configured. Do not open the next section in the same message. Skip a section that has no relevant question.
+- One relevant unconfigured setting per turn. Ask it in the user’s language, in one short line, and wait. Show the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not batch settings. Do not ask a setting that does not connect to the current project. Do not ask deferral or ignore settings. Do not ask whether to keep the Arabic line-split.
+- Do not stop while any relevant setting remains unconfigured, unless the user pauses or defers **for this time only**.
+- A section is finished when every **relevant** setting in it is configured. Skip a section that has no relevant question. The Arabic line-split is not a setting.
 - MUST NOT leave a setting as `not set`, blank, or `_______________` to finish faster.
 - MUST NOT copy secrets, connection strings, keys, or passwords into laws or the profile. When a setting would require a secret, record where it is stored, not the secret value.
 
-**New project:** the repo does not establish product facts. Ask for every setting. Do not invent them.
+**New project:** ask only the settings the current request needs. Record `none` for the parts that request does not use. Do not invent facts, and do not ask the unused parts.
 
-**Existing project:** if the code already shows the database, framework, external connection, or libraries, write those **System design** values in English and do not ask the user to re-confirm them. Describing how a technology works still follows **Current sources**.
+**Existing project:** if the code already shows the database, framework, external connection, or libraries, write those **System design** values in English and do not ask the user to re-confirm them. If the code shows a part is absent, record `none` and do not ask. Describing how a technology works still follows **Current sources**.
 
 - Known settings are written in that section’s turn.
-- Each remaining setting is still asked, one per turn, until the section is fully configured. Mark the option best supported by the code as **Recommended**.
-- When the section’s last setting is configured, name the next section and end the turn.
+- Each remaining **relevant** setting is asked, one per turn. Mark the option best supported by the code as **Recommended**.
+- When the section’s last relevant setting is configured, name the next section only if it has a relevant question, and end the turn.
 
-When every **Behavior** and **System design** setting is configured, set rules-setup status to `complete`, say that setup is finished, and only then resume the held request under the normal gates. On every later task, check again. If any of those settings is unconfigured, hold the task and continue at the first unconfigured setting.
+When every **relevant** **Behavior** and **System design** setting is configured, set rules-setup status to `complete`, say that setup is finished, and only then resume the held request under the normal gates. On every later task, check again. If any relevant setting is unconfigured, hold the task and continue at the first relevant unconfigured setting. A part the project does not use does not reopen setup.
 
 ### Show incomplete settings
 
 When the user asks to show the incomplete rule settings, including «عرض الإعدادات غير المكتملة» or "Show incomplete settings":
 
-- MUST list every unconfigured setting as numbered points from 1 through the full count. Do not truncate the list. Do not show the question-protocol option list unless the user also says «عرض خيارات» or "Show options".
+- MUST list every **relevant** unconfigured setting as numbered points from 1 through the full count. Do not include settings that do not connect to the current project. Do not truncate the list. Do not show the question-protocol option list unless the user also says «عرض خيارات» or "Show options".
+- If the user asks to see the unrelated settings, including «عرض الإعدادات غير المتصلة» or "Show unrelated settings", list those in a separate numbered list. Do not fold them into the required incomplete list, and do not start asking them unless the user then asks to configure one.
 - Each point is one setting: its number, its category, and its name.
 - MUST then show one table grouped by category. Columns are Category, Completed, Remaining, and Total. One row per category, plus a final totals row.
 - Categories are **Behavior** and **System design** only.
-- A setting is remaining when it is blank, `not set`, `undecided`, `TBD`, or `_______________`. A concrete value, or `N/A: <reason>`, is completed.
+- A setting is remaining when it is relevant and blank, `not set`, `undecided`, `TBD`, or `_______________`. A concrete value, `none`, or `N/A: <reason>`, is completed. An unrelated blank is not remaining.
 - Count each fill-in line once, under its own file or profile section. Do not invent values while showing the list.
 
 Example shape:
@@ -330,8 +343,8 @@ At the start of every conversation in a consuming project:
 
 - MUST read the profile rules-setup status, held first request, last finished section, and next section.
 - MUST scan for unconfigured settings before any product or code work.
-- If every setting is configured, MUST NOT restart rules setup.
-- If any setting is unconfigured, MUST hold product and code work and continue at the first unconfigured setting in section order.
+- If every **relevant** setting is configured, MUST NOT restart rules setup.
+- If any **relevant** setting is unconfigured, MUST hold product and code work and continue at the first relevant unconfigured setting in section order. Do not resume setup for an unrelated blank.
 - MUST NOT re-ask a setting that is already configured.
 - MUST NOT skip ahead of that first unconfigured setting.
 - A new chat does not clear a held first request that is still recorded.
@@ -341,7 +354,7 @@ At the start of every conversation in a consuming project:
 
 0. If rules setup is incomplete, run **Rules-setup gate** before any later step.
 1. Confirm laws are present and ordered (`AGENTS.md` / IDE adapters).
-2. Configure **Behavior**, then **System design**, one setting per turn. Ask in the user’s language. Store an Arabic answer in English.
+2. Configure the **relevant** **Behavior** and **System design** settings, one per turn. Ask in the user’s language. Store an Arabic answer in English. Do not ask a setting the current project does not use.
 3. Implement only after that setup is complete (or deferred once) and the held request is resumed.
 4. After each change, run post-change review + `14-final-verification.md` hooks.
 
@@ -356,7 +369,7 @@ At the start of every conversation in a consuming project:
 
 ## Post-change checklist hooks
 
-- [ ] Behavior and System design settings are configured (Arabic line-split stays fixed and is not a setting)
+- [ ] Relevant Behavior and System design settings are configured (unrelated blanks were not asked; Arabic line-split stays fixed)
 - [ ] Named technologies, sites, references, features, algorithms, tools, and libraries were checked against their current authoritative source
 - [ ] Arabic conversation lines contain no embedded English term; each English term is on its own line
 - [ ] Reply followed Candor: no opening agreement, confidence tags on claims, no banned phrases, uncomfortable truth first, no preamble

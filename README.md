@@ -44,18 +44,18 @@ Fill settings only in that project copy. This public origin stays blank.
 
 Open a **new chat inside that project** and ask the agent to configure the rules. Say whether the project is new or already built.
 
-The agent holds every other request until **Behavior** and **System design** are filled (`templates/project-profile.template.md`). Questions are in the user’s language. An Arabic answer is stored in English. The Arabic line-split is fixed and is not a setting. One section per turn, one unset field per turn.
+The agent holds every other request until the **relevant** **Behavior** and **System design** fields are filled (`templates/project-profile.template.md`). A field the project does not use is recorded as `none` and is not asked, unless the user asks to see it. Questions are in the user’s language. An Arabic answer is stored in English. The Arabic line-split is fixed and is not a setting. One relevant field per turn.
 
-- **Existing project:** database, framework, external connection, and libraries that the code already shows are written in English without asking again. Every **Behavior** or **System design** field the code does not prove is still asked, in the user’s language.
-- **New project:** the agent asks for every setting. It does not invent facts.
+- **Existing project:** database, framework, external connection, and libraries that the code already shows are written in English without asking again. A part the project does not use is recorded as `none` and is not asked.
+- **New project:** the agent asks only for the fields the current request needs. It records `none` for unused parts and does not invent facts.
 
-A blank, `not set`, `undecided`, or `TBD` is not configured. If a module does not apply, write `N/A: <reason>` on each of its lines and keep the file.
+A relevant blank, `not set`, `undecided`, or `TBD` is not configured. A field the project does not use is `none` and is not a question.
 
 ### 3. After setup is complete
 
 - **Existing project:** follow `laws/16-existing-projects.md` (review, then a fix plan). Do not patch first.
 - **New project:** implement only after the blocking questions for that work are answered.
-- A later chat must continue at the first unset field. It must not restart finished sections or re-ask values that are already set (`laws/00-core.md`, Resume).
+- A later chat must continue at the first relevant unset field. It must not restart finished sections, re-ask values that are already set, or open a field the project does not use (`laws/00-core.md`, Resume).
 - Arabic chat replies keep each Arabic sentence on its own line and each English term on its own line. Product right-to-left layout is a separate rule (`laws/03-ui.md`).
 
 ### 4. Bring newer laws into a project that is already configured
@@ -89,9 +89,9 @@ Shorter install notes are also in `USAGE.md`.
 - **Four operating additions** — law precedence and setup resume (`laws/00-core.md`); upstream merge that keeps filled settings (`laws/11-change-management.md`); product right-to-left layout separate from chat lines (`laws/03-ui.md`).
 - **Current sources** — before a technology, website, reference, feature, algorithm, tool, or library is mentioned or used, its authoritative source is reviewed and the work follows what that source says now (`laws/00-core.md`).
 - **Very strict** — no execution until required questions/checks complete, except explicit **for this time only** deferral.
-- **Rules-setup gate** — work is held until **Behavior** and **System design** are configured. Questions use the user’s language. Arabic answers are stored in English. Code-backed database, framework, connection, and libraries are recorded automatically. A new library is added only when the user asks for something the installed libraries do not provide. See `laws/00-core.md`.
+- **Rules-setup gate** — work is held until the **relevant** **Behavior** and **System design** fields are configured. A field the project does not use is not asked unless the user asks to see it. Questions use the user’s language. Arabic answers are stored in English. Code-backed database, framework, connection, and libraries are recorded automatically. A new library is added only when the user asks for something the installed libraries do not provide. See `laws/00-core.md`.
 - **Question protocol** — the option list appears only when a decision is necessary and the user says «عرض خيارات» or "Show options". Otherwise one short line. Deferral and ignore settings are not asked (`templates/question-protocol.md`, `templates/deferral.md`).
-- **Incomplete settings** — when asked, every remaining setting is numbered from 1 through the full count, then a category table shows completed and remaining (`laws/00-core.md`).
+- **Incomplete settings** — when asked, every **relevant** remaining setting is numbered from 1 through the full count, then a category table shows completed and remaining. Unrelated blanks stay hidden unless the user asks to see them (`laws/00-core.md`).
 - **Rules-setup modes** — `strict-hold` (default: hold work until configured) or `configure-on-request` (configure only when asked; no hold for blanks). Fixed phrase for the latter: "Stop the question protocol until I ask to configure the rules" (see `templates/deferral.md`).
 - **When to ask** — one short line only when a decision is necessary. The option list waits for «عرض خيارات» or "Show options".
 - **UI** — not a fixed visual identity; question protocol for buttons, icons, menus, containers, aesthetics when unclear.

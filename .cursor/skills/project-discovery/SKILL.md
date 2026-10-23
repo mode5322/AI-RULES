@@ -21,4 +21,4 @@ description: Use at the start of any task in a new or existing project, before w
 
 ## Do not
 - Do not ask about design, security or other areas unrelated to the task.
-- Do not guess the database from folder names alone. Ask if the code does not prove it.
+- Do not guess the database from folder names alone. If the current task does not need a database and the repo has none, record `none` and do not ask. Ask only when the task needs a database and the code does not prove the engine.

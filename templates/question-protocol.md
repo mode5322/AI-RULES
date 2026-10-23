@@ -57,6 +57,7 @@ Hints:
 
 ## Anti-patterns (MUST NOT)
 
+- Asking a question that does not connect to the current project, unless the user asked to see that question
 - Showing this option list before the user says «عرض خيارات» or "Show options"
 - Asking the user to configure deferral or ignore settings
 - Fewer than four concrete options (unless the domain truly has fewer mutually exclusive choices — then still end with Other)
