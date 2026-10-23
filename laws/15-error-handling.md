@@ -14,7 +14,7 @@ Standardize how agents respond to errors and failures: surface immediately, prop
 - Applies to build failures, runtime errors, test failures, migration errors, and logical defects discovered mid-work.
 - Applies when the agent is unsure which fix strategy to use.
 - Applies to **terminal-observed failures** during command or live testing (`09-testing.md`): use captured stdout/stderr/exit codes/logs as the error context for this protocol.
-- Applies to **security findings** from reviews or defensive scanners: present the finding + solutions and wait — after (or with) the remediation plan in `19-vuln-discovery-and-remediation.md`. Policy remains `10-security.md`; scanners remain `18-security-tooling.md`.
+- Applies to **security findings** from reviews, scanners, or the `security-audit` skill: present the finding + solutions and wait — after (or with) the remediation plan in `19-vuln-discovery-and-remediation.md`. Policy remains `10-security.md`; tooling remains `18-security-tooling.md`.
 - Never skip waiting for user choice unless one-time deferral explicitly covers fix selection.
 
 ## Hard rules (MUST / MUST NOT)

@@ -21,6 +21,7 @@ Works for:
 | `.cursor/rules/conversational-copy.mdc` | Always-on product UI copy voice |
 | `.cursor/skills/conversational-copy/` | Skill: short precise formal UI copy (Arabic: فصحى) |
 | `.cursor/skills/problem-brief/` | Skill: short diagnosis brief when the user does not know the cause |
+| `.cursor/skills/security-audit/` | Vendored multi-phase security audit skill (Cloudflare MIT upstream) |
 | `.cursor/rules/problem-brief.mdc` | Always-on problem-brief format |
 | `.cursor/rules/candor.mdc` | Always-on candor: no opening agreement, confidence tags, structured disagreement |
 
@@ -83,7 +84,7 @@ Shorter install notes are also in `USAGE.md`.
 - **Discussion** — one Sales note only when the plan changes pricing or who the product is for (`laws/02-discussion.md`).
 - **Database** — awareness stays on. Record the engine the repo shows, or `none` when there is no database, without a question (`laws/06-database.md`).
 - **Branding / icons** — desktop, mobile, and web identity assets; static vs user-changeable (`laws/17-branding-and-icons.md`).
-- **Security Laws suite** — parent policy (`laws/10-security.md`) + optional defensive tooling (`laws/18-security-tooling.md`) + authorized discovery/remediation (`laws/19-vuln-discovery-and-remediation.md`); no exploits.
+- **Security Laws suite** — parent policy (`laws/10-security.md`) + tooling (`laws/18-security-tooling.md`, including `.cursor/skills/security-audit/`) + discovery/remediation (`laws/19-vuln-discovery-and-remediation.md`); plan before fix; wait.
 - **After every change** — review modified elements, DB compatibility, logic/math, security, quality/structure.
 - **Minimal implementation** — after gates, follow the ladder in `laws/12-code-quality.md` (YAGNI → stdlib → native → installed deps → fewest lines); intensity lite/full/ultra; never cut validation/security/accessibility/data-loss handling. Merged into laws — not a separate pack.
 - **Complexity / debt passes** — optional over-engineering tags + simplification markers ledger (`laws/13-ai-review.md`, `laws/16-existing-projects.md`).

@@ -39,7 +39,7 @@ The agent places `laws/` and `templates/` at the project root and writes **Behav
 2. Then start at `16-existing-projects.md` (+ `13-ai-review.md`).
 3. Audit → rethink → issue/fix plan → confirm → fix.
 4. Quick fix only when impact is isolated; otherwise root-cause with compatibility.
-5. Security Laws suite: optional scanners `18-security-tooling.md` under parent `10`; actionable vulns via `19-vuln-discovery-and-remediation.md` (plan before fix; wait).
+5. Security Laws suite: optional scanners + `.cursor/skills/security-audit/` via `18-security-tooling.md` under parent `10`; actionable vulns via `19-vuln-discovery-and-remediation.md` (plan before fix; wait).
 
 ## Deferral
 
