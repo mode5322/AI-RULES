@@ -20,6 +20,9 @@ Works for:
 | `.cursor/rules/strict-ai-rules.mdc` | Cursor always-on rule pointing at `laws/` |
 | `.cursor/rules/conversational-copy.mdc` | Always-on product UI copy voice |
 | `.cursor/skills/conversational-copy/` | Skill: short precise formal UI copy (Arabic: فصحى) |
+| `.cursor/skills/problem-brief/` | Skill: short diagnosis brief when the user does not know the cause |
+| `.cursor/rules/problem-brief.mdc` | Always-on problem-brief format |
+| `.cursor/rules/candor.mdc` | Always-on candor: no opening agreement, confidence tags, structured disagreement |
 
 ## How to use
 

@@ -32,6 +32,20 @@ Current: _______________
 - For security findings: MUST NOT skip `19-vuln-discovery-and-remediation.md` plan + law gates before offering solutions.
 - After the chosen fix: run mandatory five-point review.
 
+## User-facing diagnosis brief (when the user does not know the cause)
+
+When the user asks what went wrong and clearly does **not** already know the cause, MUST lead with this short brief (skill `problem-brief`) before the solutions block:
+
+```text
+مكان المشكلة = <path or URL where the failure appears>
+سبب المشكلة = ملف (<filename>), <short cause>
+حل المشكلة = <primary fix: move/copy/create what → where>
+حل المشكلة بطريقة أخرى = يجب تعديل <what> في الملف "<file path>" في السطر رقم "<N>"
+يجب أن يكون "<exact expected line, value, or shape>"
+```
+
+Then continue with the solutions template below and wait.
+
 ## Error response template
 
 ```markdown

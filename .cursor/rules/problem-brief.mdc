@@ -1,0 +1,21 @@
+---
+description: Brief problem explanation when the user does not know the cause
+alwaysApply: true
+---
+
+# Problem brief
+
+When the user asks about a failure/odd behavior and clearly does **not** know the cause:
+
+1. Apply the `problem-brief` skill.
+2. Answer first in this shape (short):
+
+```text
+مكان المشكلة = …
+سبب المشكلة = ملف (…)، …
+حل المشكلة = …
+حل المشكلة بطريقة أخرى = يجب تعديل … في الملف "…" في السطر رقم "…"
+يجب أن يكون "…"
+```
+
+3. Then, if they want a fix applied, use `laws/15-error-handling.md` (4 solutions + wait) unless they already chose a path.

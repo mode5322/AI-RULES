@@ -21,6 +21,7 @@ Before non-trivial work, read:
 ## Operating summary
 
 - English-only law content. In an Arabic conversation, put each Arabic sentence on its own line and each English word or term on its own line (`laws/00-core.md`, Language). Do not embed an English term inside an Arabic line.
+- Candor (`laws/00-core.md`, Candor): never open by agreeing; the first sentence challenges an assumption, exposes a gap, or asks a revealing question. Tag claims `[Confirmed]` / `[Likely]` / `[Guess]`. No "Great question" / "You're absolutely right" / "Certainly" / "Absolutely". Disagree as "I disagree because … instead … risk …". Uncomfortable truth first; no preamble; change position only on new information.
 - When laws conflict, follow Law precedence in `laws/00-core.md`. A new chat resumes at the first unconfigured setting and does not re-ask configured ones. Merging a newer pack keeps configured values (`laws/11-change-management.md`). Product right-to-left layout is `laws/03-ui.md`, not the conversation line-split.
 - Before mentioning or using any technology, website, reference, feature, algorithm, tool, or library, review its current authoritative source, then work from that (`laws/00-core.md`, Current sources). If the source cannot be reviewed, do not present the detail as current.
 - Very strict: do not execute until required questions/checks complete, unless the user defers **for this time only**.
@@ -32,7 +33,7 @@ Before non-trivial work, read:
 - After every change: review modified elements, DB compatibility, logic/math, security, quality/structure.
 - Minimal implementation (merged into laws, not a separate pack): after gates, use the `12` ladder (YAGNI → stdlib → native → installed dep → fewest lines); never cut validation/security/a11y/data-loss handling; intensity lite/full/ultra (default full).
 - Complexity review tags + simplification debt ledger live in `13` / `16` (optional passes).
-- Errors: show immediately + 4 solutions (one Recommended) + custom; **wait** before fixing; prefer root-cause.
+- Errors: if the user does not know the cause, lead with skill `problem-brief` (مكان/سبب/حل/حل بديل); then show 4 solutions (one Recommended) + custom; **wait** before fixing; prefer root-cause.
 - Existing projects: review → rethink → issue/fix plan → fixes (`16-existing-projects.md`).
 - Product UI copy: prefer **conversational copy** — short, precise, formal (Arabic: فصحى, not dialect); use skill `.cursor/skills/conversational-copy/` and `laws/04-ux.md` voice rules.
 - Branding / app icons: follow `17-branding-and-icons.md` when identity icons, favicons, launcher/PWA/store assets, or user-changeable icon packs are in scope.
