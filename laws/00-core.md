@@ -17,10 +17,12 @@ Always. Every agent session, every IDE adapter, every task type.
 ### Language
 
 - MUST write all law file content and agent law responses that enforce these laws in **English**.
-- MUST keep PROJECT-SPECIFIC filled values in English unless the product UI language requires otherwise (product copy may differ; laws stay English).
+- Settings questions MUST be asked in the language the user is speaking.
+- If the user answers in Arabic, MUST store the setting value in English. The Arabic line-split below still applies to the conversation, not to the stored value.
+- The Arabic line-split rules in this section are **fixed**. They are not a setting. MUST NOT ask whether to use them, and MUST NOT disable them.
 - When a conversation reply uses Arabic or another right-to-left language, MUST keep each Arabic sentence on its own line and MUST put each English word, term, path, or identifier on its own line.
 - MUST NOT embed an English word or other Latin-script term inside an Arabic line. One line is either right-to-left prose with no Latin letters, or a single English term.
-- This split stops bidirectional layout from reversing the Arabic line. Law files stay English. The split applies to conversation replies, including clarifying questions asked in Arabic.
+- This split stops bidirectional layout from reversing the Arabic line. Law files stay English. The split applies to conversation replies, including settings questions asked in Arabic.
 - A fenced block that is entirely English may stay one block. MUST NOT insert that block’s text into an Arabic line.
 
 Conversation sample (layout only; law prose stays English):
@@ -73,7 +75,7 @@ Before mentioning, recommending, configuring, or implementing any technology, we
 ### Rules-setup gate
 
 - In a **consuming project**, while any rule setting is unconfigured, MUST hold product and code requests and MUST configure every setting before resuming them. Procedure: **Rules-setup gate** below.
-- MUST configure every setting in laws `00`–`19`, every `PROJECT-SPECIFIC` bullet in `templates/`, and every field in the project profile. A blank or a skip value does not count.
+- MUST configure every **Behavior** and **System design** setting in the project profile. Other `PROJECT-SPECIFIC` notes in laws `01`–`19` are not setup questions. A blank or a skip value does not count.
 - MUST NOT apply this gate when maintaining the public origin template.
 
 ### Law precedence
@@ -225,11 +227,9 @@ Applies when this pack is copied into a **consuming project** and rules setup is
 
 Setup is **incomplete** while any setting is unconfigured. Profile status `complete` does not override a remaining blank.
 
-A **setting** is every fill-in line in the consuming project’s copies of:
+A **setting** is a fill-in line in the project profile under **Behavior** or **System design** only.
 
-- each law `00`–`19` `Current:` line
-- every bullet under `## PROJECT-SPECIFIC` in `laws/` and in `templates/` (including `templates/deferral.md`)
-- every field in the project profile, including the module status map
+Law files `01`–`19` stay operating rules. Their `PROJECT-SPECIFIC` blanks are not required setup questions. The Arabic line-split is fixed and is not a setting.
 
 A setting is **configured** only when its placeholder is replaced with a concrete value. `N/A: <reason>` is a concrete value when that setting truly does not apply. These are not configured: `_______________`, a blank, `not set`, `undecided`, `TBD`, or any skip.
 
@@ -282,23 +282,23 @@ Hints:
 
 When the user asks to configure the rules (or chooses to start configuration):
 
-- Walk sections in order: `00`, then `01` through `19`, then any profile or template settings not already filled with that section.
+- Walk sections in order: **Behavior**, then **System design**.
 - One section per turn. Stay on that section across turns until every setting in it is configured. Do not open the next section in the same message.
-- One unconfigured setting per turn. State it in one short line and wait. Show the option list only after «عرض خيارات» or "Show options". Do not batch settings. Do not ask deferral or ignore settings.
+- One unconfigured setting per turn. Ask it in the user’s language, in one short line, and wait. Show the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not batch settings. Do not ask deferral or ignore settings. Do not ask whether to keep the Arabic line-split.
 - Do not stop while any setting remains unconfigured, unless the user pauses or defers **for this time only**.
-- A section is finished only when every setting in that law and the matching profile lines are configured. `N/A` still requires every line in that section to be filled (`N/A: <reason>` where the line does not apply). `06` stays in the tree either way.
+- A section is finished only when every **Behavior** or **System design** setting in it is configured. The Arabic line-split is not one of those settings.
 - MUST NOT leave a setting as `not set`, blank, or `_______________` to finish faster.
 - MUST NOT copy secrets, connection strings, keys, or passwords into laws or the profile. When a setting would require a secret, record where it is stored, not the secret value.
 
 **New project:** the repo does not establish product facts. Ask for every setting. Do not invent them.
 
-**Existing project:** if the code already establishes a value, write it into every matching setting and do not ask the user to re-confirm it. The database engine is the canonical case (Firebase, Supabase, SQL, or another engine the repo actually uses). Also write language, framework, platform, auth provider, and any other setting the repo shows plainly. Writing that name from the repo files is allowed. Describing how the technology, website, reference, feature, algorithm, tool, or library works still follows **Current sources**.
+**Existing project:** if the code already shows the database, framework, external connection, or libraries, write those **System design** values in English and do not ask the user to re-confirm them. Describing how a technology works still follows **Current sources**.
 
 - Known settings are written in that section’s turn.
 - Each remaining setting is still asked, one per turn, until the section is fully configured. Mark the option best supported by the code as **Recommended**.
 - When the section’s last setting is configured, name the next section and end the turn.
 
-When every setting in `00`–`19`, `templates/`, and the project profile is configured, set rules-setup status to `complete`, say that every setting is configured, and only then resume the held request under the normal gates. On every later task, check again. If any setting is unconfigured, hold the task and continue at the first unconfigured setting.
+When every **Behavior** and **System design** setting is configured, set rules-setup status to `complete`, say that setup is finished, and only then resume the held request under the normal gates. On every later task, check again. If any of those settings is unconfigured, hold the task and continue at the first unconfigured setting.
 
 ### Show incomplete settings
 
@@ -307,21 +307,21 @@ When the user asks to show the incomplete rule settings, including «عرض ال
 - MUST list every unconfigured setting as numbered points from 1 through the full count. Do not truncate the list. Do not show the question-protocol option list unless the user also says «عرض خيارات» or "Show options".
 - Each point is one setting: its number, its category, and its name.
 - MUST then show one table grouped by category. Columns are Category, Completed, Remaining, and Total. One row per category, plus a final totals row.
-- Categories are each law `00`–`19`, each `##` section of the project profile, and any template that still has fill-in settings.
+- Categories are **Behavior** and **System design** only.
 - A setting is remaining when it is blank, `not set`, `undecided`, `TBD`, or `_______________`. A concrete value, or `N/A: <reason>`, is completed.
 - Count each fill-in line once, under its own file or profile section. Do not invent values while showing the list.
 
 Example shape:
 
 ```markdown
-1. 06 Database — Engine
-2. Identity — Project name
+1. Behavior — Conversation language
+2. System design — Database
 
 | Category | Completed | Remaining | Total |
 |---|---|---|---|
-| 06 Database | 2 | 1 | 3 |
-| Identity | 0 | 1 | 1 |
-| Total | 2 | 2 | 4 |
+| Behavior | 1 | 1 | 2 |
+| System design | 3 | 1 | 4 |
+| Total | 4 | 2 | 6 |
 ```
 
 ### Resume in a new conversation
@@ -341,7 +341,7 @@ At the start of every conversation in a consuming project:
 
 0. If rules setup is incomplete, run **Rules-setup gate** before any later step.
 1. Confirm laws are present and ordered (`AGENTS.md` / IDE adapters).
-2. Configure every setting in `00`–`19`, the templates, and the project profile. One section per turn, and one unconfigured setting per turn inside that section. The walk includes requirements (`01`), discussion (`02`), architecture, UI/UX, database, the Security Laws suite (`10`, `18`, `19`), and branding/icons (`17`).
+2. Configure **Behavior**, then **System design**, one setting per turn. Ask in the user’s language. Store an Arabic answer in English.
 3. Implement only after that setup is complete (or deferred once) and the held request is resumed.
 4. After each change, run post-change review + `14-final-verification.md` hooks.
 
@@ -356,7 +356,7 @@ At the start of every conversation in a consuming project:
 
 ## Post-change checklist hooks
 
-- [ ] Every rule setting is configured (no blank or skip left in `00`–`19`, templates, or the profile)
+- [ ] Behavior and System design settings are configured (Arabic line-split stays fixed and is not a setting)
 - [ ] Named technologies, sites, references, features, algorithms, tools, and libraries were checked against their current authoritative source
 - [ ] Arabic conversation lines contain no embedded English term; each English term is on its own line
 - [ ] Reply followed Candor: no opening agreement, confidence tags on claims, no banned phrases, uncomfortable truth first, no preamble
@@ -373,10 +373,4 @@ At the start of every conversation in a consuming project:
 
 ## PROJECT-SPECIFIC
 
-- Project name: _______________
-- Default agent IDE(s): Cursor | Claude | Codex | other: _______________
-- Strictness overrides (document carefully): _______________
-- Rules-setup mode: `strict-hold` (default) | `configure-on-request` | _______________
-- Minimal-implementation intensity (lite | full | ultra): _______________
-- Mandatory stakeholders beyond CEO/HR/Sales: _______________
-- Paths to local extra laws: _______________
+Configurable settings are only **Behavior** and **System design** in `templates/project-profile.template.md`. Do not copy those blanks here.

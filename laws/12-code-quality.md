@@ -33,7 +33,7 @@ Current: _______________
 1. **YAGNI** — Does this need to exist? Speculative need → skip; say so in one line.
 2. **Stdlib** — Prefer language/standard library.
 3. **Native platform** — Prefer built-in platform/HTML/CSS/DB features over custom code or new libs.
-4. **Installed dependency** — Reuse what is already in the project; MUST NOT add a new dependency for what a few lines can do.
+4. **Installed dependency** — Reuse what is already in the project. MUST NOT add a new library unless the user asks for something the installed libraries do not provide. Then add the one library that provides that capability (for example icons). MUST NOT add a second library for a capability an installed library already covers.
 5. **Fewest lines** — Prefer one-liners / shortest correct form when readable.
 6. **Minimum that works** — Only then write the smallest correct implementation.
 
