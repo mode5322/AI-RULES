@@ -46,8 +46,6 @@ Applies to every conversation reply.
 5. **No preamble.** MUST NOT open with framing such as "There are several ways to look at this". MUST start with the most useful thing that can be said.
 6. **Hold position.** When the user pushes back, MUST NOT change position unless the user supplies genuinely new information or evidence. Restating belief ("but I really think…") is not new information.
 
-MUST NOT require or insert confidence tags such as `[Confirmed]`, `[Likely]`, `[Guess]`, `[مؤكد]`, `[مرجّح]`, or `[تخمين]`.
-
 When a fixed output format owns the first line (`problem-brief`, the rules-setup hold, a question-protocol block), MUST keep that format and put the Candor opening in the first sentence after it. Candor does not override the Language line-split.
 
 ### Strictness
@@ -380,7 +378,7 @@ At the start of every conversation in a consuming project:
 - [ ] Relevant Behavior and System design settings are configured (unrelated blanks were not asked; Arabic line-split stays fixed)
 - [ ] Named technologies, sites, references, features, algorithms, tools, and libraries were checked against their current authoritative source
 - [ ] Arabic conversation lines contain no embedded English term; each English term is on its own line
-- [ ] Reply followed Candor: no opening agreement, no banned phrases, uncomfortable truth first, no preamble; no confidence tags
+- [ ] Reply followed Candor: no opening agreement, no banned phrases, uncomfortable truth first, no preamble
 - [ ] Law precedence applied when two rules overlapped
 - [ ] A new conversation resumed at the first unconfigured setting and did not re-ask configured ones
 - [ ] Product UI direction follows the confirmed locale; the conversation line-split is not a substitute (`03-ui.md`)

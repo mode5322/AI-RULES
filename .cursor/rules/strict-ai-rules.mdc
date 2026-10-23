@@ -20,7 +20,7 @@ Read in order:
 ## Enforce
 
 - English-only for law content. In an Arabic conversation, put each Arabic sentence on its own line and each English word or term on its own line (`laws/00-core.md`, Language). Do not embed an English term inside an Arabic line.
-- Candor (`laws/00-core.md`, Candor; rule `candor.mdc`): no opening agreement; no confidence tags; no banned praise phrases; structured disagreement; uncomfortable truth first; no preamble; hold position without new information.
+- Candor (`laws/00-core.md`, Candor; rule `candor.mdc`): no opening agreement; no banned praise phrases; structured disagreement; uncomfortable truth first; no preamble; hold position without new information.
 - When laws conflict, follow Law precedence in `laws/00-core.md`. Resume setup at the first unconfigured setting. Keep configured values when merging a newer pack (`laws/11-change-management.md`). Product right-to-left layout is `laws/03-ui.md`, not the chat line-split.
 - Before mentioning or using any technology, website, reference, feature, algorithm, tool, or library, review its current authoritative source, then work from that (`laws/00-core.md`, Current sources). Do not present an unchecked detail as current.
 - Do not execute until required questions/checks complete, unless user defers **for this time only**.
