@@ -8,13 +8,12 @@ Define when and how to verify behavior so changes do not ship on hope alone. Sco
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → default: `PROJECT-SPECIFIC`
 
-Current: _______________
 
 ## When this module applies / when to skip
 
 - Applies: logic, API, data, and critical UI flows; any scoped test of a changed or relevant part.
 - Do not add large test suites unprompted if the project rule is minimal — but MUST still verify acceptance criteria via commands and/or live exercise.
-- `N/A` only when the consuming project explicitly forbids automated tests **and** live/manual verification is defined in PROJECT-SPECIFIC (still command-or-live, not theory-only).
+- `N/A` only when the project has no test command and the user has said not to add one. Scoped changes still need a command or a live check.
 - Security scanners (dependency audit, secrets, Semgrep, ZAP baseline, platform checklists) are **not** functional tests — see `18-security-tooling.md` and `10-security.md`. Do not count a green security scan as acceptance-criteria verification, or a passing unit suite as a security review.
 
 ## Hard rules (MUST / MUST NOT)
@@ -38,11 +37,11 @@ Current: _______________
 - MUST NOT add brittle UI snapshot spam unless the project uses that pattern.
 - MUST test money/invariant edge cases when those modules are touched.
 - MUST update or remove obsolete tests when behavior intentionally changes.
-- If test strategy or live-proof method is unclear before build/start, ask.
+- If the repo already has a test or run command, use it. Ask one question only when this task must be verified and the repo shows no way to run it.
 
 ### Stack-adaptive guidance (high-level)
 
-Adapt to the project type; fill PROJECT-SPECIFIC with the concrete commands used here:
+Adapt to the project type. Use the test or run command the repo already has. Do not add a settings blank for it.
 
 | Project type | Typical command / live proof | What to monitor |
 |---|---|---|
@@ -55,55 +54,14 @@ Use the repo’s existing scripts when present; do not invent a second stack wit
 
 ## Question protocol
 
-### Example — Verification level for this task
-
-```markdown
-### Question
-What verification is required before we call this done?
-
-1. Focused automated tests for changed logic + live/command happy path — **Recommended**
-2. Live/manual exercise only (commands + terminal monitoring)
-3. Full suite run locally (CI-equivalent) + scoped live check
-4. Write tests first (TDD) for this change, then live/command proof
-5. Other: _______________
-
-Hints:
-- Recommended balances cheap automated coverage with real runtime proof.
-- Theory-only or “I read the code” is never enough for a scoped feature test.
-```
-
-### Example — Test tooling
-
-```markdown
-### Question
-Which test runner/stack should we use?
-
-1. Whatever the repo already uses — **Recommended**
-2. Add a standard unit test runner for the language
-3. API/integration tests only
-4. End-to-end browser/device tests only
-5. Other: _______________
-```
-
-### Example — Live proof method
-
-```markdown
-### Question
-How should we live-exercise this change?
-
-1. Start the project’s normal run target and exercise the changed flow — **Recommended**
-2. Automated tests only (still monitor terminal); no interactive UI
-3. HTTP/curl against a running local server
-4. Device/emulator run with log monitoring
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## New-project workflow
 
 1. Choose test stack early if quality bar requires it.
 2. Put pure logic in testable modules.
 3. Add fixtures for money/date edge cases.
-4. Document preferred **test commands** and **how live test is done** in PROJECT-SPECIFIC.
+4. Use the project's existing test command. Do not add a settings blank.
 5. Gate merges on the agreed checks — each scoped verification MUST include command and/or live proof with terminal monitoring.
 6. On first failure during proof: capture terminal evidence → `15-error-handling.md` options → wait.
 
@@ -113,7 +71,7 @@ How should we live-exercise this change?
 2. Extend them; don’t introduce a second framework without approval.
 3. When fixing bugs, add a regression check when the project’s bar allows — then re-run command/live proof and monitor the terminal.
 4. If tests are absent, propose a minimal harness as part of remediation planning; until then, live/command verification with terminal monitoring remains mandatory for scoped changes.
-5. Record discovered run/test commands in PROJECT-SPECIFIC.
+5. Use the run or test command the repo already shows.
 
 ## Post-change checklist hooks
 
@@ -127,10 +85,4 @@ How should we live-exercise this change?
 
 ## PROJECT-SPECIFIC
 
-- Test runner: _______________
-- Preferred test commands: _______________
-- How live test is done (app/server/device steps): _______________
-- Terminal / log locations to watch: _______________
-- Required checks before done: _______________
-- Coverage expectations: _______________
-- Flaky test policy: _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.

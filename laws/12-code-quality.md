@@ -8,7 +8,6 @@ Keep code readable, consistent, and maintainable without gold-plating.
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → default: `ACTIVE`
 
-Current: _______________
 
 ## When this module applies / when to skip
 
@@ -77,44 +76,7 @@ Non-trivial logic (branch, loop, parser, money/security path) SHOULD leave the s
 
 ## Question protocol
 
-### Example — Quality bar for this task
-
-```markdown
-### Question
-What quality bar should we apply?
-
-1. Match surrounding code; fix only what we touch — **Recommended**
-2. Opportunistic cleanup in the same files if low risk
-3. Broader refactor of the module
-4. Strict lint/type clean for the whole package
-5. Other: _______________
-```
-
-### Example — Minimal-implementation intensity
-
-```markdown
-### Question
-Which minimal-implementation intensity should apply for this work?
-
-1. full — ladder enforced; shortest correct diff — **Recommended**
-2. lite — build as asked; name the lazier alternative
-3. ultra — maximum YAGNI; challenge extras in the same response
-4. Keep PROFILE default (no change this session)
-5. Other: _______________
-```
-
-### Example — Duplication
-
-```markdown
-### Question
-We found duplicated logic. What should we do?
-
-1. Extract a shared helper now if ≥2 call sites and stable behavior — **Recommended**
-2. Leave duplication for this pass; note follow-up
-3. Rewrite all call sites to a new abstraction
-4. Keep copies intentional (document why)
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## New-project workflow
 
@@ -122,7 +84,7 @@ We found duplicated logic. What should we do?
 2. Set intensity in PROFILE (default full).
 3. Write boring, clear, ladder-first code.
 4. Create shared helpers only when reuse is real.
-5. Record conventions and forbidden patterns in PROJECT-SPECIFIC.
+5. Match the conventions already in the repo. Do not add a settings blank.
 
 ## Existing-project workflow
 
@@ -142,10 +104,4 @@ We found duplicated logic. What should we do?
 
 ## PROJECT-SPECIFIC
 
-- Formatter / linter: _______________
-- Naming conventions: _______________
-- Max complexity preferences: _______________
-- Minimal-implementation intensity default: lite | full | ultra: _______________
-- Comment policy: _______________
-- Simplification marker prefix (`simplify:` / `ponytail:` / other): _______________
-- Forbidden patterns: _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.

@@ -8,7 +8,6 @@ Define the done-gate before the agent claims work is complete.
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → default: `ACTIVE`
 
-Current: _______________
 
 ## When this module applies / when to skip
 
@@ -29,36 +28,12 @@ Current: _______________
 - MUST include evidence from **terminal and/or live** runs when `09-testing.md` applies (commands run, exit codes/logs observed, live steps) — MUST NOT claim final verify from code reading alone.
 - MUST confirm question gates were satisfied or one-time deferral was used.
 - MUST confirm error fixes waited for user choice when `15-error-handling.md` applied.
-- MUST update PROJECT-SPECIFIC blanks if new project truths were learned.
+- MUST update the project profile when a Behavior or System design fact was learned. Do not add a blank in this file.
 - MUST NOT leave the repo in a knowingly broken state without stating it and proposing next options.
 
 ## Question protocol
 
-### Example — Done criteria for this task
-
-```markdown
-### Question
-What should count as “done” for this task?
-
-1. Acceptance criteria met + five-point review passed — **Recommended**
-2. Code complete; tests/docs deferred intentionally
-3. Demo-ready only (known gaps listed)
-4. Plan delivered; implementation not requested
-5. Other: _______________
-```
-
-### Example — Residual risk
-
-```markdown
-### Question
-Residual risks remain. How proceed?
-
-1. Fix residual critical risks before closing — **Recommended**
-2. Close with documented follow-ups
-3. Add monitoring/logging only for now
-4. Revert the change
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## New-project workflow
 
@@ -86,7 +61,4 @@ Residual risks remain. How proceed?
 
 ## PROJECT-SPECIFIC
 
-- Definition of done: _______________
-- Mandatory commands before done: _______________
-- Release checklist path: _______________
-- Stakeholders to notify: _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.

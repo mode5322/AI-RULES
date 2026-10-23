@@ -4,7 +4,7 @@ Instructions for coding agents (Codex, Cursor Agent, and general LLM agents) wor
 
 ## What this is
 
-`strict-ai-rules` is a **strict law pack** for AI agents. After this folder is copied into a **user project**, agents must treat `laws/` as binding operating rules and customize `PROJECT-SPECIFIC` sections for **that project only**.
+`strict-ai-rules` is a **strict law pack** for AI agents. After this folder is copied into a **user project**, agents must treat `laws/` as binding operating rules and record confirmed facts in **Behavior** and **System design** only.
 
 The public GitHub origin stays a blank/general template.
 
@@ -29,7 +29,7 @@ Before non-trivial work, read:
 - Question protocol option lists appear only when a decision is necessary and the user says «عرض خيارات» or "Show options" (`templates/question-protocol.md`). Otherwise one short line. Do not ask deferral or ignore settings.
 - When the user asks to show incomplete rule settings, number every **relevant** remaining setting from 1 through the full count, then show a category table of completed and remaining. Unrelated blanks stay out of that list unless the user asks to see them (`laws/00-core.md`, Show incomplete settings).
 - Rules-setup mode: `strict-hold` (default) or `configure-on-request` (configure only when asked; do not hold product work for blanks). Fixed phrase for the latter: "Stop the question protocol until I ask to configure the rules" / «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد» (`templates/deferral.md`).
-- New plans: brief CEO + HR + Sales discussion, then ask if another specialty is needed.
+- New plans that change pricing, staff work, or who the product is for: short CEO, HR, and Sales angles in `laws/02-discussion.md`. Do not ask for another specialty unless the user asks.
 - Database type is asked only when the project has a database or the current request needs one. Otherwise record `none` and do not ask (`laws/06-database.md`).
 - After every change: review modified elements, DB compatibility, logic/math, security, quality/structure.
 - Minimal implementation (merged into laws, not a separate pack): after gates, use the `12` ladder (YAGNI → stdlib → native → installed dep → fewest lines); never cut validation/security/a11y/data-loss handling; intensity lite/full/ultra (default full).
@@ -42,9 +42,10 @@ Before non-trivial work, read:
 
 ## Do / Don’t
 
-- DO fill PROJECT-SPECIFIC blanks in the consuming project when decisions are confirmed.
-- DO mark modules `ACTIVE`, `N/A`, or keep `PROJECT-SPECIFIC` with notes.
+- DO record a confirmed Behavior or System design fact in the project profile.
+- DO leave a law file in the tree when the project does not use that module.
 - DON’T invent project facts in the public origin template.
+- DON’T add a fill-in setting outside the profile.
 - DON’T commit unless the user explicitly asks.
 
 ## Profile

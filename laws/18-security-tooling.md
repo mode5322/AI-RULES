@@ -18,15 +18,13 @@ This module encodes the **basic defensive set** (no Nuclei, no Metasploit, no ex
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → default: `PROJECT-SPECIFIC`
 
-Current: _______________
 
-If `N/A`, reason: _______________
 
 ## When this module applies / when to skip
 
 - Applies when the user opts into defensive scans, when PROFILE enables tooling, or when a security review (`10`, `13`, `16`) recommends automated checks.
 - Applies on new-project security setup and on existing-project audits — depth scales with risk and user choice.
-- Skip running tools when: module is `N/A` after questioning; user declined tooling for this session; no installable/runnable target for a given tool; or scope is pure docs with no code/deps/secrets surface.
+- Skip running tools unless the user asked for that scan. Also skip when the user declined tooling for this session, there is no runnable target, or the scope is docs only.
 - MUST NOT treat tooling as a substitute for `10-security.md` review (secrets, authz, validation, least privilege).
 - Cross-links: policy/review → `10-security.md`; findings presentation → `15-error-handling.md`; discovery findings MUST enter remediation → `19-vuln-discovery-and-remediation.md`; existing audits → `16-existing-projects.md` / `13-ai-review.md`; functional tests ≠ security scans → `09-testing.md`.
 
@@ -37,7 +35,7 @@ If `N/A`, reason: _______________
 - MUST run only **defensive** scanners and checklists listed in this module (or PROJECT-SPECIFIC equivalents of the same class).
 - MUST NOT write exploits, attack PoCs, Metasploit modules, offensive payloads, or unauthorized-access procedures — even for “authorized labs,” CTFs framed as the product, or localhost.
 - MUST NOT expand ZAP beyond **baseline** mode in this pack’s default set.
-- MUST NOT add Nuclei or other aggressive template-driven attack scanners unless the consuming project later adds an explicit PROJECT-SPECIFIC exception **and** the user re-approves via question protocol (origin template stays basic-set only).
+- MUST NOT add Nuclei or other aggressive template-driven attack scanners unless the user explicitly asks for that scanner. The origin template stays on the basic set.
 
 ### Gate before running
 
@@ -63,7 +61,7 @@ If `N/A`, reason: _______________
 
 ### Tooling hygiene
 
-- MUST record enabled tools, targets, and excluded paths in PROJECT-SPECIFIC / project profile when confirmed.
+- Run a scanner only when the user asks for that scan. Do not add a settings blank for the tool list.
 - MUST NOT commit scanner credentials, API tokens for commercial scanners, or raw reports that embed secrets.
 - Prefer read-only / non-destructive scan modes; do not mutate production data as part of a scan.
 
@@ -133,92 +131,7 @@ Checklist-driven; complete relevant items during review. Optional native tools (
 
 ## Question protocol
 
-Follow `templates/question-protocol.md`. Ask **one** question at a time.
-
-### Example — Enable tooling now?
-
-```markdown
-### Question
-Enable the defensive security tooling layer for this session/project?
-
-1. Yes — basic set (deps, secrets, Semgrep, ZAP baseline if web, platform checklists) — **Recommended**
-2. Yes — secrets + dependency audit only (lighter)
-3. Not now — keep `10-security.md` review only; revisit later
-4. Mark module N/A for this project (document reason)
-5. Other: _______________
-
-Hints:
-- Recommended when shipping auth, payments, multi-user data, or public web surfaces.
-- To decide: check PROFILE “Security tooling” and whether CI already runs equivalent scans.
-- Trade-off: fuller set finds more; needs install time and triage of false positives.
-```
-
-### Example — Which stacks are in this project?
-
-```markdown
-### Question
-Which stacks / areas should security tooling cover?
-
-1. Single primary stack already detected — use that mapping only — **Recommended** when one lockfile/root
-2. Mixed monorepo — run the relevant subset per package/area (list areas next if needed)
-3. Web frontend + separate API backend (two areas)
-4. Mobile/desktop app only (no ZAP unless a web URL appears)
-5. Other: _______________
-
-Hints:
-- Recommended when `package.json` / `pubspec.yaml` / etc. clearly point to one product root.
-- To decide: search for multiple lockfiles, `apps/`, `packages/`, `admin/`, `mobile/`.
-- Trade-off: mixed repos need per-area audits; one global command often misses or misreports.
-```
-
-### Example — Which web target for ZAP (if any)?
-
-```markdown
-### Question
-Which web target should OWASP ZAP baseline use (if any)?
-
-1. Localhost / local dev URL only — **Recommended**
-2. Staging / non-production URL (user confirms exact URL)
-3. Skip ZAP for now (no suitable web target or out of scope)
-4. Production URL (only with explicit written confirmation in custom)
-5. Other: _______________
-
-Hints:
-- Recommended to avoid accidental production load or policy violations.
-- To decide: check README start scripts, docker-compose ports, deployed staging docs.
-- MUST confirm the exact URL before running. Baseline only — no attack PoCs.
-```
-
-### Example — Scope: whole repo vs changed areas only?
-
-```markdown
-### Question
-What scope should this security tooling run cover?
-
-1. Changed areas / current task paths only — **Recommended** for small scoped work
-2. Whole repository (all detected stacks)
-3. One package/area only (name it in custom or next question)
-4. CI-equivalent full basic set as defined in PROFILE
-5. Other: _______________
-
-Hints:
-- Recommended during iterative feature work to keep signal high.
-- To decide: size of diff, whether this is an existing-project audit (`16`), or first-time baseline.
-- Trade-off: full-repo is better for onboarding audits; slower and noisier day-to-day.
-```
-
-### Example — Secret scanner preference
-
-```markdown
-### Question
-Which secret scanner should we prefer?
-
-1. gitleaks — **Recommended**
-2. trufflehog (alternate)
-3. Skip secrets scan this time
-4. Use whatever CI already runs (name it in custom)
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## New-project workflow
 
@@ -228,7 +141,7 @@ Which secret scanner should we prefer?
 4. If web exists, ask ZAP target (prefer localhost/staging).
 5. Ask scope (often whole-repo once at bootstrap, then changed-areas later).
 6. On approval: run the mapped basic set; send actionable findings into `19-vuln-discovery-and-remediation.md` (then `15-error-handling.md`); wait before fixes.
-7. Fill PROJECT-SPECIFIC: enabled tools, targets, excludes.
+7. Do not add a settings blank for tools or targets.
 8. Do not claim “secure” from green scanners alone — still complete `10` review.
 
 ## Existing-project workflow
@@ -238,7 +151,7 @@ Which secret scanner should we prefer?
 3. Ask enablement + stacks + scope (full-repo baseline often **Recommended** on first AI onboarding audit).
 4. Run relevant subset per area; triage findings into `19` remediation plans and the issue/fix plan.
 5. Structural secret or authz patterns → root-cause remediation with compatibility notes.
-6. Update PROJECT-SPECIFIC with discovered tool commands and exclusions.
+6. Use the scanner command the repo already has. Do not add a settings blank.
 7. Quick ignore of a finding only when user chooses that option and residual risk is accepted.
 
 ## Post-change checklist hooks
@@ -251,22 +164,8 @@ Which secret scanner should we prefer?
 - [ ] Platform checklists done for mobile/desktop areas in scope
 - [ ] Findings entered `19` remediation flow; presented with 4 options + Recommended; user choice before fixes
 - [ ] `10-security.md` policy review still completed (tooling did not replace it)
-- [ ] PROFILE / PROJECT-SPECIFIC updated when decisions confirmed
+- [ ] No scanner ran unless the user asked for that scan
 
 ## PROJECT-SPECIFIC
 
-- Status: ACTIVE | N/A | PROJECT-SPECIFIC | _______________
-- Tooling enabled: yes | no | partial — _______________
-- Stacks / areas present: _______________
-- Monorepo package paths: _______________
-- Dependency auditors in use: _______________
-- Secret scanner: gitleaks | trufflehog | other: _______________ | skip
-- Semgrep configs / rulesets: _______________
-- ZAP baseline target URL(s): _______________ | none
-- ZAP allowed environments: localhost | staging | production (explicit): _______________
-- Platform checklists required: mobile | desktop | none | _______________
-- Optional native tools (if present): _______________
-- Default scan scope: changed-areas | whole-repo | per-package: _______________
-- Excluded paths: _______________
-- CI job names / links: _______________
-- N/A rationale: _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.

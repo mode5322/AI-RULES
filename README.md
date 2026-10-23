@@ -94,9 +94,9 @@ Shorter install notes are also in `USAGE.md`.
 - **Incomplete settings** — when asked, every **relevant** remaining setting is numbered from 1 through the full count, then a category table shows completed and remaining. Unrelated blanks stay hidden unless the user asks to see them (`laws/00-core.md`).
 - **Rules-setup modes** — `strict-hold` (default: hold work until configured) or `configure-on-request` (configure only when asked; no hold for blanks). Fixed phrase for the latter: "Stop the question protocol until I ask to configure the rules" (see `templates/deferral.md`).
 - **When to ask** — one short line only when a decision is necessary. The option list waits for «عرض خيارات» or "Show options".
-- **UI** — not a fixed visual identity; question protocol for buttons, icons, menus, containers, aesthetics when unclear.
-- **Discussion** — new plans get brief CEO + HR + Sales angles; ask if another specialty is needed.
-- **Database** — always-on awareness; determine DB type; `N/A` only after questioning.
+- **UI** — match the existing interface. Do not open a questionnaire for buttons, icons, menus, or colors (`laws/03-ui.md`).
+- **Discussion** — CEO, HR, and Sales angles only when the plan changes pricing, staff work, or who the product is for (`laws/02-discussion.md`).
+- **Database** — awareness stays on. Record the engine the repo shows, or `none` when there is no database, without a question (`laws/06-database.md`).
 - **Branding / icons** — desktop, mobile, and web identity assets; static vs user-changeable (`laws/17-branding-and-icons.md`).
 - **Security Laws suite** — parent policy (`laws/10-security.md`) + optional defensive tooling (`laws/18-security-tooling.md`) + authorized discovery/remediation (`laws/19-vuln-discovery-and-remediation.md`); no exploits.
 - **After every change** — review modified elements, DB compatibility, logic/math, security, quality/structure.
@@ -106,11 +106,7 @@ Shorter install notes are also in `USAGE.md`.
 
 ## Marking modules N/A
 
-If a module truly does not apply (e.g. no database after questioning):
-
-1. Set Status to `N/A`.
-2. Write the reason in the module’s PROJECT-SPECIFIC / status fields.
-3. Keep the file — it remains a reminder/warning layer (especially `06-database.md`).
+If a module does not connect to the current project, leave its file in the tree and do not ask about it. Record `none` for a System design part the project does not use. Do not add a reason blank in the law file.
 
 ## License
 

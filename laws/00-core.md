@@ -84,7 +84,7 @@ When two laws disagree about the same action, apply the first match:
 
 1. Non-deferrable safety wins: security, secrets, data-loss, and illegal-request refusals (`templates/deferral.md`, `10-security.md`).
 2. Hard rules in this file win over every other law, including the implementation ladder in `12-code-quality.md`.
-3. A configured PROJECT-SPECIFIC value wins over a generic example in a law. It does not win over items 1 or 2.
+3. A value in the project profile wins over a generic example in a law. It does not win over items 1 or 2.
 4. The domain law that owns the surface being changed wins over a law that only mentions that surface in passing. Ownership is the module whose “When this module applies” matches the artifact.
 5. If two domain laws both own the surface, follow the cross-link that names the owner. If none does, ask one question and wait. Do not pick silently.
 6. The implementation ladder never overrides items 1–5.
@@ -99,20 +99,19 @@ When two laws disagree about the same action, apply the first match:
 
 ### Consultant role
 
-- This origin repo is a **blank/general template**. After copy into a user project, the agent MUST act as a consultant: fill and customize PROJECT-SPECIFIC sections for **that project only**.
+- This origin repo is a **blank/general template**. After copy into a user project, record confirmed facts in **Behavior** and **System design** only.
 - MUST NOT invent project-specific facts in the public origin.
-- MUST update project profile / PROJECT-SPECIFIC blanks when decisions are confirmed.
+- MUST NOT add a second blank list in a law file.
 
 ### Discussion gate
 
-- For any **new plan**, MUST briefly discuss from **CEO + HR + Sales** angles, then ask whether another specialty is needed (see `02-discussion.md`).
+- For a new plan that changes pricing, staff work, or who the product is for, use the short angles in `02-discussion.md`. Do not run that discussion, and do not ask for another specialty, when the plan does not change those things.
 
 ### Database awareness
 
 - Database laws remain an always-on reminder layer (see `06-database.md`).
-- MUST determine DB type via question protocol when unknown.
-- During rules setup on an **existing** project, if the code already shows the engine, record it without asking the user to re-confirm it (see **Rules-setup gate** and `06-database.md`).
-- If the project truly has no DB need after questioning, mark the module `N/A` but keep awareness.
+- If the repo shows an engine, record it in **System design → Database** in English and do not ask.
+- If the project has no database and the current request does not need one, record `none` and do not ask. Re-open the field only when persistence becomes part of the work.
 
 ### Post-change review (mandatory after every change)
 
@@ -137,7 +136,7 @@ Review all of:
 ### Branding and icons
 
 - When product/app identity icons or branding assets are in scope, MUST follow `17-branding-and-icons.md` (platform sizes, asset location, static vs user-changeable).
-- Mark `17` as `N/A` only after questioning confirms no visual identity surface.
+- Mark `17` `N/A` when the project has no visual identity surface. Do not ask to confirm that absence.
 
 ### Security Laws suite (`10` + `18` + `19`)
 
@@ -180,7 +179,7 @@ Read `00-core` first, then domain modules relevant to the task. Numbers are stab
 | 03 | `03-ui.md` | `N/A` if no UI surface |
 | 04 | `04-ux.md` | `N/A` if no human flows |
 | 05 | `05-architecture.md` | Usually on for code work |
-| 06 | `06-database.md` | Always-on awareness; `N/A` only after questioning |
+| 06 | `06-database.md` | Always-on awareness; record `none` when the project has no database |
 | 07 | `07-logic-and-math.md` | When calculations / rules apply |
 | 08 | `08-validation.md` | When inputs / contracts apply |
 | 09 | `09-testing.md` | Per project quality bar |
@@ -195,32 +194,11 @@ Read `00-core` first, then domain modules relevant to the task. Numbers are stab
 | 18 | `18-security-tooling.md` | Security Laws companion — optional defensive tooling; supplements `10`; `N/A` if declined |
 | 19 | `19-vuln-discovery-and-remediation.md` | Security Laws companion — authorized discovery → remediation; `N/A` if no security surface |
 
-Mark each module `ACTIVE`, `N/A`, or `PROJECT-SPECIFIC` in the law file and in `templates/project-profile.template.md`. Keep `N/A` files in tree as reminders.
+Keep every law file in the tree. Do not mark a module by adding a blank. Use the file when the current task needs it.
 
 ## Question protocol (core)
 
-Use when session mode or project type is unclear.
-
-### Example — Project mode
-
-```markdown
-### Question
-How should this session treat the repository?
-
-1. Brand-new project — gather requirements before any build — **Recommended**
-2. Existing project — run full audit / remediation flow first
-3. Existing project — small scoped change only (still check ambiguity)
-4. Template maintenance on strict-ai-rules origin itself
-5. Other: _______________
-
-Hints:
-- Recommended for empty or nearly empty apps without product decisions yet.
-- To decide: look for app entrypoints, lockfiles, and populated `laws/` PROJECT-SPECIFIC fields.
-```
-
-### Example — Deferral confirmation
-
-See `templates/deferral.md`.
+Use `templates/question-protocol.md`. Do not ask a session-mode question when the repo or the current request already shows whether the project is new or existing. One-time deferral is `templates/deferral.md`.
 
 ## Rules-setup gate
 
@@ -247,7 +225,7 @@ A setting is **configured** only when its placeholder is replaced with a concret
 
 ### Rules-setup modes
 
-Record the mode in the project profile and in this file’s PROJECT-SPECIFIC section:
+Record the mode in the project profile only:
 
 - `strict-hold` (default): hold product/code work until every **relevant** setting is configured, or the user defers **for this time only**.
 - `configure-on-request`: do **not** hold product/code work for incomplete rules setup. Configure settings only when the user explicitly asks to configure the rules. Incomplete settings stay incomplete until that request. Other laws (security, question gates for the task itself, Candor) still apply.
@@ -268,27 +246,7 @@ The same hold applies to every later product or code request while any **relevan
 
 This hold is agent-initiated. It is not a user deferral. User deferral stays the way to skip the gate for one task under `strict-hold`.
 
-When the mode is `configure-on-request`, MUST NOT hold product or code requests solely because settings are blank. When the user asks to configure the rules, walk one relevant setting per turn. Do not open settings that do not connect to the current project.
-
-### Example — Option list only after «عرض خيارات» or "Show options"
-
-```markdown
-### Question
-Agent rules are not configured yet. This request is held. What should happen next?
-
-1. Configure the agent rules now, one section at a time, so later work follows the fixed requirements — **Recommended**
-2. Keep this request held; configuration starts when I ask
-3. Defer rules setup for this time only and continue this request
-4. This is template maintenance on the strict-ai-rules origin; the gate does not apply
-5. Stop the question protocol until I ask to configure the rules (`configure-on-request`) — fixed option; same meaning as «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد»
-6. Other: _______________
-
-Hints:
-- Recommended because: the agent then follows the requirements recorded in the laws.
-- Option 5: fixed pack phrase; product work continues; blanks stay until you ask to configure; record mode as `configure-on-request`.
-- To decide: check whether PROJECT-SPECIFIC fields and the profile rules-setup status are still blank.
-- Trade-off: option 3 skips once; option 5 skips the hold until you change the mode.
-```
+When the mode is `configure-on-request`, MUST NOT hold product or code requests solely because settings are blank. When the user asks to configure the rules, walk one relevant setting per turn. Do not open settings that do not connect to the current project. Do not show an option list for this gate unless the user says «عرض خيارات» or "Show options".
 
 ### Configure one section at a time
 
@@ -365,7 +323,7 @@ At the start of every conversation in a consuming project:
 2. Follow `16-existing-projects.md`.
 3. Produce issue plan + fix plan; get confirmation on approach.
 4. Prefer compatibility-preserving root-cause fixes.
-5. Update PROJECT-SPECIFIC fields with discovered truths.
+5. Record a discovered database, framework, connection, or library in the project profile. Do not add a new blank.
 
 ## Post-change checklist hooks
 

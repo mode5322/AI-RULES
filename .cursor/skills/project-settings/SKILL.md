@@ -1,22 +1,19 @@
 ---
 name: project-settings
-description: Use whenever a skill needs a project preference (colors, fonts, icon library, UI style, backend, database, language, direction, test commands) or the user asks about settings status. Reads and writes .project/settings.md, shows the count of unset settings, and asks only about settings relevant to the current task.
+description: Use whenever a skill needs a project preference (language, database, framework, connection) or the user asks about settings status. Reads the project profile Behavior and System design fields, and asks only about a field the current task needs.
 ---
 
 # Project settings
 
-Single source of truth: `.project/settings.md` inside the user's project (never inside these skills).
+The only settings list is **Behavior** and **System design** in `templates/project-profile.template.md` (or the consuming project's copy of that profile).
 
 ## Workflow
-1. If `.project/settings.md` is missing, create it from `template.md` in this folder. Do not ask anything yet.
-2. Read it. Find settings the CURRENT task needs whose status is `unset`.
-3. Auto-detect first (see project-discovery). Detected facts are saved as `set` with source `detected`, without asking.
-4. Ask the remaining ones following `references/question-protocol.md`.
-5. Counter = number of rows with status `unset` / total rows. Show it before each settings question.
-6. After saving, continue the original task. Do not ask about the rest.
+1. Read the profile. Do not create `.project/settings.md`.
+2. If the repo already shows a fact, keep it. Do not ask.
+3. If the current task does not use a field, leave it. Record `none` when that part is absent. Do not ask.
+4. Ask one remaining relevant field using `references/question-protocol.md`.
+5. Continue the task. Do not ask about colors, fonts, radius, icon libraries, or auth unless the current request is that choice and the repo does not show it.
 
 ## Rules
-- Statuses: `set`, `unset`, `agent-default`.
-- Never overwrite a `set` value without asking.
-- If the user asks "what is unset?", list the unset rows grouped by area.
-- Project vocabulary goes in `GLOSSARY.md` (template: `glossary-template.md`). Use those terms in code and replies.
+- Never overwrite a recorded profile value without the user asking to change it.
+- If the user asks "what is unset?", list only relevant Behavior and System design blanks. Hide unrelated blanks unless they ask to see them.

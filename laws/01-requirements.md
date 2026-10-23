@@ -8,104 +8,50 @@ Force clear, testable requirements before implementation so the agent does not i
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → default while undecided: `PROJECT-SPECIFIC`
 
-Current: _______________
 
 ## When this module applies / when to skip
 
 - Applies: any new feature, new project bootstrap, behavior change, or API contract change.
 - Skip only when marked `N/A` for non-product chores (e.g. typo in README) **and** the change cannot alter behavior.
-- If unsure whether requirements are needed, ask — do not assume.
+- If unsure whether this task changes behavior, read the request again. Do not open a requirements questionnaire for a chore that cannot change behavior.
 
 ## Hard rules (MUST / MUST NOT)
 
-- MUST gather goals, users, constraints, success criteria, and non-goals before build/start.
-- MUST NOT start coding while critical requirements are unknown (unless one-time deferral).
-- MUST translate requirements into acceptance checks the agent can verify later.
+- If the user's request already names the outcome, treat that as the requirement. Ask one question only when the outcome is missing and the work cannot start.
+- MUST NOT start coding while the outcome of this task is unknown (unless one-time deferral).
+- MUST translate that outcome into an acceptance check the agent can verify later.
 - MUST prefer measurable outcomes over vague adjectives (“fast”, “nice”, “modern”).
-- MUST record confirmed requirements in PROJECT-SPECIFIC / project profile.
-- MUST NOT expand scope beyond agreed requirements without a new question gate.
-- During/after build: ask only when requirements become ambiguous.
-- For complex requests after gates: MAY ship the minimum that satisfies agreed acceptance criteria and, in the same response, ask whether the fuller variant is required (see `12-code-quality.md` intensity). MUST NOT silently drop accepted must-haves.
+- Record a confirmed product fact in the project profile only when it is a Behavior or System design field.
+- MUST NOT expand scope beyond the current request without the user asking for the extra scope.
+- For complex requests after gates: MAY ship the minimum that satisfies the request and, in the same response, ask whether the fuller variant is required (see `12-code-quality.md` intensity). MUST NOT silently drop what the user asked for.
 
 ## Question protocol
 
-Follow `templates/question-protocol.md`.
-
-### Example — Primary outcome
-
-```markdown
-### Question
-What is the primary outcome for this work?
-
-1. Ship a usable MVP slice end-to-end — **Recommended**
-2. Design/architecture only (no implementation yet)
-3. Fix/stabilize an existing broken behavior
-4. Explore options and recommend; wait for a second approval to build
-5. Other: _______________
-
-Hints:
-- Recommended when the user wants working software soon with controlled scope.
-- To decide: check whether screens/APIs already exist and whether a deadline was stated.
-```
-
-### Example — Success criteria
-
-```markdown
-### Question
-How will we know this is done?
-
-1. User can complete the main happy path manually
-2. Automated tests cover the agreed acceptance cases — **Recommended**
-3. Demo checklist signed off by stakeholder
-4. Performance/security gate passed in addition to functional checks
-5. Other: _______________
-```
-
-### Example — Non-goals
-
-```markdown
-### Question
-What should explicitly be out of scope for this pass?
-
-1. No new integrations / third-party services — **Recommended**
-2. No UI redesign; logic-only
-3. No database schema changes
-4. No auth/roles changes
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## New-project workflow
 
-0. Rules-setup gate in `00-core.md` runs first when setup is incomplete. This module is configured as section `01` of that walk.
-1. Identify problem, users, platforms, and constraints.
-2. Ask blocking requirement questions (one at a time).
-3. Write short acceptance criteria.
-4. Hand off to `02-discussion.md` before architecture/UI build.
-5. Freeze v1 scope; changes require a new mini-requirements pass.
+0. Rules-setup gate in `00-core.md` runs first when a relevant setting is unconfigured. This file is not a setup section.
+1. Use the outcome named in the request.
+2. Ask one question only when that outcome is missing.
+3. Write one acceptance check.
+4. Use `02-discussion.md` only when the plan changes pricing, staff work, or who the product is for.
+5. Do not add scope the user did not ask for.
 
 ## Existing-project workflow
 
 0. Rules-setup gate in `00-core.md` runs first when setup is incomplete. Facts the code already shows are written in that walk.
 1. Reconstruct intended vs actual behavior from code and docs.
-2. Ask which discrepancies are bugs vs intentional drift.
+2. Treat a discrepancy as a bug only when the current request says that behavior is wrong. Do not ask a drift questionnaire otherwise.
 3. Define remediation requirements before coding (see `16-existing-projects.md`).
 4. Avoid “fixing” behavior that product actually wants.
 
 ## Post-change checklist hooks
 
-- [ ] Change maps to an agreed requirement
-- [ ] Acceptance criteria still valid
+- [ ] Change maps to the current request
+- [ ] Acceptance check still valid
 - [ ] No silent scope creep
-- [ ] PROJECT-SPECIFIC requirements updated if decisions changed
 
 ## PROJECT-SPECIFIC
 
-- Problem statement: _______________
-- Primary users: _______________
-- Platforms: _______________
-- Must-have (v1): _______________
-- Nice-to-have (later): _______________
-- Non-goals: _______________
-- Acceptance criteria: _______________
-- Constraints (time, budget, compliance, hosting): _______________
-- Stakeholders / approvers: _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.

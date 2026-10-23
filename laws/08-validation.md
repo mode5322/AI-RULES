@@ -8,7 +8,6 @@ Ensure all inputs are validated and rejected safely before persistence, API call
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → default: `ACTIVE`
 
-Current: _______________
 
 ## When this module applies / when to skip
 
@@ -29,44 +28,7 @@ Current: _______________
 
 ## Question protocol
 
-### Example — Validation placement
-
-```markdown
-### Question
-Where should canonical validation run?
-
-1. Service/domain layer (UI mirrors for UX) — **Recommended**
-2. UI only
-3. Database constraints only
-4. API gateway schemas only
-5. Other: _______________
-```
-
-### Example — Invalid input UX
-
-```markdown
-### Question
-How should validation failures be shown?
-
-1. Per-field messages + summary if many — **Recommended**
-2. Single toast with first error only
-3. Blocking modal listing all errors
-4. Inline only on submit blur
-5. Other: _______________
-```
-
-### Example — Strictness on imports
-
-```markdown
-### Question
-How should bulk import rows fail?
-
-1. Reject row with errors; import valid rows; report summary — **Recommended**
-2. Reject entire file on any error
-3. Import all; quarantine invalid rows for review
-4. Auto-coerce when possible; flag coercions
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## New-project workflow
 
@@ -74,7 +36,7 @@ How should bulk import rows fail?
 2. Choose canonical validation layer.
 3. Define shared error message style.
 4. Implement validators reused by UI and services.
-5. Add edge-case examples to PROJECT-SPECIFIC.
+5. Reject invalid input at the trust boundary. Do not add a settings blank.
 
 ## Existing-project workflow
 
@@ -93,9 +55,4 @@ How should bulk import rows fail?
 
 ## PROJECT-SPECIFIC
 
-- Validation library: _______________
-- Canonical layer: _______________
-- Error message language: _______________
-- Required field policy: _______________
-- Import failure policy: _______________
-- Sanitization notes: _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.

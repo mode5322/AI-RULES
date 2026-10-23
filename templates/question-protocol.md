@@ -22,38 +22,16 @@ Until then, state the necessary point in one short line. Do not show numbered op
 
 ```markdown
 ### Question
-<one clear question>
+<one clear question that this task cannot proceed without>
 
 1. <option A>
 2. <option B> — **Recommended**
 3. <option C>
 4. <option D>
-5. <option E if needed>
-6. Other: _______________
-
-Hints (optional):
-- Recommended because: <one short reason>
-- To decide: search `<term>` / check `<doc or file>`
-- Trade-off: <A vs B in one line>
-```
-
-## Example
-
-```markdown
-### Question
-Which primary database should this project use?
-
-1. PostgreSQL (managed or self-hosted)
-2. SQLite (local / embedded) — **Recommended**
-3. MySQL / MariaDB
-4. NoSQL document store (e.g. MongoDB)
 5. Other: _______________
-
-Hints:
-- Recommended because: single-user / local-first apps usually need zero ops and simple backups.
-- To decide: check existing `package.json`, ORM config, or hosting limits.
-- Trade-off: SQLite is simple; PostgreSQL scales better for multi-user concurrent writes.
 ```
+
+Do not copy a sample question into a project that does not need that decision.
 
 ## Anti-patterns (MUST NOT)
 

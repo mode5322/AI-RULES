@@ -28,7 +28,7 @@ A separate fixed phrase switches rules-setup mode to `configure-on-request` (see
 
 When the user says this (or an exact local synonym recorded under PROJECT-SPECIFIC):
 
-1. Set rules-setup mode to `configure-on-request` in the project profile and in `laws/00-core.md` PROJECT-SPECIFIC.
+1. Set rules-setup mode to `configure-on-request` in the project profile.
 2. Stop the rules-setup question walk. Do not hold product/code work solely because settings are blank.
 3. Resume configuring settings only when the user explicitly asks to configure the rules.
 4. Task-level gates that still apply under other laws (security, secrets, data-loss, illegal-request refusals, and clarifying questions required by the current product task) are **not** waived by this phrase.

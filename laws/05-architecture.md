@@ -8,7 +8,6 @@ Keep structure intentional: clear layers, naming, and boundaries so features sta
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → default: `PROJECT-SPECIFIC`
 
-Current: _______________
 
 ## When this module applies / when to skip
 
@@ -44,41 +43,13 @@ Adapt names to the stack (e.g. `app/`, `src/`, `lib/`) but keep role clarity.
 
 ## Question protocol
 
-### Example — Architecture style
-
-```markdown
-### Question
-Which architecture style should this project follow?
-
-1. Layered (screens → services → database) — **Recommended**
-2. Feature folders (vertical slices)
-3. Framework default (e.g. Next.js app router conventions only)
-4. Hexagonal / ports-and-adapters
-5. Other: _______________
-
-Hints:
-- Recommended for business apps with clear UI vs domain vs data needs.
-- To decide: inspect current folders; don’t fight a mature existing layout.
-```
-
-### Example — Where business rules live
-
-```markdown
-### Question
-Where must authorization and business validation run?
-
-1. Service layer (UI may pre-check but never solely) — **Recommended**
-2. UI only
-3. Database constraints only
-4. API gateway / middleware only
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## New-project workflow
 
 1. Choose architecture style via questions.
 2. Create skeleton folders matching the decision.
-3. Define naming conventions in PROJECT-SPECIFIC.
+3. Match the naming already in the repo. Do not open a naming questionnaire.
 4. Add services barrel / public entrypoints if applicable.
 5. Implement features inside the agreed boundaries.
 
@@ -98,11 +69,4 @@ Where must authorization and business validation run?
 
 ## PROJECT-SPECIFIC
 
-- Architecture style: _______________
-- Root source folder: _______________
-- Layer map: _______________
-- Naming rules: _______________
-- Services export path: _______________
-- Forbidden imports: _______________
-- Monorepo packages: _______________
-- Branding / icon asset roots: see `17-branding-and-icons.md` — _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.

@@ -1,11 +1,8 @@
-# Question protocol (shared by all skills)
+# Question protocol (skills)
 
-Ask in the user's language (default: Arabic). Instructions here stay in English.
+Follow `templates/question-protocol.md` in the law pack.
 
-1. Ask only what the CURRENT task needs. Never ask about unrelated areas.
-2. Group at most 3 related questions per turn. Unrelated questions wait.
-3. Each question: 2-4 short options + one marked "(recommended)" + an option "Custom".
-4. If the user says "you decide" / "قرر أنت": save the recommended option with status `agent-default`.
-5. If the user says "this time only": use the value for the task, do NOT save it.
-6. Start every settings question with the counter: "Unset settings: N of M".
-7. Save every answer immediately to `.project/settings.md` (see project-settings skill).
+1. Ask only what the current task needs. Never ask about an unrelated area.
+2. One question. The option list appears only after «عرض خيارات» or "Show options".
+3. If the user answers in Arabic, store the value in English in the project profile when it is a Behavior or System design fact.
+4. Do not create `.project/settings.md`. Do not show an unset-settings counter.

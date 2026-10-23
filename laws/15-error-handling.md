@@ -8,7 +8,6 @@ Standardize how agents respond to errors and failures: surface immediately, prop
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → default: `ACTIVE`
 
-Current: _______________
 
 ## When this module applies / when to skip
 
@@ -66,22 +65,9 @@ Hints:
 - Trade-off: <speed vs durability>
 ```
 
-## Question protocol extras
+## Question protocol
 
-### Example — After user picks a fix
-
-If the chosen fix is still ambiguous:
-
-```markdown
-### Question
-Confirm fix scope for the selected approach?
-
-1. Fix only the failing path — **Recommended**
-2. Fix shared root + update callers
-3. Fix + add regression test/check
-4. Revert to last known good, then redo carefully
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## New-project workflow
 
@@ -96,7 +82,7 @@ Confirm fix scope for the selected approach?
 1. Classify: local bug vs systemic design issue.
 2. If systemic, Recommended solution should be root-cause with compatibility notes.
 3. Align with `16-existing-projects.md` — don’t band-aid architecture breaks.
-4. Record recurring errors in PROJECT-SPECIFIC.
+4. State a recurring error in the reply. Do not add a settings blank.
 
 ## Post-change checklist hooks
 
@@ -107,8 +93,4 @@ Confirm fix scope for the selected approach?
 
 ## PROJECT-SPECIFIC
 
-- Logging approach: _______________
-- User-facing error style: _______________
-- On-call / owner: _______________
-- Recurring error catalog path: _______________
-- Changes that always require rollback plan: _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.

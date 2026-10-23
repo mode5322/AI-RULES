@@ -20,15 +20,13 @@ Reading order when security work applies: **`10` → `18` (if tooling enabled) �
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → default: `PROJECT-SPECIFIC`
 
-Current: _______________
 
-If `N/A`, reason: _______________
 
 ## When this module applies / when to skip
 
 - Applies when: defensive tooling (`18`) produces findings; `10` / `13` / `16` review identifies vulnerabilities; the user requests a security discovery or remediation pass; or PROFILE enables this module.
 - Applies on new-project security baselines and existing-project audits — depth scales with risk and user choice.
-- Skip full discovery runs when: module is `N/A` after questioning; user declined discovery for this session; no code/deps/secrets/web surface; or pure docs with no executable impact (still honor `10` lightweight review).
+- Skip a discovery run unless the user asked for it. Also skip when the user declined discovery for this session, there is no code or secret surface, or the scope is docs only. Still honor the lightweight review in `10`.
 - MUST NOT skip the fix-gate / wait-for-user rule when remediating any confirmed finding.
 - Cross-links (mandatory awareness):
   - Suite parent / tools → `10-security.md`, `18-security-tooling.md`
@@ -54,7 +52,7 @@ If `N/A`, reason: _______________
 
 - MUST prefer discovery via `10-security.md` review **plus** enabled tools from `18-security-tooling.md`: dependency auditors, secret scanners (`gitleaks` / `trufflehog`), light SAST (`semgrep`), OWASP ZAP **baseline** (confirmed web targets), and platform checklists.
 - MUST NOT invent a parallel scanner stack that duplicates `18` without PROFILE justification.
-- **Nuclei** (and similar aggressive template-driven scanners): **not in the basic set**. Enable only if PROJECT-SPECIFIC explicitly opts in **and** the user re-approves via question protocol, limited to confirmed localhost/staging. Origin template stays basic-set (`18`) only.
+- **Nuclei** (and similar aggressive template-driven scanners): **not in the basic set**. Enable only when the user explicitly asks for that scanner, limited to confirmed localhost or staging. The origin template stays on the basic set in `18`.
 - MUST NOT treat green scans as “secure” without completing `10` policy review.
 
 ### FORBIDDEN — state and enforce
@@ -137,55 +135,7 @@ Hints:
 
 ## Question protocol
 
-Follow `templates/question-protocol.md`. Ask **one** question at a time.
-
-### Example — Enable discovery / remediation flow?
-
-```markdown
-### Question
-Enable authorized vulnerability discovery and remediation planning for this session/project?
-
-1. Yes — use `10` review + enabled `18` basic tools, then triage via this module — **Recommended**
-2. Yes — `10` review only (no scanners this time); still use remediation plans for manual findings
-3. Not now — keep policy review only; revisit on audit
-4. Mark module N/A for this project (document reason)
-5. Other: _______________
-
-Hints:
-- Recommended when shipping auth, payments, multi-user data, or public web surfaces.
-- To decide: check PROFILE Security suite fields and whether `18` is already ACTIVE.
-- Discovery stays defensive; no exploits or PoCs.
-```
-
-### Example — Confirm discovery targets
-
-```markdown
-### Question
-Which targets are authorized for this discovery pass?
-
-1. This repository + localhost only — **Recommended**
-2. This repository + confirmed staging URL(s)
-3. Changed areas / current task paths only (no network scan)
-4. Broader scope (list exact hosts/URLs in custom — must be explicit)
-5. Other: _______________
-
-Hints:
-- Recommended to avoid accidental production or third-party probing.
-- MUST confirm exact non-local URLs before any network scan (`18` ZAP baseline rules still apply).
-```
-
-### Example — After triage, proceed to remediation plans?
-
-```markdown
-### Question
-How should we proceed after triage?
-
-1. Generate Remediation Closure Plans for critical + medium now — **Recommended**
-2. Critical only first; defer medium/low
-3. Full list including low (may be noisy)
-4. Pause — user will prioritize offline
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## New-project workflow
 
@@ -197,7 +147,7 @@ How should we proceed after triage?
 6. **Remediation plans:** one Closure Prompt/Plan per finding or theme; wait for user choice (`15`).
 7. **Fix** only the chosen options; prefer root-cause when impact is structural.
 8. **Validate** with hooks from `08`, `05`, `06`, `07`, `11`, `12`, `14` as applicable + five-point review.
-9. Fill PROJECT-SPECIFIC: enablement, last discovery scope, open vs closed finding themes.
+9. Do not add a settings blank for findings. Report them in the reply and wait before fixing.
 
 ## Existing-project workflow
 
@@ -228,17 +178,8 @@ How should we proceed after triage?
 - [ ] Compatibility checked (`05`, `06`, UI/other modules as needed)
 - [ ] Validation / logic / change-management / quality hooks run as applicable (`08`, `07`, `11`, `12`)
 - [ ] Final verification (`14`) + five-point review (`00-core`)
-- [ ] PROFILE / PROJECT-SPECIFIC updated for enablement and residual risk
+- [ ] No discovery ran unless the user asked for it
 
 ## PROJECT-SPECIFIC
 
-- Status: ACTIVE | N/A | PROJECT-SPECIFIC | _______________
-- Suite reading confirmed (`10` + `18` + `19`): yes | no | _______________
-- Discovery enabled: yes | no | partial — _______________
-- Authorized targets: repo | localhost | staging URLs: _______________ | _______________
-- Default discovery sources: `10` review | `18` basic set | PROFILE extras: _______________
-- Nuclei / aggressive scanners: disabled (default) | PROJECT-SPECIFIC opt-in: _______________
-- Last discovery date / scope: _______________
-- Open finding themes: _______________
-- Closed / accepted residual risks: _______________
-- N/A rationale: _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.

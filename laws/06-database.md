@@ -8,22 +8,18 @@ Keep database decisions explicit. This module is an **always-on reminder/warning
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → must be determined; never silently ignored
 
-Current: _______________
 
-If `N/A`, reason: _______________
 
 ## When this module applies / when to skip
 
 - Applies whenever data is stored, cached durably, migrated, queried, or modeled.
-- May be marked `N/A` **only after** questioning confirms the project truly has no DB/persistence need.
-- Even when `N/A`, keep this file and re-open questions if persistence appears later.
-- ALWAYS determine DB type when status is not firmly `N/A`.
+- If the repo and the current request have no persistence, record `none` and do not ask.
+- Keep this file. Re-open the database field only when persistence becomes part of the work.
 
 ## Hard rules (MUST / MUST NOT)
 
-- MUST determine database type (or confirmed absence) via question protocol before building data features.
-- During rules setup on an existing project (`00-core.md`): if the repo already shows the engine, record it in **System design → Database** in English, without asking the user to re-confirm it. MUST NOT copy connection strings, keys, or passwords.
-- MUST include a **Recommended** option in every DB question.
+- If the repo shows an engine, record it in **System design → Database** in English and do not ask. If there is no database, record `none`. MUST NOT copy connection strings, keys, or passwords.
+- A database question uses `templates/question-protocol.md` only when the current task needs a database and the repo does not show the engine.
 - MUST use migrations (or the project’s equivalent) for schema changes — no silent production edits by habit.
 - MUST NOT store secrets in the database in plaintext.
 - MUST consider indexes, constraints, and transactional integrity for multi-step writes.
@@ -31,63 +27,18 @@ If `N/A`, reason: _______________
 - MUST assess DB compatibility after every change that touches models, queries, or migrations.
 - MUST NOT use floating-point for money; use integer minor units or a decimal approach the project standardizes.
 - Prefer fail-closed permissions on sensitive rows/operations.
-- If no DB is needed: mark `N/A`, document why, keep awareness.
+- If no database is needed, record `none` and keep this file.
 
 ## Question protocol
 
-### Example — Is a database needed?
-
-```markdown
-### Question
-Does this project need a durable database?
-
-1. Yes — relational SQL database — **Recommended**
-2. Yes — document / NoSQL store
-3. Yes — local embedded DB only (e.g. SQLite)
-4. No durable DB — compute/UI only or external APIs as source of truth
-5. Other: _______________
-
-Hints:
-- Recommended for business apps with users, records, and reporting.
-- If choosing 4, be ready to mark this module N/A and state the source of truth.
-```
-
-### Example — Engine choice
-
-```markdown
-### Question
-Which database engine should we standardize on?
-
-1. PostgreSQL — **Recommended**
-2. SQLite
-3. MySQL / MariaDB
-4. Managed vendor default for our host (specify vendor)
-5. Other: _______________
-
-Hints:
-- Recommended for multi-user networked apps.
-- SQLite is often better for local-first / single-node tools.
-```
-
-### Example — Migration discipline
-
-```markdown
-### Question
-How will schema changes be applied?
-
-1. Versioned migration files in repo — **Recommended**
-2. ORM auto-sync in development only (never in production)
-3. Manual DBA scripts outside the app repo
-4. Serverless/platform schema tool already in use
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## New-project workflow
 
 1. Ask whether durable storage is needed.
 2. If yes: choose engine, hosting, access layer, migrations.
 3. Define core entities and constraints before coding features that depend on them.
-4. Fill PROJECT-SPECIFIC; set Status `ACTIVE`.
+4. Record the engine in **System design → Database** when this task uses one.
 5. If no: set Status `N/A` with reason; continue without inventing a database.
 
 ## Existing-project workflow
@@ -108,12 +59,4 @@ How will schema changes be applied?
 
 ## PROJECT-SPECIFIC
 
-- Status: ACTIVE | N/A | _______________
-- Engine: _______________
-- Hosting: _______________
-- ORM / query layer: _______________
-- Migration tool: _______________
-- Naming conventions (tables/columns): _______________
-- Backup / restore notes: _______________
-- N/A rationale: _______________
-- Sensitive tables / columns: _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.

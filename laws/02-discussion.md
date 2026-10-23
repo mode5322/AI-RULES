@@ -8,7 +8,6 @@ Before executing any **new plan**, force a short multi-angle review so technical
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → default: `ACTIVE`
 
-Current: _______________
 
 ## When this module applies / when to skip
 
@@ -18,14 +17,13 @@ Current: _______________
 
 ## Hard rules (MUST / MUST NOT)
 
-- MUST, for any new plan, briefly discuss from **CEO**, **HR**, and **Sales** angles before implementation.
-- MUST keep each angle short (a few sentences): risk, opportunity, people impact, customer impact.
-- MUST then ask whether another specialty is needed (legal, finance, support, security, ops, design, etc.).
-- MUST NOT treat the discussion as theater — capture decisions that change requirements.
-- MUST NOT block forever; after discussion + specialty question, proceed once answers exist (or one-time deferral).
-- MUST NOT skip this gate on “small” features that still change user journeys, data, or pricing narratives.
+- Use the **CEO**, **HR**, and **Sales** angles only when a new plan changes pricing, staff work, or who the product is for.
+- Keep each angle to one or two sentences.
+- Do not ask for another specialty unless the user asks, or the plan changes pricing, staff work, or regulated data.
+- Capture a decision only when it changes the current request.
+- Do not block the task on this discussion when the plan does not change those things.
 
-## Angle prompts (use every new plan)
+## Angle prompts (only when this gate applies)
 
 ### CEO
 
@@ -47,61 +45,28 @@ Current: _______________
 
 ## Question protocol
 
-### Example — Specialty add-on
-
-```markdown
-### Question
-After CEO / HR / Sales review, which extra specialty should join this plan discussion?
-
-1. None — proceed with the three-angle notes — **Recommended**
-2. Security / privacy specialist lens
-3. Finance / pricing lens
-4. Support / operations lens
-5. Other: _______________
-
-Hints:
-- Recommended when the plan is a normal product iteration without regulated data or pricing changes.
-- To decide: regulated data, money movement, or high support load → pick a specialty.
-```
-
-### Example — Plan posture
-
-```markdown
-### Question
-Given the three-angle discussion, how should we proceed?
-
-1. Proceed with the proposed plan as-is — **Recommended**
-2. Proceed with a reduced MVP slice
-3. Redesign the plan before any coding
-4. Pause for stakeholder confirmation outside chat
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## New-project workflow
 
 1. Draft the plan in one short paragraph.
-2. Write CEO / HR / Sales notes.
-3. Ask specialty + proceed questions.
-4. Update `01-requirements.md` PROJECT-SPECIFIC if the discussion changed scope.
-5. Continue to architecture / UI / DB laws.
+2. Write the CEO, HR, and Sales notes only when the plan changes pricing, staff work, or who the product is for.
+3. Do not ask for another specialty unless the user asks.
+4. Do not write a second requirements list.
+5. Continue the task. Do not open architecture, UI, or database questions the task does not need.
 
 ## Existing-project workflow
 
 1. Frame the remediation or change as a plan (not a pile of patches).
-2. Run CEO / HR / Sales angles on customer trust, staff process, and revenue risk.
+2. Use the CEO, HR, and Sales angles only when the change affects customers, staff process, or revenue.
 3. Prefer fixes that protect reputation and support load over flashy rewrites.
 
 ## Post-change checklist hooks
 
-- [ ] New plan had CEO/HR/Sales notes (or one-time deferral recorded)
-- [ ] Specialty question asked
-- [ ] Resulting decisions reflected in requirements/profile
+- [ ] Angles were used only when pricing, staff work, or the audience changed
+- [ ] No extra specialty question was asked
+- [ ] No second requirements list was written
 
 ## PROJECT-SPECIFIC
 
-- Company stage: _______________
-- CEO priorities: _______________
-- HR constraints (roles, training, access): _______________
-- Sales motion (self-serve / assisted / B2B): _______________
-- Default extra specialties: _______________
-- Plans that always require external approval: _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.

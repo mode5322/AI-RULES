@@ -8,7 +8,6 @@ Dedicated protocol for repositories that already exist when AI (and these laws) 
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → use `ACTIVE` when the consuming repo is not greenfield
 
-Current: _______________
 
 ## When this module applies / when to skip
 
@@ -27,53 +26,16 @@ Current: _______________
 - Otherwise MUST apply a **root-cause fix** that preserves compatibility with the rest of the project.
 - MUST NOT rewrite the architecture casually.
 - MUST NOT ignore existing DB engine, auth, or UI system.
-- MUST update PROJECT-SPECIFIC with discovered realities (not aspirational fiction).
+- Record a discovered database, framework, connection, or library in the project profile. Do not invent the rest.
 - If rules setup is incomplete, MUST follow the rules-setup gate in `00-core.md` before audit or fixes. Database, framework, external connection, and libraries the code already shows are written in **System design** in English without a re-confirm question. Record `none` for a part the project does not use, and do not ask it. Remaining relevant fields are asked, in the user’s language, one at a time.
-- MUST use question protocol before choosing remediation strategy.
+- When more than one fix is possible and the user has not chosen, use `15-error-handling.md` and wait. Do not open a separate strategy questionnaire.
 - MUST follow `15-error-handling.md` for runtime failures during remediation.
 - When auditing bloat: MAY run a whole-repo complexity pass and/or simplification debt ledger per `13-ai-review.md` (tags + markers from `12-code-quality.md`); MUST NOT mass-delete without approval.
 - New code during remediation MUST follow the `12` implementation ladder.
 
 ## Question protocol
 
-### Example — Engagement type
-
-```markdown
-### Question
-How should we engage this existing project?
-
-1. Full audit → rethink → issue/fix plan → implement — **Recommended**
-2. Scoped audit of one area, then fix that area
-3. Single bug hunt only (still check blast radius)
-4. Documentation/profile fill only; no code yet
-5. Other: _______________
-```
-
-### Example — Fix policy
-
-```markdown
-### Question
-When an issue has wide impact, what fix policy applies?
-
-1. Root-cause, compatibility-preserving fix — **Recommended**
-2. Isolated quick fix + tracked follow-up
-3. Feature flag + gradual migration
-4. Freeze feature work until redesign approved
-5. Other: _______________
-```
-
-### Example — Compatibility constraint
-
-```markdown
-### Question
-Which compatibility constraint is strictest right now?
-
-1. Keep DB schema backward compatible — **Recommended**
-2. Keep public API compatible
-3. Keep UI flows/muscle memory stable
-4. Keep file/folder layout stable
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## Existing-project workflow (canonical)
 
@@ -86,7 +48,7 @@ Which compatibility constraint is strictest right now?
 6. **Confirm** — question protocol on sequencing and fix policy.
 7. **Fix** — implement approved items; quick fix only when isolated; ladder-first new code (`12`).
 8. **Verify** — five-point review + `14-final-verification.md`.
-9. **Record** — fill profile / PROJECT-SPECIFIC; keep origin template blank.
+9. **Record** — write a discovered System design fact in the profile. Keep the origin template blank.
 
 ## New-project note
 
@@ -101,11 +63,4 @@ If the repo is actually greenfield, mark this module `N/A` and use modules `01`�
 
 ## PROJECT-SPECIFIC
 
-- Repo age / maturity: _______________
-- Known debt themes: _______________
-- Hard compatibility constraints: _______________
-- Audit report path: _______________
-- Complexity / bloat audit path: _______________
-- Simplification debt ledger path: _______________
-- Remediation board / checklist: _______________
-- Areas that must not be drive-by edited: _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.

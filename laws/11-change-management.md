@@ -8,7 +8,6 @@ Control how changes are planned, applied, reviewed, and rolled back so the proje
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → default: `ACTIVE`
 
-Current: _______________
 
 ## When this module applies / when to skip
 
@@ -40,43 +39,15 @@ Current: _______________
 When a newer copy of this pack is brought into a consuming project that already has configured settings:
 
 - MUST NOT replace a configured setting with a blank, example, or placeholder from the public origin.
-- MUST add new law files, new hard rules, and new blank settings that the newer pack introduces.
-- MUST apply rule text that the newer pack replaced. A configured PROJECT-SPECIFIC value stays. It does not keep a deleted upstream rule alive unless that value is an explicit documented override, and **Law precedence** in `00-core.md` still applies.
-- New blank settings make setup incomplete. Continue with **Resume in a new conversation** in `00-core.md`. Do not re-ask configured settings.
+- MUST add new law files and new hard rules from the newer pack. Do not add a fill-in setting outside **Behavior** and **System design**.
+- MUST apply rule text that the newer pack replaced. A configured profile value stays. It does not keep a deleted upstream rule alive unless that value is an explicit documented override, and **Law precedence** in `00-core.md` still applies.
+- A new relevant Behavior or System design blank is unconfigured. Continue with **Resume in a new conversation** in `00-core.md`. Do not re-ask a configured setting, and do not ask a setting the project does not use.
 - MUST record the upstream revision merged (commit id, tag, or date) in the project profile.
 - MUST NOT push the filled project laws back to the public origin.
 
 ## Question protocol
 
-### Example — Change strategy
-
-```markdown
-### Question
-How should we apply this change?
-
-1. Minimal localized fix with post-change review — **Recommended**
-2. Root-cause fix touching shared modules (compatibility-preserving)
-3. Phased plan: patch now + scheduled root-cause follow-up
-4. Design-only proposal first; no code yet
-5. Other: _______________
-
-Hints:
-- Prefer 2 when the same bug class will recur.
-- Prefer 1 only when impact is truly isolated.
-```
-
-### Example — Risk tolerance
-
-```markdown
-### Question
-What risk posture should we take?
-
-1. Conservative — preserve behavior; additive changes — **Recommended**
-2. Aggressive cleanup / rewrite of the touched area
-3. Feature-flagged rollout
-4. Branch experiment then merge
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## New-project workflow
 
@@ -91,7 +62,7 @@ What risk posture should we take?
 1. Map dependents before editing shared code.
 2. Prefer compatible changes over breaking renames.
 3. If a quick fix is requested but impact is wide, refuse the hack and propose root-cause options via error/solution protocol.
-4. Document follow-ups in PROJECT-SPECIFIC when phased.
+4. State a follow-up in the reply when the work is phased. Do not add a settings blank.
 
 ## Post-change checklist hooks
 
@@ -103,8 +74,4 @@ What risk posture should we take?
 
 ## PROJECT-SPECIFIC
 
-- Branching model: _______________
-- Review requirements: _______________
-- Migration windows: _______________
-- Feature flag system: _______________
-- Rollback notes: _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.

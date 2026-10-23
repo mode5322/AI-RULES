@@ -8,7 +8,6 @@ Prevent incorrect business calculations, state machines, and numeric edge cases 
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → default: `ACTIVE` for product apps
 
-Current: _______________
 
 ## When this module applies / when to skip
 
@@ -29,55 +28,14 @@ Current: _______________
 
 ## Question protocol
 
-### Example — Money representation
-
-```markdown
-### Question
-How should money amounts be stored and computed?
-
-1. Integer minor units (e.g. cents) — **Recommended**
-2. Decimal type / library with fixed scale
-3. Floating-point numbers
-4. Strings of decimal text only
-5. Other: _______________
-
-Hints:
-- Avoid option 3 for anything financial.
-- To decide: check existing helpers like `currencyMath` / `addMoney`.
-```
-
-### Example — Rounding
-
-```markdown
-### Question
-Which rounding rule applies to currency calculations?
-
-1. Round half up to currency scale — **Recommended**
-2. Round half even (banker’s rounding)
-3. Always floor / always ceil (explain where)
-4. Jurisdiction-specific tax rounding rules (document)
-5. Other: _______________
-```
-
-### Example — Invariant ownership
-
-```markdown
-### Question
-Where should critical invariants be enforced?
-
-1. Domain/service layer with DB constraints as backup — **Recommended**
-2. UI only
-3. Database triggers only
-4. Report/export layer only
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## New-project workflow
 
 1. List calculations and invariants early.
 2. Choose money/numeric representation.
 3. Implement shared helpers; reuse them everywhere.
-4. Add examples of expected inputs/outputs in PROJECT-SPECIFIC.
+4. Check the edge values in the change. Do not add a settings blank.
 5. Verify edge cases before calling work done.
 
 ## Existing-project workflow
@@ -96,9 +54,4 @@ Where should critical invariants be enforced?
 
 ## PROJECT-SPECIFIC
 
-- Money helper path: _______________
-- Currency list: _______________
-- Rounding rule: _______________
-- Tax rules summary: _______________
-- Critical invariants: _______________
-- Known formula docs: _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.

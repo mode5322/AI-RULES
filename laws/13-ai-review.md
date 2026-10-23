@@ -8,7 +8,6 @@ Define how the agent reviews its own work and how it audits **existing** project
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → default: `ACTIVE`
 
-Current: _______________
 
 ## When this module applies / when to skip
 
@@ -64,55 +63,18 @@ When asked for deferred-shortcut debt, or during existing-project audits:
 4. **Plan** — ordered issue list with severity; proposed fixes; CEO/HR/Sales brief if it’s a new plan (`02-discussion.md`).
 5. **Confirm** — question protocol on approach (quick vs root-cause; sequencing).
 6. **Fix** — implement approved items; self-review after each unit; apply `12` ladder to new code.
-7. **Verify** — `14-final-verification.md` + update PROJECT-SPECIFIC with discovered truths.
+7. **Verify** — `14-final-verification.md`. Do not add a settings blank.
 
 ## Question protocol
 
-### Example — Review depth
-
-```markdown
-### Question
-What depth of AI review do you want?
-
-1. Critical issues only (data loss, security, crashes, broken money) — **Recommended**
-2. Critical + major maintainability risks
-3. Full audit including style/consistency
-4. Diff-only review of current uncommitted changes
-5. Other: _______________
-```
-
-### Example — Remediation approach
-
-```markdown
-### Question
-How should we remediate the findings?
-
-1. Root-cause fixes in priority order, compatibility-preserving — **Recommended**
-2. Quick isolated fixes first; schedule systemic work
-3. Written plan only; no code yet
-4. Stop after top N critical issues (specify N in custom)
-5. Other: _______________
-```
-
-### Example — Complexity review scope
-
-```markdown
-### Question
-Should this review include an over-engineering / bloat pass?
-
-1. Yes — diff-only complexity tags (delete/stdlib/native/yagni/shrink) — **Recommended** when reviewing a change
-2. Yes — whole-repo complexity audit (ranked)
-3. No — correctness/security only this time
-4. Debt ledger only (simplification markers)
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## New-project workflow
 
 1. After each implementation unit, run the five-point review.
 2. Fix defects found before expanding scope.
 3. Optionally run a short complexity pass on the diff when the change grew large.
-4. Record recurring risks in PROJECT-SPECIFIC.
+4. State a recurring risk in the reply. Do not add a settings blank.
 
 ## Existing-project workflow
 
@@ -128,14 +90,8 @@ Should this review include an over-engineering / bloat pass?
 - [ ] Complexity tags listed when a bloat pass was requested/needed
 - [ ] Findings reported honestly
 - [ ] Remediation strategy confirmed when multiple options exist
-- [ ] PROFILE / PROJECT-SPECIFIC updated after audits
+- [ ] No new settings blank was added
 
 ## PROJECT-SPECIFIC
 
-- Last audit date: _______________
-- Review depth default: _______________
-- Include complexity pass by default?: _______________
-- Open critical findings: _______________
-- Remediation backlog path: _______________
-- Simplification debt ledger path: _______________
-- Compatibility constraints discovered: _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.

@@ -11,6 +11,6 @@ Write `.project/handoff.md` (overwrite) with:
 3. Decisions made and why (short).
 4. Files touched and their role.
 5. Open issues and the exact next step.
-6. Pointer: settings are in `.project/settings.md`, vocabulary in `GLOSSARY.md`.
+6. Pointer: settings are the project profile Behavior and System design fields.
 
 Keep it under about 60 lines. Tell the user to start a new chat and say: "Read .project/handoff.md and continue."

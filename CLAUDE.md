@@ -19,7 +19,7 @@ Then open the domain files needed for the task (`01`–`19`). For already-built 
 3. Consuming project: configure **relevant** **Behavior** and **System design** settings before product or code work (`laws/00-core.md`). Do not ask a setting the current project does not use unless the user asks to see it. Ask in the user’s language. Store an Arabic answer in English. The Arabic line-split is fixed. Existing repo: write database, framework, connection, and libraries the code already shows, or `none` when that part is absent. Add a library only when the user asks for something the installed libraries do not provide.
 4. Show the question-protocol option list only when a decision is necessary, it connects to the current project, and the user says «عرض خيارات» or "Show options" (`templates/question-protocol.md`). Otherwise one short line. Do not ask a question the current project does not need. Do not ask deferral or ignore settings. When the user asks to show incomplete rule settings, number every **relevant** remaining setting from 1 through the full count, then a category table of completed and remaining. Unrelated blanks stay hidden unless the user asks to see them (`laws/00-core.md`).
 5. Before build/start: state a necessary gap in one short line. Do not open with an option list.
-6. Any new plan: short CEO + HR + Sales angles, then ask if another specialty is needed (`laws/02-discussion.md`).
+6. A new plan that changes pricing, staff work, or who the product is for gets the short angles in `laws/02-discussion.md`. Do not ask for another specialty unless the user asks.
 7. Keep database awareness always on (`laws/06-database.md`).
 8. After every change: five-point review (modified elements, DB compatibility, logic/math, security, quality/structure).
 9. After gates: minimal implementation per `laws/12-code-quality.md` (ladder; intensity lite/full/ultra; never cut validation/security/a11y).
@@ -35,11 +35,11 @@ Then open the domain files needed for the task (`01`–`19`). For already-built 
 
 ## Consultant mode
 
-This pack is copied into the user’s project. Customize PROJECT-SPECIFIC sections for **this** project. Leave the public origin template general/blank.
+This pack is copied into the user’s project. Record confirmed facts in **Behavior** and **System design** only. Leave the public origin template general/blank.
 
 ## Module status
 
-Modules may be `ACTIVE`, `N/A`, or `PROJECT-SPECIFIC`. Mark `N/A` only when questioning shows the module truly does not apply (especially database). Keep N/A modules in tree as reminders.
+Keep every law file in the tree. Do not ask about a module the current project does not use. Record `none` for a System design part that is absent.
 
 ## See also
 

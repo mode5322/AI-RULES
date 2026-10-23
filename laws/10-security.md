@@ -16,7 +16,6 @@ Enforce secure defaults: secrets handling, authorization, input safety, and leas
 
 `ACTIVE | N/A | PROJECT-SPECIFIC` → default: `ACTIVE` (security is rarely N/A)
 
-Current: _______________
 
 ## When this module applies / when to skip
 
@@ -58,51 +57,14 @@ Current: _______________
 
 ## Question protocol
 
-### Example — Auth method
-
-```markdown
-### Question
-Which authentication approach should this project use?
-
-1. Existing project auth — keep it — **Recommended**
-2. Session cookies + server sessions
-3. Token/JWT based API auth
-4. External identity provider (OAuth/OIDC)
-5. Other: _______________
-```
-
-### Example — Role model
-
-```markdown
-### Question
-How should authorization be modeled?
-
-1. Role-based access control (RBAC) with service checks — **Recommended**
-2. Simple admin vs non-admin flag
-3. Permission flags per action
-4. No auth required for this product surface
-5. Other: _______________
-```
-
-### Example — Secret storage
-
-```markdown
-### Question
-Where should secrets live?
-
-1. `.env` locally + host secret store in deployment — **Recommended**
-2. Cloud secret manager only
-3. OS keychain / secure storage (desktop apps)
-4. Hardcoded in repo (not allowed)
-5. Other: _______________
-```
+Ask from this file only when the current task needs this module and the repo does not already show the answer. Follow `templates/question-protocol.md`: one short line in the user's language, and the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not add a fill-in setting in this file.
 
 ## New-project workflow
 
 1. Choose auth and role model early.
 2. Define secret handling and `.gitignore` entries.
 3. Build service-level permission helpers before admin features.
-4. Threat-note sensitive flows in PROJECT-SPECIFIC.
+4. Keep secrets and authorization checks in the change. Do not add a settings blank.
 5. Run security review on first vertical slice.
 6. Optionally enable stack-adaptive defensive tooling (`18-security-tooling.md`) after question protocol.
 7. Optionally enable discovery/remediation (`19-vuln-discovery-and-remediation.md`); route findings through Closure Plans before fixes.
@@ -128,11 +90,4 @@ Where should secrets live?
 
 ## PROJECT-SPECIFIC
 
-- Auth system: _______________
-- Roles / permissions map: _______________
-- Secret mechanism: _______________
-- Security contacts: _______________
-- Known sensitive operations: _______________
-- Compliance notes: _______________
-- Security Laws suite — defensive tooling (`18`): ACTIVE | N/A | PROJECT-SPECIFIC | _______________
-- Security Laws suite — vuln discovery/remediation (`19`): ACTIVE | N/A | PROJECT-SPECIFIC | _______________
+No fill-in settings live here. Behavior and System design are only in `templates/project-profile.template.md`. If this module does not connect to the current project, do not ask about it.
