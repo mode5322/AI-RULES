@@ -95,7 +95,7 @@ Shorter install notes are also in `USAGE.md`.
 - **Rules-setup modes** — `strict-hold` (default: hold work until configured) or `configure-on-request` (configure only when asked; no hold for blanks). Fixed phrase for the latter: "Stop the question protocol until I ask to configure the rules" (see `templates/deferral.md`).
 - **When to ask** — one short line only when a decision is necessary. The option list waits for «عرض خيارات» or "Show options".
 - **UI** — match the existing interface. Do not open a questionnaire for buttons, icons, menus, or colors (`laws/03-ui.md`).
-- **Discussion** — CEO, HR, and Sales angles only when the plan changes pricing, staff work, or who the product is for (`laws/02-discussion.md`).
+- **Discussion** — one Sales note only when the plan changes pricing or who the product is for (`laws/02-discussion.md`).
 - **Database** — awareness stays on. Record the engine the repo shows, or `none` when there is no database, without a question (`laws/06-database.md`).
 - **Branding / icons** — desktop, mobile, and web identity assets; static vs user-changeable (`laws/17-branding-and-icons.md`).
 - **Security Laws suite** — parent policy (`laws/10-security.md`) + optional defensive tooling (`laws/18-security-tooling.md`) + authorized discovery/remediation (`laws/19-vuln-discovery-and-remediation.md`); no exploits.

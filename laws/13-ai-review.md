@@ -60,7 +60,7 @@ When asked for deferred-shortcut debt, or during existing-project audits:
 1. **Inventory** — stack, entrypoints, architecture reality, DB, auth, critical user journeys.
 2. **Review** — defects, smells, inconsistencies, security holes, broken invariants; optionally a complexity pass (tags above).
 3. **Rethink** — which issues are symptoms vs root causes; what compatibility constraints exist.
-4. **Plan** — ordered issue list with severity; proposed fixes; CEO/HR/Sales brief if it’s a new plan (`02-discussion.md`).
+4. **Plan** — ordered issue list with severity; proposed fixes; Sales note only when the plan changes pricing or who the product is for (`02-discussion.md`).
 5. **Confirm** — question protocol on approach (quick vs root-cause; sequencing).
 6. **Fix** — implement approved items; self-review after each unit; apply `12` ladder to new code.
 7. **Verify** — `14-final-verification.md`. Do not add a settings blank.

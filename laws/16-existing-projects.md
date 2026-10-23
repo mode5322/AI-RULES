@@ -21,7 +21,7 @@ Dedicated protocol for repositories that already exist when AI (and these laws) 
 - MUST review the whole project (proportionate depth) before large changes.
 - MUST rethink: separate symptoms from root causes.
 - MUST propose a plan of **current issues + fixes** before mass edits.
-- MUST run `02-discussion.md` (CEO/HR/Sales) when the remediation is a new plan.
+- Run `02-discussion.md` only when the remediation changes pricing or who the product is for.
 - Quick fix ONLY if there is **no project-wide impact**.
 - Otherwise MUST apply a **root-cause fix** that preserves compatibility with the rest of the project.
 - MUST NOT rewrite the architecture casually.
@@ -44,7 +44,7 @@ Ask from this file only when the current task needs this module and the repo doe
 2. **Inventory** — languages, frameworks, entrypoints, environments, DB, auth, deploy.
 3. **Review** — critical defects first (data loss, security, money, crashes), then major consistency issues; optionally complexity/debt passes (`13`).
 4. **Rethink** — map root causes; note constraints.
-5. **Plan** — ordered issues with severity and proposed fixes; brief CEO/HR/Sales if plan-level.
+5. **Plan** — ordered issues with severity and proposed fixes. Add the Sales note only when pricing or the audience changes.
 6. **Confirm** — question protocol on sequencing and fix policy.
 7. **Fix** — implement approved items; quick fix only when isolated; ladder-first new code (`12`).
 8. **Verify** — five-point review + `14-final-verification.md`.

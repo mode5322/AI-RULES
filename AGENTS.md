@@ -29,7 +29,7 @@ Before non-trivial work, read:
 - Question protocol option lists appear only when a decision is necessary and the user says «عرض خيارات» or "Show options" (`templates/question-protocol.md`). Otherwise one short line. Do not ask deferral or ignore settings.
 - When the user asks to show incomplete rule settings, number every **relevant** remaining setting from 1 through the full count, then show a category table of completed and remaining. Unrelated blanks stay out of that list unless the user asks to see them (`laws/00-core.md`, Show incomplete settings).
 - Rules-setup mode: `strict-hold` (default) or `configure-on-request` (configure only when asked; do not hold product work for blanks). Fixed phrase for the latter: "Stop the question protocol until I ask to configure the rules" / «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد» (`templates/deferral.md`).
-- New plans that change pricing, staff work, or who the product is for: short CEO, HR, and Sales angles in `laws/02-discussion.md`. Do not ask for another specialty unless the user asks.
+- A plan that changes pricing or who the product is for: one short Sales note in `laws/02-discussion.md`. Do not ask for another specialty unless the user asks.
 - Database type is asked only when the project has a database or the current request needs one. Otherwise record `none` and do not ask (`laws/06-database.md`).
 - After every change: review modified elements, DB compatibility, logic/math, security, quality/structure.
 - Minimal implementation (merged into laws, not a separate pack): after gates, use the `12` ladder (YAGNI → stdlib → native → installed dep → fewest lines); never cut validation/security/a11y/data-loss handling; intensity lite/full/ultra (default full).

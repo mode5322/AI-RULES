@@ -105,7 +105,7 @@ When two laws disagree about the same action, apply the first match:
 
 ### Discussion gate
 
-- For a new plan that changes pricing, staff work, or who the product is for, use the short angles in `02-discussion.md`. Do not run that discussion, and do not ask for another specialty, when the plan does not change those things.
+- For a new plan that changes pricing or who the product is for, use the short Sales note in `02-discussion.md`. Do not run that discussion, and do not ask for another specialty, when the plan does not change those things.
 
 ### Database awareness
 
@@ -175,7 +175,7 @@ Read `00-core` first, then domain modules relevant to the task. Numbers are stab
 |---|---|---|
 | 00 | `00-core.md` | Always `ACTIVE` — never N/A |
 | 01 | `01-requirements.md` | `ACTIVE` / `PROJECT-SPECIFIC`; rarely N/A |
-| 02 | `02-discussion.md` | `ACTIVE` for new plans |
+| 02 | `02-discussion.md` | Sales note when pricing or the audience changes |
 | 03 | `03-ui.md` | `N/A` if no UI surface |
 | 04 | `04-ux.md` | `N/A` if no human flows |
 | 05 | `05-architecture.md` | Usually on for code work |

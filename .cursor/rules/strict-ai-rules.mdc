@@ -28,7 +28,7 @@ Read in order:
 - Question-protocol option lists only when a decision is necessary and the user says «عرض خيارات» or "Show options" (`templates/question-protocol.md`). Otherwise one short line. Do not ask deferral or ignore settings.
 - When the user asks to show incomplete rule settings, number every **relevant** remaining setting from 1 through the full count, then a category table of completed and remaining. Unrelated blanks stay hidden unless the user asks to see them (`laws/00-core.md`).
 - Rules-setup mode: `strict-hold` (default hold) or `configure-on-request` (no hold; configure only when the user asks). Fixed phrase for `configure-on-request`: "Stop the question protocol until I ask to configure the rules" / «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد».
-- New plans that change pricing, staff work, or who the product is for: short CEO, HR, and Sales angles (`laws/02-discussion.md`). Do not ask for another specialty unless the user asks.
+- A plan that changes pricing or who the product is for: one short Sales note (`laws/02-discussion.md`). Do not ask for another specialty unless the user asks.
 - Database stays an awareness layer. Record the engine the repo shows, or `none` when there is no database. Do not ask when the task does not need one.
 - After every change: modified elements, DB compatibility, logic/math, security, quality/structure.
 - After gates: minimal implementation ladder in `12-code-quality.md` (lite/full/ultra); never cut validation/security/a11y.

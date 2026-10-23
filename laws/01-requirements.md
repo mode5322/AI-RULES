@@ -35,7 +35,7 @@ Ask from this file only when the current task needs this module and the repo doe
 1. Use the outcome named in the request.
 2. Ask one question only when that outcome is missing.
 3. Write one acceptance check.
-4. Use `02-discussion.md` only when the plan changes pricing, staff work, or who the product is for.
+4. Use `02-discussion.md` only when the plan changes pricing or who the product is for.
 5. Do not add scope the user did not ask for.
 
 ## Existing-project workflow
