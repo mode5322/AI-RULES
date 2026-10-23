@@ -91,7 +91,7 @@ Shorter install notes are also in `USAGE.md`.
 - **Very strict** — no execution until required questions/checks complete, except explicit **for this time only** deferral.
 - **Rules-setup gate** — in a consuming project, work is held until every rule setting is configured, one setting at a time (`00`–`19`, template fields, and the project profile). Code-backed facts (database engine such as Firebase, Supabase, or SQL, and any other plain fact) are recorded automatically; every remaining setting is still asked. See `laws/00-core.md`.
 - **Question protocol** — 1 question, at least 4 concrete options (more allowed, totals may exceed 5), final Other blank, one **Recommended**, optional research hints.
-- **Rules-setup modes** — `strict-hold` (default: hold work until configured) or `configure-on-request` (configure only when asked; no hold for blanks).
+- **Rules-setup modes** — `strict-hold` (default: hold work until configured) or `configure-on-request` (configure only when asked; no hold for blanks). Fixed phrase for the latter: "Stop the question protocol until I ask to configure the rules" (see `templates/deferral.md`).
 - **When to ask** — always before build/start; during/after only if ambiguous (unless deferred).
 - **UI** — not a fixed visual identity; question protocol for buttons, icons, menus, containers, aesthetics when unclear.
 - **Discussion** — new plans get brief CEO + HR + Sales angles; ask if another specialty is needed.

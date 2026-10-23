@@ -255,7 +255,7 @@ On the user’s first product or code request while setup is incomplete:
 2. MUST say that the request is held.
 3. MUST propose one next step: configure the agent rules so the agent works according to the requirements fixed in these laws.
 4. MUST ask with the question protocol whether to start that configuration now. Mark starting configuration as **Recommended**.
-5. The request stays held until rules setup is `complete`, the user chooses `configure-on-request`, or the user defers setup **for this time only** (`templates/deferral.md`). A one-time deferral covers the current task only; the gate returns on the next task. Choosing `configure-on-request` persists until the user changes the mode.
+5. The request stays held until rules setup is `complete`, the user chooses `configure-on-request`, or the user defers setup **for this time only** (`templates/deferral.md`). A one-time deferral covers the current task only; the gate returns on the next task. Choosing `configure-on-request` persists until the user changes the mode. The fixed phrase **"Stop the question protocol until I ask to configure the rules"** (Arabic: «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد») is an accepted way to choose `configure-on-request` — see `templates/deferral.md`. That phrase is a pack-fixed allowed deferral option; do not ask the user to invent it during rules setup.
 
 The same hold applies to every later product or code request while any setting is still unconfigured **and** the mode remains `strict-hold`. Resume held work only after every setting is configured, the mode becomes `configure-on-request`, or the user defers setup **for this time only**. A one-time deferral does not mark the skipped settings configured. The gate returns on the next task under `strict-hold`.
 
@@ -273,12 +273,12 @@ Agent rules are not configured yet. This request is held. What should happen nex
 2. Keep this request held; configuration starts when I ask
 3. Defer rules setup for this time only and continue this request
 4. This is template maintenance on the strict-ai-rules origin; the gate does not apply
-5. Defer project rules setup; configure only when I request it; continue product work without the hold (`configure-on-request`)
+5. Stop the question protocol until I ask to configure the rules (`configure-on-request`) — fixed option; same meaning as «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد»
 6. Other: _______________
 
 Hints:
 - Recommended because: the agent then follows the requirements recorded in the laws.
-- Option 5: product work continues; blanks stay until you ask to configure.
+- Option 5: fixed pack phrase; product work continues; blanks stay until you ask to configure; record mode as `configure-on-request`.
 - To decide: check whether PROJECT-SPECIFIC fields and the profile rules-setup status are still blank.
 - Trade-off: option 3 skips once; option 5 skips the hold until you change the mode.
 ```
