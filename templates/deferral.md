@@ -17,7 +17,7 @@ The user must clearly say they want to skip questions/checks **once**, for the c
 - "Proceed without clarifying for this task only"
 - "One-time deferral — continue"
 
-Vague phrases like "just do it" or "I don't care" are **not** enough unless they also imply a one-time skip. If ambiguous, ask one confirmation using the question protocol.
+Vague phrases like "just do it" or "I don't care" are **not** a deferral. If the phrase is ambiguous, it is not a deferral. Do not ask a deferral question.
 
 ### Pause question protocol until rules configuration is requested
 
@@ -43,23 +43,23 @@ When the user says this (or an exact local synonym recorded under PROJECT-SPECIF
 6. Security, data-loss, and illegal-request refusals are **never** deferred.
 7. Do **not** treat the pause-protocol phrase above as a one-time deferral; handle it under **Pause question protocol** instead.
 
-## Confirmation template (if deferral is unclear)
+## Fixed phrases
 
-```markdown
-### Question
-Do you want a one-time deferral of clarifying questions for this task only?
+These are commands, not settings to ask about. Do not question them during rules setup.
 
-1. Yes — defer questions for this task only, then restore strict mode — **Recommended**
-2. No — keep asking required questions before work
-3. Defer only non-blocking questions; still ask blocking ones
-4. Pause — I will answer questions now
-5. Other: _______________
-```
+One-time deferral:
 
-## PROJECT-SPECIFIC
+- "Defer for this time only"
+- "Skip questions this time only"
+- "Proceed without clarifying for this task only"
+- "One-time deferral — continue"
 
-- Allowed deferral phrases (**fixed pack defaults** — already configured; add local synonyms only if the project needs more):
-  - One-time: "Defer for this time only"; "Skip questions this time only"; "Proceed without clarifying for this task only"; "One-time deferral — continue"
-  - Pause question protocol until rules configuration is requested (`configure-on-request`): "Stop the question protocol until I ask to configure the rules"; «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد»
-- Roles allowed to defer: _______________
-- Actions that must never be deferred: _______________
+Pause rules setup (`configure-on-request`):
+
+- "Stop the question protocol until I ask to configure the rules"
+- «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد»
+
+Show the question-protocol option list only after:
+
+- «عرض خيارات»
+- "Show options"

@@ -25,9 +25,8 @@ Read in order:
 - Before mentioning or using any technology, website, reference, feature, algorithm, tool, or library, review its current authoritative source, then work from that (`laws/00-core.md`, Current sources). Do not present an unchecked detail as current.
 - Do not execute until required questions/checks complete, unless user defers **for this time only**.
 - Consuming project: configure every rule setting before product or code work (`laws/00-core.md`). That means every `Current:` line, every `PROJECT-SPECIFIC` bullet in `laws/` and `templates/`, and every project-profile field. Hold the request while any setting is blank. One section at a time, one unconfigured setting per turn. Existing repo: write values the code already shows (Firebase, Supabase, SQL, and any other plain fact), then ask for every remaining setting. New repo: ask; do not invent facts. `not set` and `_______________` are not configured.
-- Question format: 1 question + at least 4 concrete answers (more allowed, totals may exceed 5) + final Other blank; mark one **Recommended**; add short research hints when helpful.
-- Rules-setup mode: `strict-hold` (default hold) or `configure-on-request` (no hold; configure only when the user asks). Fixed phrase for `configure-on-request`: "Stop the question protocol until I ask to configure the rules" / «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد». Allowed deferral phrases in `templates/deferral.md` are pack-fixed — do not re-ask unless adding synonyms.
-- Ask always before build/start; during/after only when ambiguous (unless deferred).
+- Question-protocol option lists only when a decision is necessary and the user says «عرض خيارات» or "Show options" (`templates/question-protocol.md`). Otherwise one short line. Do not ask deferral or ignore settings.
+- Rules-setup mode: `strict-hold` (default hold) or `configure-on-request` (no hold; configure only when the user asks). Fixed phrase for `configure-on-request`: "Stop the question protocol until I ask to configure the rules" / «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد».
 - New plans: brief CEO + HR + Sales discussion; ask if another specialty is needed.
 - Database module is always an awareness layer; determine DB type; `N/A` only after questioning.
 - After every change: modified elements, DB compatibility, logic/math, security, quality/structure.

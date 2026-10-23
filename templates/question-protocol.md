@@ -1,6 +1,11 @@
 # Question Protocol (Canonical)
 
-Use this format for **every** clarifying question before work proceeds.
+Show this format only when both are true:
+
+1. A decision is necessary (the work cannot proceed without it, and the repo does not already prove the value).
+2. The user asks to see options. The fixed phrases are «عرض خيارات» and "Show options".
+
+Until then, state the necessary point in one short line. Do not show numbered options. Do not ask deferral or ignore settings (`templates/deferral.md`).
 
 ## Rules
 
@@ -52,7 +57,8 @@ Hints:
 
 ## Anti-patterns (MUST NOT)
 
-- Open-ended questions with no options
+- Showing this option list before the user says «عرض خيارات» or "Show options"
+- Asking the user to configure deferral or ignore settings
 - Fewer than four concrete options (unless the domain truly has fewer mutually exclusive choices — then still end with Other)
 - More than one primary question per turn (unless deferred)
 - Hiding the Recommended marker

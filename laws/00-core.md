@@ -89,15 +89,10 @@ When two laws disagree about the same action, apply the first match:
 
 ### Question protocol
 
-- MUST use `templates/question-protocol.md` for every clarifying question:
-  - 1 question
-  - at least 4 concrete answer options (more than 4, and totals above 5, are allowed when needed)
-  - final option **Other: _______________** (always last)
-  - exactly one concrete option marked **Recommended**
-  - short research-friendly hints when helpful
-- MUST ask **always before build/start**.
-- MUST ask **during/after build only when ambiguous** (unless deferred).
-- MUST wait for the user’s choice before acting on the question’s outcome.
+- MUST NOT show the option list in `templates/question-protocol.md` unless a decision is necessary and the user asks «عرض خيارات» or "Show options".
+- Until then, state the necessary point in one short line. Do not ask deferral or ignore settings (`templates/deferral.md`).
+- When the option list is shown, use that template: one question, at least four concrete options, final Other blank, one **Recommended**.
+- MUST wait for the user’s choice before acting on a shown option list.
 
 ### Consultant role
 
@@ -254,7 +249,7 @@ On the user’s first product or code request while setup is incomplete:
 1. MUST hold that request. Do not execute it, and do not start its clarifying questions.
 2. MUST say that the request is held.
 3. MUST propose one next step: configure the agent rules so the agent works according to the requirements fixed in these laws.
-4. MUST ask with the question protocol whether to start that configuration now. Mark starting configuration as **Recommended**.
+4. MUST state that configuration is the next step, in one short line. Do not show the option list unless the user says «عرض خيارات» or "Show options".
 5. The request stays held until rules setup is `complete`, the user chooses `configure-on-request`, or the user defers setup **for this time only** (`templates/deferral.md`). A one-time deferral covers the current task only; the gate returns on the next task. Choosing `configure-on-request` persists until the user changes the mode. The fixed phrase **"Stop the question protocol until I ask to configure the rules"** (Arabic: «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد») is an accepted way to choose `configure-on-request` — see `templates/deferral.md`. That phrase is a pack-fixed allowed deferral option; do not ask the user to invent it during rules setup.
 
 The same hold applies to every later product or code request while any setting is still unconfigured **and** the mode remains `strict-hold`. Resume held work only after every setting is configured, the mode becomes `configure-on-request`, or the user defers setup **for this time only**. A one-time deferral does not mark the skipped settings configured. The gate returns on the next task under `strict-hold`.
@@ -263,7 +258,7 @@ This hold is agent-initiated. It is not a user deferral. User deferral stays the
 
 When the mode is `configure-on-request`, MUST NOT hold product or code requests solely because settings are blank. MUST still offer to configure the rules when the user asks, and MUST walk one section / one setting per turn when configuration is in progress.
 
-### Example — First request while rules are unconfigured
+### Example — Option list only after «عرض خيارات» or "Show options"
 
 ```markdown
 ### Question
@@ -289,7 +284,7 @@ When the user asks to configure the rules (or chooses to start configuration):
 
 - Walk sections in order: `00`, then `01` through `19`, then any profile or template settings not already filled with that section.
 - One section per turn. Stay on that section across turns until every setting in it is configured. Do not open the next section in the same message.
-- One unconfigured setting per turn. Ask one question for it and wait. Do not batch settings.
+- One unconfigured setting per turn. State it in one short line and wait. Show the option list only after «عرض خيارات» or "Show options". Do not batch settings. Do not ask deferral or ignore settings.
 - Do not stop while any setting remains unconfigured, unless the user pauses or defers **for this time only**.
 - A section is finished only when every setting in that law and the matching profile lines are configured. `N/A` still requires every line in that section to be filled (`N/A: <reason>` where the line does not apply). `06` stays in the tree either way.
 - MUST NOT leave a setting as `not set`, blank, or `_______________` to finish faster.
