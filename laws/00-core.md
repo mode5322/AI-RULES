@@ -77,6 +77,39 @@ Before mentioning, recommending, configuring, or implementing any technology, we
 - In a **consuming project**, while any **relevant** rule setting is unconfigured, MUST hold product and code requests and MUST configure those settings before resuming them. Procedure: **Rules-setup gate** below.
 - MUST configure every **relevant** **Behavior** and **System design** setting in the project profile. A setting that does not connect to the current project is not asked and does not hold work. Other `PROJECT-SPECIFIC` notes in laws `01`–`19` are not setup questions. A blank or a skip value does not count when the setting is relevant.
 - MUST NOT apply this gate when maintaining the public origin template.
+- Install and sync is the only setup entry. Procedure: **Install and sync** below. Do not start a field-by-field setup before that procedure runs.
+
+### Install and sync
+
+Two methods. Both end in the same agent procedure. Copying files, or sending a URL, does not by itself fill **Behavior** and **System design**.
+
+#### Method 1 — copied folder
+
+1. The user copies the rules pack folder (the folder that contains `laws/`) into the consuming project root.
+2. The user tells the agent to install and sync. Accepted phrases: "Install and sync the rules from the rules folder onto this project" and «ثبّت وزامن القواعد من مجلد القواعد على المشروع الحالي».
+
+#### Method 2 — repository link
+
+The user sends the rules repository URL and tells the agent to install and sync it onto the current project. Accepted phrases, with the URL in the same message: "Install and sync the rules from this repository onto this project" and «ثبّت وزامن قواعد هذا المستودع مع المشروع الحالي».
+
+The public origin URL is `https://github.com/mode5322/strict-ai-rules`.
+
+#### What the agent does
+
+1. Resolve the source. Method 1: the copied folder at the project root that contains `laws/00-core.md`. Method 2: fetch that URL read-only. Do not add the rules origin as a remote that can receive a push of the filled project.
+2. Install at the consuming project root:
+   - Place `laws/` and `templates/` there. If they already exist, keep configured **Behavior** and **System design** values (`11-change-management.md`).
+   - Place the pack’s `.cursor/rules/` and `.cursor/skills/` there. Do not delete project rules that are not part of the pack.
+   - If `AGENTS.md` or `CLAUDE.md` is missing, copy it from the pack. If the project already has that file, do not replace it.
+   - If the pack sits in a subfolder, the installed copy is the root `laws/` folder. Do not leave the only copy inside a subfolder the editor will not load.
+3. Sync onto the current project, in English:
+   - Write the database, framework, external connection, and libraries the code already shows.
+   - Record `none` for a part the project does not use. Do not ask about it.
+   - Record conversation language from the language the user is speaking.
+   - Do not copy secrets, connection strings, keys, or passwords.
+4. Do not push the filled project back to the rules repository.
+5. State the source revision in the reply. Do not add a profile blank for it.
+6. If one relevant field is still unknown and the current request needs it, ask that one field. Otherwise continue the held request.
 
 ### Law precedence
 

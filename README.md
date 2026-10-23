@@ -1,6 +1,6 @@
 # strict-ai-rules
 
-Public **empty/template origin** of strict AI agent laws. Copy this pack into **your** project. Inside your project, the AI acts as a consultant: it fills and customizes the law files for **that project only**. This GitHub origin stays blank/general.
+Public **empty/template origin** of strict AI agent laws. Put this pack into **your** project with one of the two install methods below. The agent then syncs **Behavior** and **System design** for **that project only**. This GitHub origin stays blank/general.
 
 Works for:
 
@@ -26,58 +26,43 @@ Works for:
 
 ## How to use
 
-### 1. Install into the project root
+Setup is one of two methods. Both finish with the same agent command: install and sync (`laws/00-core.md`, Install and sync).
 
-Copy these into the **root** of the consuming project (a new app or an existing one):
+### Method 1 — copy the rules folder
 
-- `laws/`
-- `templates/`
-- `AGENTS.md`
-- `CLAUDE.md`
-- `.cursor/rules/strict-ai-rules.mdc`
+1. Copy the rules pack folder (the folder that contains `laws/`) into the root of the consuming project.
+2. In a chat inside that project, tell the agent: «ثبّت وزامن القواعد من مجلد القواعد على المشروع الحالي».
 
-The Cursor rule file is what makes that editor load the laws on every task. Do not leave the pack in a subfolder the agent will not read.
+### Method 2 — send the repository link
 
-Fill settings only in that project copy. This public origin stays blank.
+Send the agent the repository URL and the install command in one message:
 
-### 2. Configure the rules before any other work
+> ثبّت وزامن قواعد هذا المستودع مع المشروع الحالي
+> https://github.com/mode5322/strict-ai-rules
 
-Open a **new chat inside that project** and ask the agent to configure the rules. Say whether the project is new or already built.
+The agent fetches the pack, places `laws/` and `templates/` at the project root, and syncs **Behavior** and **System design** from the current project. It writes values the code already shows, in English. It records `none` for a part the project does not use, and it does not ask about that part. It does not push the filled project back to the rules repository.
 
-The agent holds every other request until the **relevant** **Behavior** and **System design** fields are filled (`templates/project-profile.template.md`). A field the project does not use is recorded as `none` and is not asked, unless the user asks to see it. Questions are in the user’s language. An Arabic answer is stored in English. The Arabic line-split is fixed and is not a setting. One relevant field per turn.
-
-- **Existing project:** database, framework, external connection, and libraries that the code already shows are written in English without asking again. A part the project does not use is recorded as `none` and is not asked.
-- **New project:** the agent asks only for the fields the current request needs. It records `none` for unused parts and does not invent facts.
-
-A relevant blank, `not set`, `undecided`, or `TBD` is not configured. A field the project does not use is `none` and is not a question.
-
-### 3. After setup is complete
+### After sync
 
 - **Existing project:** follow `laws/16-existing-projects.md` (review, then a fix plan). Do not patch first.
-- **New project:** implement only after the blocking questions for that work are answered.
+- **New project:** implement only after the one question this request still needs, if any.
 - A later chat must continue at the first relevant unset field. It must not restart finished sections, re-ask values that are already set, or open a field the project does not use (`laws/00-core.md`, Resume).
 - Arabic chat replies keep each Arabic sentence on its own line and each English term on its own line. Product right-to-left layout is a separate rule (`laws/03-ui.md`).
+- Domain laws `01`–`19` open when the task needs that file. They are not a second setup walk.
 
-### 4. Bring newer laws into a project that is already configured
+### Bring a newer pack into a project that is already synced
 
-`git pull` updates files. It does not run the agent, and it does not know that filled settings must be kept.
+Run method 1 or method 2 again. Say: "Sync the new upstream rules with the rules already configured in this project. Do not erase a configured value."
 
-- If this pack was **copied** into the larger project, `git pull` on the larger project does not fetch this repository. Copy the newer pack in, then tell the agent to sync.
-- If `strict-ai-rules` is its **own clone or submodule** inside the larger project, `git pull` inside that folder updates the law text only. It can overwrite filled lines with blanks, or stop on a conflict. After the pull, tell the agent to sync.
-
-Say this:
-
-> Sync the new upstream rules with the rules already configured in this project. Do not erase a configured value. Add the new settings only, and ask about those.
-
-The agent must then (`laws/11-change-management.md`, Upstream law merge):
+The agent must then (`laws/11-change-management.md`):
 
 1. Keep every configured value.
-2. Add new laws and new blank settings from the newer pack.
-3. Ask only about the new blanks.
-4. Record the upstream revision in the project profile.
+2. Add new laws and new hard rules from the newer pack.
+3. Ask only about a new **Behavior** or **System design** field the project uses.
+4. State the source revision in the reply.
 5. Leave the filled copy in the consuming project. Do not push it back to this public origin.
 
-### 5. One-time skip
+### One-time skip
 
 To skip setup for the current task only, say that you defer **for this time only**. The gate returns on the next task. That sentence is not the same as the agent holding work until setup is done.
 

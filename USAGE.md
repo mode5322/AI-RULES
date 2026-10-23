@@ -4,31 +4,38 @@ Short guide for installing `strict-ai-rules` into a user project.
 
 ## Install
 
-Pick one:
+Two methods (`laws/00-core.md`, Install and sync). Copying or cloning alone does not fill the settings.
 
-- **Copy folders** into the project root: `laws/`, `templates/`, plus `AGENTS.md`, `CLAUDE.md`, and `.cursor/rules/strict-ai-rules.mdc` as needed.
-- **Clone** this repo and merge the files into an existing app repo.
-- **Subtree / submodule** if you want an upstream link (optional; most users just copy).
+### Method 1
 
-## After install
+1. Copy the rules pack folder (the folder that contains `laws/`) into the consuming project root.
+2. Tell the agent: «ثبّت وزامن القواعد من مجلد القواعد على المشروع الحالي».
 
-1. Open a chat and make a request, or ask the agent to configure the agent rules.
-2. If the rules are not configured, the agent holds that first request and proposes rules setup (`laws/00-core.md`).
-3. Ask it to configure the rules. It walks the **relevant** **Behavior** and **System design** fields only. A field the project does not use is not asked unless you ask to see it. Questions use the user’s language. An Arabic answer is stored in English. The Arabic line-split stays fixed.
-4. In an existing project, database, framework, connection, and libraries that the code already shows are written in English. A missing part is recorded as `none` without a question.
-5. In a new project, the agent asks. It does not invent project facts.
-6. After setup is complete, the held request can proceed under the configured rules.
+### Method 2
+
+Send the repository URL and the command in one message:
+
+> ثبّت وزامن قواعد هذا المستودع مع المشروع الحالي
+> https://github.com/mode5322/strict-ai-rules
+
+The agent places `laws/` and `templates/` at the project root and writes **Behavior** and **System design** from the current project. Unused parts are `none` and are not asked.
+
+## After sync
+
+1. A relevant field the code does not show, and that this request needs, is asked once, in the user’s language. An Arabic answer is stored in English.
+2. The held request then proceeds.
+3. Laws `01`–`19` open when the task needs that file. They are not the setup walk.
 
 ## New project flow
 
-1. Rules-setup gate first (`00`): hold the first request, then configure each section before coding.
-2. Requirements (`01`) → Discussion (`02`) → Architecture / UI / UX / DB / Security Laws suite (`10` + optional `18`/`19`) / branding-icons (`17`) happen inside that section walk.
-3. Implement only after blocking questions are answered (or one-time deferral).
-4. After each change: five-point review → final verification (`14`).
+1. Install and sync first.
+2. Ask one question only when the request needs a fact the repo does not show.
+3. Implement after that question is answered, or after a one-time deferral.
+4. After each change: five-point review, then `14-final-verification.md`.
 
 ## Existing project flow
 
-1. Rules-setup gate first (`00`). Code-backed facts (database and similar) are recorded during that walk.
+1. Rules-setup gate first (`00`), by **Install and sync**. Code-backed facts are written during that sync.
 2. Then start at `16-existing-projects.md` (+ `13-ai-review.md`).
 3. Audit → rethink → issue/fix plan → confirm → fix.
 4. Quick fix only when impact is isolated; otherwise root-cause with compatibility.

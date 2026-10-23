@@ -36,13 +36,13 @@ Control how changes are planned, applied, reviewed, and rolled back so the proje
 
 ## Upstream law merge
 
-When a newer copy of this pack is brought into a consuming project that already has configured settings:
+When a newer copy of this pack is brought into a consuming project, the entry is **Install and sync** in `00-core.md` (copied folder, or repository URL). Then:
 
 - MUST NOT replace a configured setting with a blank, example, or placeholder from the public origin.
 - MUST add new law files and new hard rules from the newer pack. Do not add a fill-in setting outside **Behavior** and **System design**.
 - MUST apply rule text that the newer pack replaced. A configured profile value stays. It does not keep a deleted upstream rule alive unless that value is an explicit documented override, and **Law precedence** in `00-core.md` still applies.
 - A new relevant Behavior or System design blank is unconfigured. Continue with **Resume in a new conversation** in `00-core.md`. Do not re-ask a configured setting, and do not ask a setting the project does not use.
-- MUST record the upstream revision merged (commit id, tag, or date) in the project profile.
+- MUST state the source revision in the reply. Do not add a profile blank for it.
 - MUST NOT push the filled project laws back to the public origin.
 
 ## Question protocol
