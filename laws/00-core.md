@@ -311,7 +311,8 @@ When the user asks to show the rule settings and does not name a category, inclu
 - Categories are **Behavior** (السلوك / السلوكيات) and **System design** (تصميم النظام) only.
 - MUST number the categories from 1 through the category count.
 - MUST then show one table. Columns are Category, Completed, Remaining, and Total. One row per category, plus a final totals row.
-- A setting is remaining when it is relevant and blank, `not set`, `undecided`, `TBD`, or `_______________`. A concrete value, `none`, or `N/A: <reason>`, is completed. An unrelated blank is not remaining.
+- A setting is remaining when it is relevant and blank, `not set`, `undecided`, `TBD`, or `_______________`. A concrete value, `none`, or `N/A: <reason>`, is completed. An unrelated blank is not remaining. A blank rules-setup mode counts as completed: `strict-hold`.
+- Total is the number of fields in that category. Completed plus remaining may be lower than total when a field does not connect to the current project.
 - Do not show the question-protocol option list unless the user also says «عرض خيارات» or "Show options".
 
 When the user names one category, including «عرض إعدادات قواعد السلوك» or «عرض إعدادات قواعد السلوكيات» or «عرض إعدادات قواعد تصميم النظام» or "Show behavior settings" or "Show system design settings":
