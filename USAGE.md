@@ -42,6 +42,8 @@ To **stop the rules-setup question walk** until you later ask to configure the r
 
 The option list appears only when a decision is necessary and you say «عرض خيارات» or "Show options".
 
+To **show incomplete rule settings**, ask for them. The agent numbers every remaining setting from 1 through the full count, then shows a category table of completed and remaining (`laws/00-core.md`).
+
 ## Keeping the origin clean
 
 Do not push your project-specific filled laws back to the public `strict-ai-rules` origin. Customize only in your project copy.

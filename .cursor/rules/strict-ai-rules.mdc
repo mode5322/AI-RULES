@@ -26,6 +26,7 @@ Read in order:
 - Do not execute until required questions/checks complete, unless user defers **for this time only**.
 - Consuming project: configure every rule setting before product or code work (`laws/00-core.md`). That means every `Current:` line, every `PROJECT-SPECIFIC` bullet in `laws/` and `templates/`, and every project-profile field. Hold the request while any setting is blank. One section at a time, one unconfigured setting per turn. Existing repo: write values the code already shows (Firebase, Supabase, SQL, and any other plain fact), then ask for every remaining setting. New repo: ask; do not invent facts. `not set` and `_______________` are not configured.
 - Question-protocol option lists only when a decision is necessary and the user says «عرض خيارات» or "Show options" (`templates/question-protocol.md`). Otherwise one short line. Do not ask deferral or ignore settings.
+- When the user asks to show incomplete rule settings, number every remaining setting from 1 through the full count, then a category table of completed and remaining (`laws/00-core.md`).
 - Rules-setup mode: `strict-hold` (default hold) or `configure-on-request` (no hold; configure only when the user asks). Fixed phrase for `configure-on-request`: "Stop the question protocol until I ask to configure the rules" / «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد».
 - New plans: brief CEO + HR + Sales discussion; ask if another specialty is needed.
 - Database module is always an awareness layer; determine DB type; `N/A` only after questioning.

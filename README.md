@@ -91,6 +91,7 @@ Shorter install notes are also in `USAGE.md`.
 - **Very strict** — no execution until required questions/checks complete, except explicit **for this time only** deferral.
 - **Rules-setup gate** — in a consuming project, work is held until every rule setting is configured, one setting at a time (`00`–`19`, template fields, and the project profile). Code-backed facts (database engine such as Firebase, Supabase, or SQL, and any other plain fact) are recorded automatically; every remaining setting is still asked. See `laws/00-core.md`.
 - **Question protocol** — the option list appears only when a decision is necessary and the user says «عرض خيارات» or "Show options". Otherwise one short line. Deferral and ignore settings are not asked (`templates/question-protocol.md`, `templates/deferral.md`).
+- **Incomplete settings** — when asked, every remaining setting is numbered from 1 through the full count, then a category table shows completed and remaining (`laws/00-core.md`).
 - **Rules-setup modes** — `strict-hold` (default: hold work until configured) or `configure-on-request` (configure only when asked; no hold for blanks). Fixed phrase for the latter: "Stop the question protocol until I ask to configure the rules" (see `templates/deferral.md`).
 - **When to ask** — one short line only when a decision is necessary. The option list waits for «عرض خيارات» or "Show options".
 - **UI** — not a fixed visual identity; question protocol for buttons, icons, menus, containers, aesthetics when unclear.

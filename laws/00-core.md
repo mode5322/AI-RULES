@@ -300,6 +300,30 @@ When the user asks to configure the rules (or chooses to start configuration):
 
 When every setting in `00`–`19`, `templates/`, and the project profile is configured, set rules-setup status to `complete`, say that every setting is configured, and only then resume the held request under the normal gates. On every later task, check again. If any setting is unconfigured, hold the task and continue at the first unconfigured setting.
 
+### Show incomplete settings
+
+When the user asks to show the incomplete rule settings, including «عرض الإعدادات غير المكتملة» or "Show incomplete settings":
+
+- MUST list every unconfigured setting as numbered points from 1 through the full count. Do not truncate the list. Do not show the question-protocol option list unless the user also says «عرض خيارات» or "Show options".
+- Each point is one setting: its number, its category, and its name.
+- MUST then show one table grouped by category. Columns are Category, Completed, Remaining, and Total. One row per category, plus a final totals row.
+- Categories are each law `00`–`19`, each `##` section of the project profile, and any template that still has fill-in settings.
+- A setting is remaining when it is blank, `not set`, `undecided`, `TBD`, or `_______________`. A concrete value, or `N/A: <reason>`, is completed.
+- Count each fill-in line once, under its own file or profile section. Do not invent values while showing the list.
+
+Example shape:
+
+```markdown
+1. 06 Database — Engine
+2. Identity — Project name
+
+| Category | Completed | Remaining | Total |
+|---|---|---|---|
+| 06 Database | 2 | 1 | 3 |
+| Identity | 0 | 1 | 1 |
+| Total | 2 | 2 | 4 |
+```
+
 ### Resume in a new conversation
 
 At the start of every conversation in a consuming project:

@@ -17,7 +17,7 @@ Then open the domain files needed for the task (`01`–`19`). For already-built 
 1. Do not build/start until required clarifying questions and checks are done.
 2. Exception: user explicitly defers **for this time only** (`templates/deferral.md`), then restore strict mode.
 3. Consuming project: configure every setting in laws `00`–`19`, template `PROJECT-SPECIFIC` bullets, and the project profile before product or code work (`laws/00-core.md`). Hold the request while any setting is blank. One section at a time, one unconfigured setting per turn. Existing repo: record values the code already shows (database such as Firebase, Supabase, or SQL, and any other plain fact), then ask for the rest. New repo: ask; do not invent facts. Do not skip a setting with `not set`.
-4. Show the question-protocol option list only when a decision is necessary and the user says «عرض خيارات» or "Show options" (`templates/question-protocol.md`). Otherwise one short line. Do not ask deferral or ignore settings.
+4. Show the question-protocol option list only when a decision is necessary and the user says «عرض خيارات» or "Show options" (`templates/question-protocol.md`). Otherwise one short line. Do not ask deferral or ignore settings. When the user asks to show incomplete rule settings, number every remaining setting from 1 through the full count, then a category table of completed and remaining (`laws/00-core.md`).
 5. Before build/start: state a necessary gap in one short line. Do not open with an option list.
 6. Any new plan: short CEO + HR + Sales angles, then ask if another specialty is needed (`laws/02-discussion.md`).
 7. Keep database awareness always on (`laws/06-database.md`).
