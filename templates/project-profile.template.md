@@ -11,7 +11,6 @@ Laws `01`–`19` remain operating rules. They are not extra setup questions.
 How the user deals with the agent.
 
 - Conversation language: _______________
-- Product UI language: _______________
 - Rules-setup mode: strict-hold | configure-on-request | _______________
 
 Do not ask the mode. A blank means `strict-hold`. Ask only when the user asks to change it.
@@ -25,6 +24,9 @@ What the project is made of. On an existing repo, write values the code already 
 - External connection: none | website | server | website and server | _______________
 - External connection purpose: _______________
 - Libraries in use: _______________
+- UI components: _______________
+
+When the user designs a button, a form, or a screen, record that component in English under **UI components** and build it once. What changes between uses (label, action, state) is an input, so the same component is reused. Do not copy the element for each screen. If the repo already has the component, reuse it and do not ask. If the project has no interface, record `none`.
 
 External connection purpose examples, stored in English: a website that only displays the product, or a server where the project database is created.
 

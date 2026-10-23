@@ -27,7 +27,7 @@ Dedicated protocol for repositories that already exist when AI (and these laws) 
 - MUST NOT rewrite the architecture casually.
 - MUST NOT ignore existing DB engine, auth, or UI system.
 - Record a discovered database, framework, connection, or library in the project profile. Do not invent the rest.
-- If rules setup is incomplete, MUST follow the rules-setup gate in `00-core.md` before audit or fixes. Database, framework, external connection, and libraries the code already shows are written in **System design** in English without a re-confirm question. Record `none` for a part the project does not use, and do not ask it. Remaining relevant fields are asked, in the user’s language, one at a time.
+- If rules setup is incomplete, MUST follow the rules-setup gate in `00-core.md` before audit or fixes. Database, framework, external connection, libraries, and UI components the code already shows are written in **System design** in English without a re-confirm question. Record `none` for a part the project does not use, and do not ask it. Remaining relevant fields are asked, in the user’s language, one at a time.
 - When more than one fix is possible and the user has not chosen, use `15-error-handling.md` and wait. Do not open a separate strategy questionnaire.
 - MUST follow `15-error-handling.md` for runtime failures during remediation.
 - When auditing bloat: MAY run a whole-repo complexity pass and/or simplification debt ledger per `13-ai-review.md` (tags + markers from `12-code-quality.md`); MUST NOT mass-delete without approval.

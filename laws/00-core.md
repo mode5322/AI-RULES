@@ -103,7 +103,7 @@ The public origin URL is `https://github.com/mode5322/strict-ai-rules`.
    - If `AGENTS.md` or `CLAUDE.md` is missing, copy it from the pack. If the project already has that file, do not replace it.
    - If the pack sits in a subfolder, the installed copy is the root `laws/` folder. Do not leave the only copy inside a subfolder the editor will not load.
 3. Sync onto the current project, in English:
-   - Write the database, framework, external connection, and libraries the code already shows.
+   - Write the database, framework, external connection, libraries, and UI components the code already shows.
    - Record `none` for a part the project does not use. Do not ask about it.
    - Record conversation language from the language the user is speaking.
    - Do not copy secrets, connection strings, keys, or passwords.
@@ -244,7 +244,7 @@ A **setting** is a fill-in line in the project profile under **Behavior** or **S
 A setting is **relevant** only when the current project already uses that part, or the user’s current request needs it.
 
 - Conversation language is relevant. If the user is already speaking a language, record it in English and do not ask.
-- Product UI language is relevant only when the project has a user interface, or the current request is to build one, and the repo does not already show that language.
+- UI components are relevant when the project has an interface, or the current request designs a button, a form, or a screen. Record names the repo already shows, in English, and do not ask the user to list them. When the user designs a new one, add it to **System design → UI components** and implement it once. The parts that vary are inputs. Do not copy the element for each use. If the project has no interface, record `none` and do not ask.
 - Rules-setup mode is not a question. A blank means `strict-hold`. Ask only when the user asks to change it.
 - Database, framework, and external connection are relevant only when the repo already has them, or the current request needs them. If the project does not use that part, record `none` in English and do not ask.
 - External connection purpose is relevant only when an external connection exists. Do not ask it when the connection is `none`.
