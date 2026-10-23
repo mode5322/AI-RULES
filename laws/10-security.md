@@ -7,7 +7,7 @@ Enforce secure defaults: secrets handling, authorization, input safety, and leas
 | Suite role | Module | Responsibility |
 |---|---|---|
 | **Parent — policy / review** | `10-security.md` (this file) | Secrets, authz, input safety, least privilege; owns the suite |
-| **Companion — defensive tools** | `18-security-tooling.md` | Optional stack-adaptive scanners (deps, secrets, Semgrep, ZAP baseline, platform checklists) |
+| **Companion — tools + audit skill** | `18-security-tooling.md` | Optional scanners + vendored `.cursor/skills/security-audit/` (Cloudflare MIT skill) |
 | **Companion — discover → remediate** | `19-vuln-discovery-and-remediation.md` | Authorized discovery → triage → Remediation Closure Prompt/Plan → fix gate → re-verify |
 
 **Reading order when security applies:** this file (`10`) first → `18` when tooling is enabled → `19` when findings exist or a discovery/remediation pass is in scope. Agents MUST treat `10` + `18` + `19` as **one Security Laws suite**, not as unrelated add-ons. MUST follow all applicable suite modules together.
@@ -23,7 +23,7 @@ Enforce secure defaults: secrets handling, authorization, input safety, and leas
 - Never fully skip; only reduce depth for pure docs with no executable impact.
 - Security refusals (illegal/harmful) are never deferred.
 - Stack-adaptive hybrid: keep this policy/review always; add tooling from `18-security-tooling.md` only after question-protocol approval (or one-time deferral). Tool choice follows detected stacks — including mixed monorepos — see `18`.
-- When scanner or review findings need closure, MUST follow `19-vuln-discovery-and-remediation.md` (authorized targets only; no exploits/PoCs; wait before fixes).
+- When scanner or review findings need closure, MUST follow `19-vuln-discovery-and-remediation.md` (authorized targets only; wait before fixes).
 
 ## Hard rules (MUST / MUST NOT)
 
@@ -52,8 +52,8 @@ Enforce secure defaults: secrets handling, authorization, input safety, and leas
 - MUST review for vulnerabilities after every change (mandatory review item).
 - MUST NOT weaken security to “just make it work” without explicit one-time deferral **and** a follow-up fix plan.
 - MUST treat green scanner results as evidence, not as a substitute for this module’s review.
-- When automated scans are appropriate, MUST follow `18-security-tooling.md` (defensive only; gated by questions).
-- When findings (from `18` or this review) need triage/remediation, MUST follow `19-vuln-discovery-and-remediation.md` — Remediation Closure Plans, user choice before code changes (`15-error-handling.md`), no exploits or attack PoCs.
+- When automated scans or a multi-phase audit are appropriate, MUST follow `18-security-tooling.md` (track A scanners and/or track B `security-audit` skill; gated by user request / questions).
+- When findings (from `18`, the `security-audit` skill, or this review) need triage/remediation, MUST follow `19-vuln-discovery-and-remediation.md` — Remediation Closure Plans, user choice before code changes (`15-error-handling.md`).
 
 ## Question protocol
 
@@ -66,7 +66,7 @@ Ask from this file only when the current task needs this module and the repo doe
 3. Build service-level permission helpers before admin features.
 4. Keep secrets and authorization checks in the change. Do not add a settings blank.
 5. Run security review on first vertical slice.
-6. Optionally enable stack-adaptive defensive tooling (`18-security-tooling.md`) after question protocol.
+6. Optionally enable stack-adaptive tooling (`18-security-tooling.md`, including the `security-audit` skill) after question protocol / audit request.
 7. Optionally enable discovery/remediation (`19-vuln-discovery-and-remediation.md`); route findings through Closure Plans before fixes.
 
 ## Existing-project workflow

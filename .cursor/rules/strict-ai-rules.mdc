@@ -36,7 +36,7 @@ Read in order:
 - Existing projects: review → rethink → issue/fix plan → fixes (optional complexity/debt passes in `13`/`16`).
 - Product UI copy: prefer conversational copy — short, precise, formal (Arabic: فصحى); use skill `conversational-copy` and `laws/04-ux.md`.
 - Branding / app icons: use `17-branding-and-icons.md` for platform assets and static vs user-changeable strategy.
-- Security Laws suite: parent `10-security.md`; tooling `18-security-tooling.md`; discovery/remediation `19-vuln-discovery-and-remediation.md` (plan before fix; wait; no exploits).
+- Security Laws suite: parent `10-security.md`; tooling `18-security-tooling.md` (includes `.cursor/skills/security-audit/`); discovery/remediation `19-vuln-discovery-and-remediation.md` (plan before fix; wait).
 
 ## Consultant mode
 

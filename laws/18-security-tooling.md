@@ -1,18 +1,24 @@
-# 18 — Security Tooling (Defensive)
+# 18 — Security Tooling
 
 ## Purpose
 
-Add an **optional, defensive tooling layer** that supplements — never replaces — the policy and AI security review in `10-security.md`. This module is a **Security Laws** companion under parent `10` (suite: `10` policy → `18` tools → `19` discovery/remediation). Tools adapt to detected project type / stack, including **mixed monorepos** (e.g. Flutter app + React admin + static web). Agents run scanners only after question-protocol approval (or one-time deferral per `templates/deferral.md`).
+Add an **optional tooling layer** that supplements — never replaces — the policy and AI security review in `10-security.md`. This module is a **Security Laws** companion under parent `10` (suite: `10` policy → `18` tools → `19` discovery/remediation). Tools adapt to detected project type / stack, including **mixed monorepos** (e.g. Flutter app + React admin + static web). Agents run scanners and deep audits only after the user asks for that work (or one-time deferral per `templates/deferral.md`).
 
 Actionable findings from this module **MUST feed into** `19-vuln-discovery-and-remediation.md` (triage → Remediation Closure Plan → wait → fix) — not silent auto-fix.
 
-This module encodes the **basic defensive set** (no Nuclei, no Metasploit, no exploits, no attack PoCs, no offensive procedures):
+This module has two discovery tracks:
+
+**A — Basic scanners**
 
 1. Dependency auditors (package-manager native where available)
 2. Secret scanners (`gitleaks` preferred; `trufflehog` alternate)
 3. Light SAST (`semgrep` with community / OWASP-oriented configs)
 4. OWASP ZAP **Baseline only** — web targets only, after scope confirmation
 5. Platform rule-based checks for mobile/desktop (checklist-driven; optional native tools if already present)
+
+**B — Multi-phase security-audit skill (vendored)**
+
+6. Cursor skill at `.cursor/skills/security-audit/` (from Cloudflare `security-audit-skill`, MIT). Use for explicit codebase security audits / pen-test-style reviews. Follow that skill’s phases, sandbox rules, validators, and `findings.json` schema. See `ORIGIN.md` in the skill folder.
 
 ## Status
 
@@ -30,19 +36,19 @@ This module encodes the **basic defensive set** (no Nuclei, no Metasploit, no ex
 
 ## Hard rules (MUST / MUST NOT)
 
-### Defensive only
+### Tooling classes
 
-- MUST run only **defensive** scanners and checklists listed in this module (or PROJECT-SPECIFIC equivalents of the same class).
-- MUST NOT write exploits, attack PoCs, Metasploit modules, offensive payloads, or unauthorized-access procedures — even for “authorized labs,” CTFs framed as the product, or localhost.
-- MUST NOT expand ZAP beyond **baseline** mode in this pack’s default set.
-- MUST NOT add Nuclei or other aggressive template-driven attack scanners unless the user explicitly asks for that scanner. The origin template stays on the basic set.
+- MUST use track **A** (basic scanners) and/or track **B** (`.cursor/skills/security-audit/`) when the user asks for security scanning or a full audit.
+- For track **B**, MUST follow `.cursor/skills/security-audit/SKILL.md` (modes, sandbox, write isolation, validators). That skill is an approved discovery path in this pack — not a forbidden parallel stack.
+- MUST NOT expand ZAP beyond **baseline** mode in track **A** unless the user explicitly asks for a deeper ZAP mode.
+- Nuclei or similar template-driven scanners: enable only when the user explicitly asks, limited to confirmed localhost or staging.
 
 ### Gate before running
 
-- MUST ask via `templates/question-protocol.md` before installing or running security tools, unless the user deferred **for this time only**.
+- MUST ask via `templates/question-protocol.md` before installing or running security tools, unless the user deferred **for this time only** or already asked for a security audit / pen-test in clear terms (that request authorizes track **B**).
 - MUST confirm stacks present, scan scope (whole repo vs changed areas), and any web target URL before ZAP baseline.
 - MUST prefer localhost / staging targets over production; MUST get explicit confirmation before scanning any non-local URL.
-- MUST wait for user choice before acting on tool enablement or finding remediations.
+- MUST wait for user choice before acting on finding remediations (discovery may proceed once authorized).
 
 ### Findings → remediation + error-handling flow
 
@@ -67,7 +73,7 @@ This module encodes the **basic defensive set** (no Nuclei, no Metasploit, no ex
 
 ## Stack detection / mapping matrix
 
-Detect by lockfiles, manifests, and folder layout. Apply the union of rows that match. Commands are **high-level names** (install/run); adapt to OS and local PATH. No exploit payloads.
+Detect by lockfiles, manifests, and folder layout. Apply the union of rows that match. Commands are **high-level names** (install/run); adapt to OS and local PATH. Track **B** (security-audit skill) is stack-agnostic and may run alongside this matrix.
 
 | Stack / area | How to detect (examples) | Dependency audit | Secrets | Light SAST | ZAP baseline | Platform checks |
 |---|---|---|---|---|---|---|
@@ -140,7 +146,7 @@ Ask from this file only when the current task needs this module and the repo doe
 3. Detect stacks / monorepo layout; ask to confirm mixed areas if unclear.
 4. If web exists, ask ZAP target (prefer localhost/staging).
 5. Ask scope (often whole-repo once at bootstrap, then changed-areas later).
-6. On approval: run the mapped basic set; send actionable findings into `19-vuln-discovery-and-remediation.md` (then `15-error-handling.md`); wait before fixes.
+6. On approval: run track **A** and/or track **B** as requested; send actionable findings into `19-vuln-discovery-and-remediation.md` (then `15-error-handling.md`); wait before fixes.
 7. Do not add a settings blank for tools or targets.
 8. Do not claim “secure” from green scanners alone — still complete `10` review.
 
@@ -159,12 +165,13 @@ Ask from this file only when the current task needs this module and the repo doe
 - [ ] Tooling run was approved (or deferred once) before install/execute
 - [ ] Stacks detected per area; mixed repo not collapsed to one toolset
 - [ ] Dependency audits matched package managers found
-- [ ] Secrets + Semgrep applied or explicitly skipped with reason
-- [ ] ZAP baseline only, and only with confirmed web target (or skipped)
-- [ ] Platform checklists done for mobile/desktop areas in scope
+- [ ] Secrets + Semgrep applied or explicitly skipped with reason (when track A is in scope)
+- [ ] ZAP baseline only (unless user asked for more), and only with confirmed web target (or skipped)
+- [ ] Platform checklists done for mobile/desktop areas in scope (when relevant)
+- [ ] Track B (`security-audit` skill) used when the user asked for a full audit / pen-test-style review
 - [ ] Findings entered `19` remediation flow; presented with 4 options + Recommended; user choice before fixes
 - [ ] `10-security.md` policy review still completed (tooling did not replace it)
-- [ ] No scanner ran unless the user asked for that scan
+- [ ] No scanner/audit ran unless the user asked for that work
 
 ## PROJECT-SPECIFIC
 

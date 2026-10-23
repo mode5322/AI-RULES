@@ -173,9 +173,9 @@ Review all of:
 
 ### Security Laws suite (`10` + `18` + `19`)
 
-- Treat as **one suite** under parent policy (`10-security.md`): policy/review → optional defensive tooling (`18-security-tooling.md`) → authorized discovery/triage/remediation (`19-vuln-discovery-and-remediation.md`).
-- Reading order when security applies: `10` → `18` (if tooling enabled) → `19` (when findings or a discovery/remediation pass is in scope).
-- Optional stack-adaptive defensive scanners (deps, secrets, Semgrep, ZAP baseline, platform checklists) follow `18` — gated by question protocol; defensive only; no exploits.
+- Treat as **one suite** under parent policy (`10-security.md`): policy/review → optional tooling (`18-security-tooling.md`, including `.cursor/skills/security-audit/`) → authorized discovery/triage/remediation (`19-vuln-discovery-and-remediation.md`).
+- Reading order when security applies: `10` → `18` (if tooling/audit enabled) → `19` (when findings or a discovery/remediation pass is in scope).
+- Optional stack-adaptive scanners and the vendored multi-phase `security-audit` skill follow `18` — gated by user request / question protocol.
 - Actionable findings MUST enter `19` (Remediation Closure Plans; wait for user choice via `15-error-handling.md` before fixes).
 
 ### Scope discipline
@@ -224,7 +224,7 @@ Read `00-core` first, then domain modules relevant to the task. Numbers are stab
 | 15 | `15-error-handling.md` | Always when errors occur |
 | 16 | `16-existing-projects.md` | When AI joins an already-built repo |
 | 17 | `17-branding-and-icons.md` | `N/A` if no app/web/desktop identity icons |
-| 18 | `18-security-tooling.md` | Security Laws companion — optional defensive tooling; supplements `10`; `N/A` if declined |
+| 18 | `18-security-tooling.md` | Security Laws companion — optional scanners + `security-audit` skill; supplements `10`; `N/A` if declined |
 | 19 | `19-vuln-discovery-and-remediation.md` | Security Laws companion — authorized discovery → remediation; `N/A` if no security surface |
 
 Keep every law file in the tree. Do not mark a module by adding a blank. Use the file when the current task needs it.

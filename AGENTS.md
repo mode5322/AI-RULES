@@ -38,7 +38,7 @@ Before non-trivial work, read:
 - Existing projects: review → rethink → issue/fix plan → fixes (`16-existing-projects.md`).
 - Product UI copy: prefer **conversational copy** — short, precise, formal (Arabic: فصحى, not dialect); use skill `.cursor/skills/conversational-copy/` and `laws/04-ux.md` voice rules.
 - Branding / app icons: follow `17-branding-and-icons.md` when identity icons, favicons, launcher/PWA/store assets, or user-changeable icon packs are in scope.
-- Security Laws suite (`10` + `18` + `19`): parent policy `10-security.md`; optional defensive scanners `18-security-tooling.md`; authorized discovery → remediation `19-vuln-discovery-and-remediation.md` (plan before fix; wait; no exploits).
+- Security Laws suite (`10` + `18` + `19`): parent policy `10-security.md`; optional scanners + vendored `.cursor/skills/security-audit/` via `18-security-tooling.md`; authorized discovery → remediation `19-vuln-discovery-and-remediation.md` (plan before fix; wait).
 
 ## Do / Don’t
 
