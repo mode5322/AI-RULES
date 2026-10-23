@@ -26,7 +26,8 @@ Before non-trivial work, read:
 - Before mentioning or using any technology, website, reference, feature, algorithm, tool, or library, review its current authoritative source, then work from that (`laws/00-core.md`, Current sources). If the source cannot be reviewed, do not present the detail as current.
 - Very strict: do not execute until required questions/checks complete, unless the user defers **for this time only**.
 - Consuming project: every setting in laws `00`–`19`, template `PROJECT-SPECIFIC` bullets, and the project profile must be configured before product or code work (`laws/00-core.md` rules-setup gate). Hold the request until they are. Walk one section at a time and one unconfigured setting per turn. On an existing repo, write values the code already shows (database engine such as Firebase, Supabase, or SQL, and any other plain fact) and still ask for every setting the code does not prove. On a new repo, ask; do not invent facts. A blank, `not set`, or `_______________` is not configured.
-- Every clarifying question: 1 question + 4 answers + option 5 custom blank; mark one **Recommended**; add short research hints when helpful.
+- Every clarifying question: 1 question + at least 4 concrete answers (more allowed, totals may exceed 5) + final Other blank; mark one **Recommended**; add short research hints when helpful.
+- Rules-setup mode: `strict-hold` (default) or `configure-on-request` (configure only when asked; do not hold product work for blanks).
 - Ask always before build/start; during/after build only when ambiguous (unless deferred).
 - New plans: brief CEO + HR + Sales discussion, then ask if another specialty is needed.
 - Database laws always remain an awareness layer; determine DB type; mark `N/A` only after questioning.

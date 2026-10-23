@@ -91,9 +91,9 @@ When two laws disagree about the same action, apply the first match:
 
 - MUST use `templates/question-protocol.md` for every clarifying question:
   - 1 question
-  - 4 answer options
-  - option 5 custom blank
-  - exactly one option marked **Recommended**
+  - at least 4 concrete answer options (more than 4, and totals above 5, are allowed when needed)
+  - final option **Other: _______________** (always last)
+  - exactly one concrete option marked **Recommended**
   - short research-friendly hints when helpful
 - MUST ask **always before build/start**.
 - MUST ask **during/after build only when ambiguous** (unless deferred).
@@ -238,7 +238,16 @@ A **setting** is every fill-in line in the consuming project’s copies of:
 
 A setting is **configured** only when its placeholder is replaced with a concrete value. `N/A: <reason>` is a concrete value when that setting truly does not apply. These are not configured: `_______________`, a blank, `not set`, `undecided`, `TBD`, or any skip.
 
+### Rules-setup modes
+
+Record the mode in the project profile and in this file’s PROJECT-SPECIFIC section:
+
+- `strict-hold` (default): hold product/code work until every setting is configured, or the user defers **for this time only**.
+- `configure-on-request`: do **not** hold product/code work for incomplete rules setup. Configure settings only when the user explicitly asks to configure the rules. Incomplete settings stay incomplete until that request. Other laws (security, question gates for the task itself, Candor) still apply.
+
 ### Hold work until every setting is configured
+
+Applies only when the mode is `strict-hold` (or unset, which means `strict-hold`).
 
 On the user’s first product or code request while setup is incomplete:
 
@@ -246,11 +255,13 @@ On the user’s first product or code request while setup is incomplete:
 2. MUST say that the request is held.
 3. MUST propose one next step: configure the agent rules so the agent works according to the requirements fixed in these laws.
 4. MUST ask with the question protocol whether to start that configuration now. Mark starting configuration as **Recommended**.
-5. The request stays held until rules setup is `complete`, or the user defers setup **for this time only** (`templates/deferral.md`). That deferral covers the current task only. The gate returns on the next task.
+5. The request stays held until rules setup is `complete`, the user chooses `configure-on-request`, or the user defers setup **for this time only** (`templates/deferral.md`). A one-time deferral covers the current task only; the gate returns on the next task. Choosing `configure-on-request` persists until the user changes the mode.
 
-The same hold applies to every later product or code request while any setting is still unconfigured. Resume held work only after every setting is configured, or the user defers setup **for this time only**. A deferral does not mark the skipped settings configured. The gate returns on the next task.
+The same hold applies to every later product or code request while any setting is still unconfigured **and** the mode remains `strict-hold`. Resume held work only after every setting is configured, the mode becomes `configure-on-request`, or the user defers setup **for this time only**. A one-time deferral does not mark the skipped settings configured. The gate returns on the next task under `strict-hold`.
 
-This hold is agent-initiated. It is not a user deferral. User deferral stays the only way to skip the gate for one task.
+This hold is agent-initiated. It is not a user deferral. User deferral stays the way to skip the gate for one task under `strict-hold`.
+
+When the mode is `configure-on-request`, MUST NOT hold product or code requests solely because settings are blank. MUST still offer to configure the rules when the user asks, and MUST walk one section / one setting per turn when configuration is in progress.
 
 ### Example — First request while rules are unconfigured
 
@@ -262,12 +273,14 @@ Agent rules are not configured yet. This request is held. What should happen nex
 2. Keep this request held; configuration starts when I ask
 3. Defer rules setup for this time only and continue this request
 4. This is template maintenance on the strict-ai-rules origin; the gate does not apply
-5. Other: _______________
+5. Defer project rules setup; configure only when I request it; continue product work without the hold (`configure-on-request`)
+6. Other: _______________
 
 Hints:
 - Recommended because: the agent then follows the requirements recorded in the laws.
+- Option 5: product work continues; blanks stay until you ask to configure.
 - To decide: check whether PROJECT-SPECIFIC fields and the profile rules-setup status are still blank.
-- Trade-off: option 3 does this task without configured rules; the gate returns on the next task.
+- Trade-off: option 3 skips once; option 5 skips the hold until you change the mode.
 ```
 
 ### Configure one section at a time
@@ -344,6 +357,7 @@ At the start of every conversation in a consuming project:
 - Project name: _______________
 - Default agent IDE(s): Cursor | Claude | Codex | other: _______________
 - Strictness overrides (document carefully): _______________
+- Rules-setup mode: `strict-hold` (default) | `configure-on-request` | _______________
 - Minimal-implementation intensity (lite | full | ultra): _______________
 - Mandatory stakeholders beyond CEO/HR/Sales: _______________
 - Paths to local extra laws: _______________

@@ -7,6 +7,7 @@ Copy this into the consuming project (or fill the PROJECT-SPECIFIC sections insi
 Filled only in a consuming project (`laws/00-core.md`). Setup is `complete` only when every field in this profile and every `PROJECT-SPECIFIC` setting in the laws and templates is configured. Leave these blank on the public origin. A blank or `not set` is not configured.
 
 - Status: not-started | in-progress | complete | _______________
+- Rules-setup mode: strict-hold | configure-on-request | _______________
 - Held first request (unexecuted): _______________
 - Last finished section: _______________
 - Next section: _______________
