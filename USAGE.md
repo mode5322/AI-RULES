@@ -38,7 +38,9 @@ Pick one:
 
 To skip questions once, or to skip rules setup for the current task only, say clearly you defer **for this time only** (see `templates/deferral.md`). Strict mode returns afterward. The agent holding the first request for rules setup is not this deferral.
 
-To **stop the rules-setup question protocol** until you later ask to configure the rules, say: **Stop the question protocol until I ask to configure the rules** (Arabic fixed title: «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد»). That sets mode `configure-on-request`. Allowed phrases for both paths are fixed in `templates/deferral.md` PROJECT-SPECIFIC; the agent must not re-ask that setting unless you add synonyms.
+To **stop the rules-setup question walk** until you later ask to configure the rules, say: **Stop the question protocol until I ask to configure the rules** (Arabic fixed title: «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد»). That sets mode `configure-on-request`. These phrases are commands, not settings the agent asks about (`templates/deferral.md`).
+
+The option list appears only when a decision is necessary and you say «عرض خيارات» or "Show options".
 
 ## Keeping the origin clean
 
