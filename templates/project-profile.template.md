@@ -2,7 +2,7 @@
 
 Configurable settings for a consuming project. Leave blanks empty on the public origin.
 
-Ask a blank in the language the user is speaking, and only when that blank connects to the current project. If the user answers in Arabic, store the value in English. If the project does not use that part, record `none` and do not ask. Show an unrelated blank only when the user asks to see or configure it. The Arabic line-split in `laws/00-core.md` is fixed and is not a setting.
+Ask a blank in the language the user is speaking, and only when that blank connects to the current project. If the user answers in Arabic, store the value in English. If the project does not use that part, record `none` and do not ask. Show an unrelated blank only when the user asks to see or configure it. The mixed-script bidi rules in `laws/00-core.md` are fixed and are not a setting.
 
 Laws `01`–`19` remain operating rules. They are not extra setup questions.
 

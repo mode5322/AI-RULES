@@ -18,18 +18,21 @@ Always. Every agent session, every IDE adapter, every task type.
 
 - MUST write all law file content and agent law responses that enforce these laws in **English**.
 - Settings questions MUST be asked in the language the user is speaking.
-- If the user answers in Arabic, MUST store the setting value in English. The Arabic line-split below still applies to the conversation, not to the stored value.
-- The Arabic line-split rules in this section are **fixed**. They are not a setting. MUST NOT ask whether to use them, and MUST NOT disable them.
-- When a conversation reply uses Arabic or another right-to-left language, MUST keep each Arabic sentence on its own line and MUST put each English word, term, path, or identifier on its own line.
-- MUST NOT embed an English word or other Latin-script term inside an Arabic line. One line is either right-to-left prose with no Latin letters, or a single English term.
-- This split stops bidirectional layout from reversing the Arabic line. Law files stay English. The split applies to conversation replies, including settings questions asked in Arabic.
-- A fenced block that is entirely English may stay one block. MUST NOT insert that block’s text into an Arabic line.
+- If the user answers in Arabic, MUST store the setting value in English. The mixed-script bidi rules below still apply to the conversation, not to the stored value.
+- The mixed-script bidi rules in this section are **fixed**. They are not a setting. MUST NOT ask whether to use them, and MUST NOT disable them.
+- When a conversation reply uses Arabic or another right-to-left language, Arabic prose and Latin-script terms MAY share the same line. MUST NOT put each English word on its own line solely for direction — that makes replies needlessly long.
+- MUST isolate every embedded Latin-script word, path, identifier, or similar span so the bidirectional algorithm does not reverse the Arabic around it (especially next to `.` `,` `:` `;` `!` `?`):
+  1. Prefer markdown inline code: wrap the Latin span in backticks, e.g. يُراجع `laws/00-core.md` ثم يُكمل.
+  2. If inline code is unsuitable, wrap the Latin span in Unicode Left-to-Right Isolate … Pop Directional Isolate (U+2066 … U+2069).
+- MUST place ASCII punctuation that belongs to the Arabic sentence **outside** the isolated Latin span (after the closing backtick or U+2069), never glued to the Latin letters as `file.md.` inside the Arabic run. Prefer Arabic punctuation when it reads naturally.
+- One short Arabic sentence per line remains allowed for readability. It is optional, not a requirement to split every English token.
+- Law files stay English. These rules apply to conversation replies, including settings questions asked in Arabic.
+- A fenced block that is entirely English may stay one block. MUST NOT paste that block’s raw text into an Arabic sentence without isolation.
 
 Conversation sample (layout only; law prose stays English):
 
 ```text
-يُراجع المصدر أولًا ثم يُستكمل العمل.
-laws/00-core.md
+يُراجع المصدر في `laws/00-core.md` ثم يُستكمل العمل.
 بعدها يُستأنف الطلب المحبوس.
 ```
 
@@ -52,7 +55,7 @@ Applies to every conversation reply.
 6. **No preamble.** MUST NOT open with framing such as "There are several ways to look at this". MUST start with the most useful thing that can be said.
 7. **Hold position.** When the user pushes back, MUST NOT change position unless the user supplies genuinely new information or evidence. Restating belief ("but I really think…") is not new information.
 
-When a fixed output format owns the first line (`problem-brief`, the rules-setup hold, a question-protocol block), MUST keep that format and put the Candor opening in the first sentence after it. Candor does not override the Language line-split.
+When a fixed output format owns the first line (`problem-brief`, the rules-setup hold, a question-protocol block), MUST keep that format and put the Candor opening in the first sentence after it. Candor does not override the Language mixed-script bidi rules.
 
 ### Strictness
 
@@ -252,7 +255,7 @@ A setting is **relevant** only when the current project already uses that part, 
 
 A setting that is not relevant MUST NOT be asked, MUST NOT be listed as incomplete, and MUST NOT hold work. Show it only when the user asks, including «عرض الإعدادات غير المتصلة» or "Show unrelated settings", or when they name that setting and ask to configure it. If the project later gains that part, the setting becomes relevant then. Do not pre-ask it.
 
-Law files `01`–`19` stay operating rules. Their `PROJECT-SPECIFIC` blanks are not required setup questions. The Arabic line-split is fixed and is not a setting.
+Law files `01`–`19` stay operating rules. Their `PROJECT-SPECIFIC` blanks are not required setup questions. The mixed-script bidi rules are fixed and are not a setting.
 
 A setting is **configured** only when its placeholder is replaced with a concrete value. `N/A: <reason>` is a concrete value when that setting truly does not apply. These are not configured: `_______________`, a blank, `not set`, `undecided`, `TBD`, or any skip.
 
@@ -287,9 +290,9 @@ When the user asks to configure the rules (or chooses to start configuration):
 
 - Walk sections in order: **Behavior**, then **System design**.
 - One section per turn. Stay on that section across turns until every **relevant** setting in it is configured. Do not open the next section in the same message. Skip a section that has no relevant question.
-- One relevant unconfigured setting per turn. Ask it in the user’s language, in one short line, and wait. Show the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not batch settings. Do not ask a setting that does not connect to the current project. Do not ask deferral or ignore settings. Do not ask whether to keep the Arabic line-split.
+- One relevant unconfigured setting per turn. Ask it in the user’s language, in one short line, and wait. Show the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not batch settings. Do not ask a setting that does not connect to the current project. Do not ask deferral or ignore settings. Do not ask whether to keep the mixed-script bidi rules.
 - Do not stop while any relevant setting remains unconfigured, unless the user pauses or defers **for this time only**.
-- A section is finished when every **relevant** setting in it is configured. Skip a section that has no relevant question. The Arabic line-split is not a setting.
+- A section is finished when every **relevant** setting in it is configured. Skip a section that has no relevant question. The mixed-script bidi rules are not a setting.
 - MUST NOT leave a setting as `not set`, blank, or `_______________` to finish faster.
 - MUST NOT copy secrets, connection strings, keys, or passwords into laws or the profile. When a setting would require a secret, record where it is stored, not the secret value.
 
@@ -381,13 +384,13 @@ At the start of every conversation in a consuming project:
 
 ## Post-change checklist hooks
 
-- [ ] Relevant Behavior and System design settings are configured (unrelated blanks were not asked; Arabic line-split stays fixed)
+- [ ] Relevant Behavior and System design settings are configured (unrelated blanks were not asked; mixed-script bidi rules stay fixed)
 - [ ] Named technologies, sites, references, features, algorithms, tools, and libraries were checked against their current authoritative source
-- [ ] Arabic conversation lines contain no embedded English term; each English term is on its own line
+- [ ] Arabic conversation replies isolate embedded Latin spans (backticks or U+2066…U+2069); ASCII sentence punctuation stays outside those spans
 - [ ] Reply followed Candor: no opening agreement, confidence tags on claims, no banned phrases, uncomfortable truth first, no preamble
 - [ ] Law precedence applied when two rules overlapped
 - [ ] A new conversation resumed at the first unconfigured setting and did not re-ask configured ones
-- [ ] Product UI direction follows the confirmed locale; the conversation line-split is not a substitute (`03-ui.md`)
+- [ ] Product UI direction follows the confirmed locale; conversation bidi isolation is not a substitute (`03-ui.md`)
 - [ ] Required questions answered or one-time deferral recorded
 - [ ] Modified surfaces listed
 - [ ] DB compatibility considered
