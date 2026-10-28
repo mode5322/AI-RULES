@@ -49,6 +49,7 @@ The agent fetches the pack, places `laws/` and `templates/` at the project root,
 - **New project:** implement only after the one question this request still needs, if any.
 - A later chat must continue at the first relevant unset field. It must not restart finished sections, re-ask values that are already set, or open a field the project does not use (`laws/00-core.md`, Resume).
 - Arabic chat replies may mix Latin terms on the same line when those terms are isolated (backticks or Unicode LTR isolate). Product right-to-left layout is a separate rule (`laws/03-ui.md`).
+- Agent temporary files use `temp-<operation_name>` folders (fixed rule in `laws/00-core.md`); ignored via `temp-*/` in `.gitignore`.
 - Domain laws `01`–`19` open when the task needs that file. They are not a second setup walk.
 
 ### Bring a newer pack into a project that is already synced

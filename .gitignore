@@ -19,6 +19,7 @@ secrets.json
 *.log
 tmp/
 temp/
+temp-*/
 .cache/
 
 # Dependencies / build (if someone adds tooling later)

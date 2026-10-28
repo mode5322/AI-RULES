@@ -181,6 +181,18 @@ Review all of:
 - Optional stack-adaptive scanners and the vendored multi-phase `security-audit` skill follow `18` — gated by user request / question protocol.
 - Actionable findings MUST enter `19` (Remediation Closure Plans; wait for user choice via `15-error-handling.md` before fixes).
 
+### Temporary files (fixed)
+
+These rules are **fixed**. They are not a setting. MUST NOT ask whether to use them, and MUST NOT disable them.
+
+- When the agent creates temporary, scratch, intermediate, export-preview, or throwaway working files for an operation, MUST place them under a single folder named `temp-<operation_name>` (example: `temp-security-audit`, `temp-db-migrate`, `temp-ui-preview`).
+- `<operation_name>` MUST be short kebab-case English that names the operation so the user can recognize the folder at a glance.
+- Prefer the consuming project root (or the active worktree root) for that folder unless the user names another parent path.
+- MUST NOT scatter those files in the project root, inside source packages, or under unrelated directories.
+- MUST NOT commit `temp-*` contents. If the repo uses git, MUST ensure a ignore pattern such as `temp-*/` (or an equivalent that covers these folders) is present before writing into them.
+- MUST tell the user the folder path when it is created.
+- MUST leave the folder in place for user inspection unless the user asks to delete it or the operation’s own cleanup step removes it after an explicit notice.
+
 ### Scope discipline
 
 - MUST make the smallest correct change.
@@ -255,7 +267,7 @@ A setting is **relevant** only when the current project already uses that part, 
 
 A setting that is not relevant MUST NOT be asked, MUST NOT be listed as incomplete, and MUST NOT hold work. Show it only when the user asks, including «عرض الإعدادات غير المتصلة» or "Show unrelated settings", or when they name that setting and ask to configure it. If the project later gains that part, the setting becomes relevant then. Do not pre-ask it.
 
-Law files `01`–`19` stay operating rules. Their `PROJECT-SPECIFIC` blanks are not required setup questions. The mixed-script bidi rules are fixed and are not a setting.
+Law files `01`–`19` stay operating rules. Their `PROJECT-SPECIFIC` blanks are not required setup questions. The mixed-script bidi rules and the `temp-<operation_name>` temporary-folder rules are fixed and are not settings.
 
 A setting is **configured** only when its placeholder is replaced with a concrete value. `N/A: <reason>` is a concrete value when that setting truly does not apply. These are not configured: `_______________`, a blank, `not set`, `undecided`, `TBD`, or any skip.
 
@@ -387,6 +399,7 @@ At the start of every conversation in a consuming project:
 - [ ] Relevant Behavior and System design settings are configured (unrelated blanks were not asked; mixed-script bidi rules stay fixed)
 - [ ] Named technologies, sites, references, features, algorithms, tools, and libraries were checked against their current authoritative source
 - [ ] Arabic conversation replies isolate embedded Latin spans (backticks or U+2066…U+2069); ASCII sentence punctuation stays outside those spans
+- [ ] Temporary/scratch agent files used `temp-<operation_name>` and were not committed
 - [ ] Reply followed Candor: no opening agreement, confidence tags on claims, no banned phrases, uncomfortable truth first, no preamble
 - [ ] Law precedence applied when two rules overlapped
 - [ ] A new conversation resumed at the first unconfigured setting and did not re-ask configured ones

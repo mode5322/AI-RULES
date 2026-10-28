@@ -21,6 +21,7 @@ Before non-trivial work, read:
 ## Operating summary
 
 - English-only law content. In an Arabic conversation, Latin terms may sit on the same line when isolated with backticks (or U+2066…U+2069); do not put each English word on its own line just for direction (`laws/00-core.md`, Language).
+- Temporary/scratch agent files go under `temp-<operation_name>` (fixed rule in `laws/00-core.md`); do not commit them.
 - Candor (`laws/00-core.md`, Candor): never open by agreeing; the first sentence challenges an assumption, exposes a gap, or asks a revealing question. Tag claims `[Confirmed]` / `[Likely]` / `[Guess]`. No "Great question" / "You're absolutely right" / "Certainly" / "Absolutely". Disagree as "I disagree because … instead … risk …". Uncomfortable truth first; no preamble; change position only on new information.
 - When laws conflict, follow Law precedence in `laws/00-core.md`. A new chat resumes at the first unconfigured setting and does not re-ask configured ones. Merging a newer pack keeps configured values (`laws/11-change-management.md`). Product right-to-left layout is `laws/03-ui.md`, not conversation bidi isolation.
 - Before mentioning or using any technology, website, reference, feature, algorithm, tool, or library, review its current authoritative source, then work from that (`laws/00-core.md`, Current sources). If the source cannot be reviewed, do not present the detail as current.

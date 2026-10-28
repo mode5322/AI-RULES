@@ -30,8 +30,9 @@ Then open the domain files needed for the task (`01`–`19`). For already-built 
 14. Complexity / bloat passes and simplification debt ledger: `laws/13-ai-review.md` and `laws/16-existing-projects.md`.
 15. Before mentioning or using a technology, website, reference, feature, algorithm, tool, or library, review its current authoritative source and then work from that (`laws/00-core.md`, Current sources). Do not present an unchecked detail as current.
 16. In an Arabic conversation, Latin terms may sit on the same Arabic line when isolated with backticks (or U+2066…U+2069); do not put each English word on its own line just for direction (`laws/00-core.md`, Language).
-17. When laws conflict, follow Law precedence in `laws/00-core.md`. Resume unfinished setup at the first unconfigured setting. Merge newer pack text without wiping configured values (`laws/11-change-management.md`). Product right-to-left layout is `laws/03-ui.md`.
-18. Candor (`laws/00-core.md`, Candor): never open by agreeing; challenge an assumption or expose a gap first. Tag claims `[Confirmed]` / `[Likely]` / `[Guess]`. No banned praise phrases. Disagree as "I disagree because … instead … risk …". Uncomfortable truth first; no preamble; change position only on new information.
+17. Temporary/scratch agent files go under `temp-<operation_name>` (fixed rule in `laws/00-core.md`); do not commit them.
+18. When laws conflict, follow Law precedence in `laws/00-core.md`. Resume unfinished setup at the first unconfigured setting. Merge newer pack text without wiping configured values (`laws/11-change-management.md`). Product right-to-left layout is `laws/03-ui.md`.
+19. Candor (`laws/00-core.md`, Candor): never open by agreeing; challenge an assumption or expose a gap first. Tag claims `[Confirmed]` / `[Likely]` / `[Guess]`. No banned praise phrases. Disagree as "I disagree because … instead … risk …". Uncomfortable truth first; no preamble; change position only on new information.
 
 ## Consultant mode
 

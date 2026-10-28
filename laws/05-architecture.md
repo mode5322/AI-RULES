@@ -37,9 +37,10 @@ utils/        # pure helpers
 database/     # schema + data access API
 types/        # shared types
 hooks/        # reusable hooks if applicable
+temp-<op>/    # agent temporary/scratch files only (see `00-core.md`, Temporary files); never commit
 ```
 
-Adapt names to the stack (e.g. `app/`, `src/`, `lib/`) but keep role clarity.
+Adapt names to the stack (e.g. `app/`, `src/`, `lib/`) but keep role clarity. Temporary agent work MUST use `temp-<operation_name>` per `00-core.md` (fixed rule).
 
 ## Question protocol
 
