@@ -21,19 +21,20 @@ Always. Every agent session, every IDE adapter, every task type.
 - If the user answers in Arabic, MUST store the setting value in English. The mixed-script bidi rules below still apply to the conversation, not to the stored value.
 - The mixed-script bidi rules in this section are **fixed**. They are not a setting. MUST NOT ask whether to use them, and MUST NOT disable them.
 - When a conversation reply uses Arabic or another right-to-left language, Arabic prose and Latin-script terms MAY share the same line. MUST NOT put each English word on its own line solely for direction — that makes replies needlessly long.
-- MUST isolate every embedded Latin-script word, path, identifier, or similar span so the bidirectional algorithm does not reverse the Arabic around it (especially next to `.` `,` `:` `;` `!` `?`):
-  1. Prefer markdown inline code: wrap the Latin span in backticks, e.g. يُراجع `laws/00-core.md` ثم يُكمل.
-  2. If inline code is unsuitable, wrap the Latin span in Unicode Left-to-Right Isolate … Pop Directional Isolate (U+2066 … U+2069).
-- MUST place ASCII punctuation that belongs to the Arabic sentence **outside** the isolated Latin span (after the closing backtick or U+2069), never glued to the Latin letters as `file.md.` inside the Arabic run. Prefer Arabic punctuation when it reads naturally.
+- **Paragraph direction (required):** Every Arabic paragraph or standalone Arabic line MUST begin with a Right-to-Left Mark (U+200F), or the whole Arabic sentence MUST be wrapped in Right-to-Left Isolate … Pop Directional Isolate (U+2067 … U+2069). This forces RTL base direction so the sentence does not start on the left in LTR-default viewers.
+- **Latin spans (required):** MUST wrap every embedded Latin-script word, path, identifier, or similar span in Left-to-Right Isolate … Pop Directional Isolate (U+2066 … U+2069). This is mandatory even when markdown backticks are also used. Backticks alone are not enough in plain-text or weak-markdown viewers.
+- MAY also wrap the same Latin span in markdown backticks for monospace styling, but Unicode LRI…PDI remains required inside or around that span.
+- MUST place ASCII punctuation that belongs to the Arabic sentence **outside** the LRI…PDI (and outside backticks), never as a trailing `.` glued to a Latin path inside the Arabic run. Prefer Arabic punctuation (`۔` or `。`) when it reads naturally.
+- Paths or tokens that start with digits (e.g. `18-security-tooling.md`) are especially prone to flipping; the full token MUST sit inside one LRI…PDI pair.
 - One short Arabic sentence per line remains allowed for readability. It is optional, not a requirement to split every English token.
 - Law files stay English. These rules apply to conversation replies, including settings questions asked in Arabic.
 - A fenced block that is entirely English may stay one block. MUST NOT paste that block’s raw text into an Arabic sentence without isolation.
 
-Conversation sample (layout only; law prose stays English):
+Conversation sample (layout only; law prose stays English). The marks below are real Unicode characters: U+200F at line start; U+2066…U+2069 around each Latin span:
 
 ```text
-يُراجع المصدر في `laws/00-core.md` ثم يُستكمل العمل.
-بعدها يُستأنف الطلب المحبوس.
+‏بعد مراجعة ⁦laws/00-core.md⁩ يفعّل الوكيل مسار ⁦security-audit⁩ عبر ⁦18-security-tooling.md⁩ ثم يمرّر النتائج إلى ⁦19-vuln-discovery-and-remediation.md⁩۔
+‏بعدها يُستأنف الطلب المحبوس۔
 ```
 
 ### Candor
@@ -398,7 +399,7 @@ At the start of every conversation in a consuming project:
 
 - [ ] Relevant Behavior and System design settings are configured (unrelated blanks were not asked; mixed-script bidi rules stay fixed)
 - [ ] Named technologies, sites, references, features, algorithms, tools, and libraries were checked against their current authoritative source
-- [ ] Arabic conversation replies isolate embedded Latin spans (backticks or U+2066…U+2069); ASCII sentence punctuation stays outside those spans
+- [ ] Arabic replies start with U+200F (or RLI…PDI); each Latin span uses U+2066…U+2069; ASCII sentence punctuation stays outside those spans
 - [ ] Temporary/scratch agent files used `temp-<operation_name>` and were not committed
 - [ ] Reply followed Candor: no opening agreement, confidence tags on claims, no banned phrases, uncomfortable truth first, no preamble
 - [ ] Law precedence applied when two rules overlapped
