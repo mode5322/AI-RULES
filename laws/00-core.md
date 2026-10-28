@@ -18,23 +18,47 @@ Always. Every agent session, every IDE adapter, every task type.
 
 - MUST write all law file content and agent law responses that enforce these laws in **English**.
 - Settings questions MUST be asked in the language the user is speaking.
-- If the user answers in Arabic, MUST store the setting value in English. The mixed-script bidi rules below still apply to the conversation, not to the stored value.
-- The mixed-script bidi rules in this section are **fixed**. They are not a setting. MUST NOT ask whether to use them, and MUST NOT disable them.
-- When a conversation reply uses Arabic or another right-to-left language, Arabic prose and Latin-script terms MAY share the same line. MUST NOT put each English word on its own line solely for direction — that makes replies needlessly long.
-- **Paragraph direction (required):** Every Arabic paragraph or standalone Arabic line MUST begin with a Right-to-Left Mark (U+200F), or the whole Arabic sentence MUST be wrapped in Right-to-Left Isolate … Pop Directional Isolate (U+2067 … U+2069). This forces RTL base direction so the sentence does not start on the left in LTR-default viewers.
-- **Latin spans (required):** MUST wrap every embedded Latin-script word, path, identifier, or similar span in Left-to-Right Isolate … Pop Directional Isolate (U+2066 … U+2069). This is mandatory even when markdown backticks are also used. Backticks alone are not enough in plain-text or weak-markdown viewers.
-- MAY also wrap the same Latin span in markdown backticks for monospace styling, but Unicode LRI…PDI remains required inside or around that span.
-- MUST place ASCII punctuation that belongs to the Arabic sentence **outside** the LRI…PDI (and outside backticks), never as a trailing `.` glued to a Latin path inside the Arabic run. Prefer Arabic punctuation (`۔` or `。`) when it reads naturally.
-- Paths or tokens that start with digits (e.g. `18-security-tooling.md`) are especially prone to flipping; the full token MUST sit inside one LRI…PDI pair.
-- One short Arabic sentence per line remains allowed for readability. It is optional, not a requirement to split every English token.
-- Law files stay English. These rules apply to conversation replies, including settings questions asked in Arabic.
-- A fenced block that is entirely English may stay one block. MUST NOT paste that block’s raw text into an Arabic sentence without isolation.
+- If the user answers in Arabic, MUST store the setting value in English.
+- Law files stay English. Conversation mixed-script display follows the **Behavior** setting `Arabic mixed-script display` (see below). A fenced block that is entirely English may stay one block.
 
-Conversation sample (layout only; law prose stays English). The marks below are real Unicode characters: U+200F at line start; U+2066…U+2069 around each Latin span:
+#### Arabic mixed-script display (Behavior setting)
+
+- The **catalog of display methods** below is fixed. Which method the agent uses is a **Behavior** setting, not a fixed non-setting rule.
+- Profile field (English): `Arabic mixed-script display`.
+- Relevant when **Conversation language** is Arabic or another right-to-left language. If conversation language is not RTL, record `none` and do not ask.
+- Allowed stored values (English): `unicode-rtl-lri` | `unicode-lri-and-backticks` | `markdown-backticks` | `line-split-english` | `rl-isolate-sentence` | `none` | Other custom English label the user names after the viewer test.
+- Until the setting is configured, for Arabic replies MUST default to `unicode-rtl-lri`.
+- After it is configured, MUST use only the stored method for Arabic (or RTL) conversation replies that embed Latin-script terms. MUST NOT silently switch methods.
+
+**Method catalog (how each stored value formats chat):**
+
+| Value | How the agent formats Arabic + Latin |
+|---|---|
+| `unicode-rtl-lri` | Start each Arabic line with U+200F; wrap every Latin span in U+2066…U+2069; Arabic sentence punctuation outside isolates (prefer `۔`) |
+| `unicode-lri-and-backticks` | Same as `unicode-rtl-lri`, and also wrap each Latin span in markdown backticks |
+| `markdown-backticks` | Same-line Arabic; Latin spans in markdown backticks only; no required Unicode isolates |
+| `line-split-english` | Each Arabic sentence on its own line; each Latin term/path on its own line; no Latin inside an Arabic line |
+| `rl-isolate-sentence` | Wrap each Arabic sentence in U+2067…U+2069; wrap each Latin span in U+2066…U+2069 |
+
+#### Viewer test when configuring this setting
+
+Trigger when the user asks to configure this field, including: «ضبط قاعدة نص اللغة العربية»، «ضبط عرض النص العربي»، «اختبار عارض النصوص»، "Configure Arabic language text rule", "Configure Arabic mixed-script display".
+
+MUST run this procedure (do not skip the notice or the samples):
+
+1. **Notice (required, before samples):** state that the user must verify how **their** text viewer renders mixed Arabic/English with a short test, because viewers differ (RTL vs LTR base, digit-led paths, punctuation).
+2. **Same meaning, multiple formats:** show one shared Arabic sentence that embeds Latin paths/terms, once per catalog method, each clearly labeled with the English value name. Include at least: `unicode-rtl-lri`, `unicode-lri-and-backticks`, `markdown-backticks`, `line-split-english`, `rl-isolate-sentence`. Use real Unicode characters where the method requires them.
+3. **Wait:** ask which format looks correct in their viewer (one short line). Show the question-protocol option list only after «عرض خيارات» or "Show options", unless the labeled samples already act as the choice set and the user replies with a method name or number.
+4. **Store** the chosen method in English under **Behavior → Arabic mixed-script display**. Then use that method from the next Arabic reply onward.
+
+Fixed sample sentence for the test (same meaning in every format):
+
+> بعد مراجعة laws/00-core.md يفعّل الوكيل مسار security-audit عبر 18-security-tooling.md ثم يمرّر النتائج إلى 19-vuln-discovery-and-remediation.md.
+
+Example rendering for `unicode-rtl-lri` (marks are real U+200F / U+2066 / U+2069):
 
 ```text
 ‏بعد مراجعة ⁦laws/00-core.md⁩ يفعّل الوكيل مسار ⁦security-audit⁩ عبر ⁦18-security-tooling.md⁩ ثم يمرّر النتائج إلى ⁦19-vuln-discovery-and-remediation.md⁩۔
-‏بعدها يُستأنف الطلب المحبوس۔
 ```
 
 ### Candor
@@ -56,7 +80,7 @@ Applies to every conversation reply.
 6. **No preamble.** MUST NOT open with framing such as "There are several ways to look at this". MUST start with the most useful thing that can be said.
 7. **Hold position.** When the user pushes back, MUST NOT change position unless the user supplies genuinely new information or evidence. Restating belief ("but I really think…") is not new information.
 
-When a fixed output format owns the first line (`problem-brief`, the rules-setup hold, a question-protocol block), MUST keep that format and put the Candor opening in the first sentence after it. Candor does not override the Language mixed-script bidi rules.
+When a fixed output format owns the first line (`problem-brief`, the rules-setup hold, a question-protocol block, or the Arabic mixed-script viewer-test block), MUST keep that format and put the Candor opening in the first sentence after it. Candor does not override Language or the stored `Arabic mixed-script display` method.
 
 ### Strictness
 
@@ -260,6 +284,7 @@ A **setting** is a fill-in line in the project profile under **Behavior** or **S
 A setting is **relevant** only when the current project already uses that part, or the user’s current request needs it.
 
 - Conversation language is relevant. If the user is already speaking a language, record it in English and do not ask.
+- Arabic mixed-script display is relevant when Conversation language is Arabic or another right-to-left language. Otherwise record `none` and do not ask. When configuring it (including «ضبط قاعدة نص اللغة العربية»), MUST run the viewer test in Language before storing a value.
 - UI components are relevant when the project has an interface, or the current request designs a button, a form, or a screen. Record names the repo already shows, in English, and do not ask the user to list them. When the user designs a new one, add it to **System design → UI components** and implement it once. The parts that vary are inputs. Do not copy the element for each use. If the project has no interface, record `none` and do not ask.
 - Rules-setup mode is not a question. A blank means `strict-hold`. Ask only when the user asks to change it.
 - Database, framework, and external connection are relevant only when the repo already has them, or the current request needs them. If the project does not use that part, record `none` in English and do not ask.
@@ -268,7 +293,7 @@ A setting is **relevant** only when the current project already uses that part, 
 
 A setting that is not relevant MUST NOT be asked, MUST NOT be listed as incomplete, and MUST NOT hold work. Show it only when the user asks, including «عرض الإعدادات غير المتصلة» or "Show unrelated settings", or when they name that setting and ask to configure it. If the project later gains that part, the setting becomes relevant then. Do not pre-ask it.
 
-Law files `01`–`19` stay operating rules. Their `PROJECT-SPECIFIC` blanks are not required setup questions. The mixed-script bidi rules and the `temp-<operation_name>` temporary-folder rules are fixed and are not settings.
+Law files `01`–`19` stay operating rules. Their `PROJECT-SPECIFIC` blanks are not required setup questions. The `temp-<operation_name>` temporary-folder rules are fixed and are not a setting. Arabic mixed-script **methods** are fixed in Language; the chosen method is Behavior → `Arabic mixed-script display`.
 
 A setting is **configured** only when its placeholder is replaced with a concrete value. `N/A: <reason>` is a concrete value when that setting truly does not apply. These are not configured: `_______________`, a blank, `not set`, `undecided`, `TBD`, or any skip.
 
@@ -303,9 +328,9 @@ When the user asks to configure the rules (or chooses to start configuration):
 
 - Walk sections in order: **Behavior**, then **System design**.
 - One section per turn. Stay on that section across turns until every **relevant** setting in it is configured. Do not open the next section in the same message. Skip a section that has no relevant question.
-- One relevant unconfigured setting per turn. Ask it in the user’s language, in one short line, and wait. Show the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not batch settings. Do not ask a setting that does not connect to the current project. Do not ask deferral or ignore settings. Do not ask whether to keep the mixed-script bidi rules.
+- One relevant unconfigured setting per turn. Ask it in the user’s language, in one short line, and wait. Show the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not batch settings. Do not ask a setting that does not connect to the current project. Do not ask deferral or ignore settings. When configuring `Arabic mixed-script display`, MUST run the viewer test in Language (notice + multi-format samples) before storing a value.
 - Do not stop while any relevant setting remains unconfigured, unless the user pauses or defers **for this time only**.
-- A section is finished when every **relevant** setting in it is configured. Skip a section that has no relevant question. The mixed-script bidi rules are not a setting.
+- A section is finished when every **relevant** setting in it is configured. Skip a section that has no relevant question.
 - MUST NOT leave a setting as `not set`, blank, or `_______________` to finish faster.
 - MUST NOT copy secrets, connection strings, keys, or passwords into laws or the profile. When a setting would require a secret, record where it is stored, not the secret value.
 
@@ -397,14 +422,14 @@ At the start of every conversation in a consuming project:
 
 ## Post-change checklist hooks
 
-- [ ] Relevant Behavior and System design settings are configured (unrelated blanks were not asked; mixed-script bidi rules stay fixed)
+- [ ] Relevant Behavior and System design settings are configured (unrelated blanks were not asked; `temp-<operation_name>` rule stays fixed)
 - [ ] Named technologies, sites, references, features, algorithms, tools, and libraries were checked against their current authoritative source
-- [ ] Arabic replies start with U+200F (or RLI…PDI); each Latin span uses U+2066…U+2069; ASCII sentence punctuation stays outside those spans
+- [ ] Arabic replies followed Behavior → `Arabic mixed-script display` (default `unicode-rtl-lri` until set); viewer test used when configuring that field
 - [ ] Temporary/scratch agent files used `temp-<operation_name>` and were not committed
 - [ ] Reply followed Candor: no opening agreement, confidence tags on claims, no banned phrases, uncomfortable truth first, no preamble
 - [ ] Law precedence applied when two rules overlapped
 - [ ] A new conversation resumed at the first unconfigured setting and did not re-ask configured ones
-- [ ] Product UI direction follows the confirmed locale; conversation bidi isolation is not a substitute (`03-ui.md`)
+- [ ] Product UI direction follows the confirmed locale; conversation mixed-script display is not a substitute (`03-ui.md`)
 - [ ] Required questions answered or one-time deferral recorded
 - [ ] Modified surfaces listed
 - [ ] DB compatibility considered

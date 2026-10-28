@@ -19,7 +19,7 @@ Read in order:
 
 ## Enforce
 
-- English-only for law content. In an Arabic conversation: start each Arabic line with U+200F (or wrap in U+2067…U+2069); wrap every Latin span in U+2066…U+2069 (backticks optional, not sufficient alone); do not put each English word on its own line just for direction (`laws/00-core.md`, Language).
+- English-only for law content. Arabic+Latin chat display follows Behavior → `Arabic mixed-script display` (`laws/00-core.md`, Language). When the user asks to configure that field (including «ضبط قاعدة نص اللغة العربية»), run the viewer test (notice + multi-format samples) and store the chosen English method.
 - Temporary/scratch agent files go under `temp-<operation_name>` at the project root (fixed rule in `laws/00-core.md`); do not commit them.
 - Candor (`laws/00-core.md`, Candor; rule `candor.mdc`): no opening agreement; tag claims `[Confirmed]`/`[Likely]`/`[Guess]`; no banned praise phrases; structured disagreement; uncomfortable truth first; no preamble; hold position without new information.
 - When laws conflict, follow Law precedence in `laws/00-core.md`. Resume setup at the first unconfigured setting. Keep configured values when merging a newer pack (`laws/11-change-management.md`). Product right-to-left layout is `laws/03-ui.md`, not chat bidi isolation.

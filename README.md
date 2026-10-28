@@ -48,7 +48,7 @@ The agent fetches the pack, places `laws/` and `templates/` at the project root,
 - **Existing project:** follow `laws/16-existing-projects.md` (review, then a fix plan). Do not patch first.
 - **New project:** implement only after the one question this request still needs, if any.
 - A later chat must continue at the first relevant unset field. It must not restart finished sections, re-ask values that are already set, or open a field the project does not use (`laws/00-core.md`, Resume).
-- Arabic chat replies force RTL base direction (U+200F / RLI) and isolate Latin spans with U+2066…U+2069 (backticks alone are not enough). Product right-to-left layout is a separate rule (`laws/03-ui.md`).
+- Arabic+Latin chat display is Behavior → `Arabic mixed-script display` (viewer test when configuring). Product right-to-left layout is a separate rule (`laws/03-ui.md`).
 - Agent temporary files use `temp-<operation_name>` folders (fixed rule in `laws/00-core.md`); ignored via `temp-*/` in `.gitignore`.
 - Domain laws `01`–`19` open when the task needs that file. They are not a second setup walk.
 
@@ -72,7 +72,7 @@ Shorter install notes are also in `USAGE.md`.
 
 ## Core behaviors (encoded in laws)
 
-- **English only** for law file content. In an Arabic conversation, RTL base marks plus U+2066…U+2069 around Latin spans prevent LTR-default viewers from flipping paths and digits (`laws/00-core.md`).
+- **English only** for law file content. Arabic mixed-script chat methods live in `laws/00-core.md`; the chosen method is stored under Behavior after a viewer test.
 - **Four operating additions** — law precedence and setup resume (`laws/00-core.md`); upstream merge that keeps filled settings (`laws/11-change-management.md`); product right-to-left layout separate from chat lines (`laws/03-ui.md`).
 - **Current sources** — before a technology, website, reference, feature, algorithm, tool, or library is mentioned or used, its authoritative source is reviewed and the work follows what that source says now (`laws/00-core.md`).
 - **Very strict** — no execution until required questions/checks complete, except explicit **for this time only** deferral.
