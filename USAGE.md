@@ -1,6 +1,6 @@
 # Usage playbook
 
-Short guide for installing `strict-ai-rules` into a user project.
+Short guide for installing `AI-RULES` into a user project.
 
 ## Install
 
@@ -16,7 +16,7 @@ Two methods (`laws/00-core.md`, Install and sync). Copying or cloning alone does
 Send the repository URL and the command in one message:
 
 > ثبّت وزامن قواعد هذا المستودع مع المشروع الحالي
-> https://github.com/mode5322/strict-ai-rules
+> https://github.com/mode5322/AI-RULES
 
 The agent places `laws/` and `templates/` at the project root and writes **Behavior** and **System design** from the current project. Unused parts are `none` and are not asked.
 
@@ -53,7 +53,7 @@ To **show rule settings**, ask «عرض الإعدادات». The agent shows th
 
 ## Keeping the origin clean
 
-Do not push your project-specific filled laws back to the public `strict-ai-rules` origin. Customize only in your project copy.
+Do not push your project-specific filled laws back to the public `AI-RULES` origin. Customize only in your project copy.
 
 ## Updating from upstream
 

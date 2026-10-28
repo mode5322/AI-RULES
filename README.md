@@ -1,4 +1,4 @@
-# strict-ai-rules
+# AI-RULES
 
 Public **empty/template origin** of strict AI agent laws. Put this pack into **your** project with one of the two install methods below. The agent then syncs **Behavior** and **System design** for **that project only**. This GitHub origin stays blank/general.
 
@@ -17,7 +17,7 @@ Works for:
 | `templates/project-profile.template.md` | Project truth index (blanks) |
 | `AGENTS.md` | General / Codex-oriented entry |
 | `CLAUDE.md` | Claude-oriented entry |
-| `.cursor/rules/strict-ai-rules.mdc` | Cursor always-on rule pointing at `laws/` |
+| `.cursor/rules/AI-RULES.mdc` | Cursor always-on rule pointing at `laws/` |
 | `.cursor/rules/conversational-copy.mdc` | Always-on product UI copy voice |
 | `.cursor/skills/conversational-copy/` | Skill: short precise formal UI copy (Arabic: فصحى) |
 | `.cursor/skills/problem-brief/` | Skill: short diagnosis brief when the user does not know the cause |
@@ -39,7 +39,7 @@ Setup is one of two methods. Both finish with the same agent command: install an
 Send the agent the repository URL and the install command in one message:
 
 > ثبّت وزامن قواعد هذا المستودع مع المشروع الحالي
-> https://github.com/mode5322/strict-ai-rules
+> https://github.com/mode5322/AI-RULES
 
 The agent fetches the pack, places `laws/` and `templates/` at the project root, and syncs **Behavior** and **System design** from the current project. It writes values the code already shows, in English. It records `none` for a part the project does not use, and it does not ask about that part. It does not push the filled project back to the rules repository.
 

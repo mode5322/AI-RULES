@@ -4,7 +4,7 @@ Instructions for coding agents (Codex, Cursor Agent, and general LLM agents) wor
 
 ## What this is
 
-`strict-ai-rules` is a **strict law pack** for AI agents. After this folder is copied into a **user project**, agents must treat `laws/` as binding operating rules and record confirmed facts in **Behavior** and **System design** only.
+`AI-RULES` is a **strict law pack** for AI agents. After this folder is copied into a **user project**, agents must treat `laws/` as binding operating rules and record confirmed facts in **Behavior** and **System design** only.
 
 The public GitHub origin stays a blank/general template.
 

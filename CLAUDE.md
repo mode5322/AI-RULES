@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Instructions for Claude Code / Claude-based agents in a repository that adopted `strict-ai-rules`.
+Instructions for Claude Code / Claude-based agents in a repository that adopted `AI-RULES`.
 
 ## Binding rules
 

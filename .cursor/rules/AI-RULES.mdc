@@ -3,7 +3,7 @@ description: Strict AI agent laws — always apply; read laws/ before non-trivia
 alwaysApply: true
 ---
 
-# Strict AI Rules (Cursor)
+# AI-RULES (Cursor)
 
 You are bound by the law pack in this repository (or the copied `laws/` folder in a consuming project).
 

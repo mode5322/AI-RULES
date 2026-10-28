@@ -114,7 +114,7 @@ Two methods. Both end in the same agent procedure. Copying files, or sending a U
 
 The user sends the rules repository URL and tells the agent to install and sync it onto the current project. Accepted phrases, with the URL in the same message: "Install and sync the rules from this repository onto this project" and «ثبّت وزامن قواعد هذا المستودع مع المشروع الحالي».
 
-The public origin URL is `https://github.com/mode5322/strict-ai-rules`.
+The public origin URL is `https://github.com/mode5322/AI-RULES`.
 
 #### What the agent does
 
@@ -269,7 +269,7 @@ Use `templates/question-protocol.md`. Do not ask a session-mode question when th
 
 ## Rules-setup gate
 
-Applies when this pack is copied into a **consuming project** and rules setup is incomplete. It does not apply to template maintenance on the public `strict-ai-rules` origin.
+Applies when this pack is copied into a **consuming project** and rules setup is incomplete. It does not apply to template maintenance on the public `AI-RULES` origin.
 
 Setup is **incomplete** while any **relevant** setting is unconfigured. A blank that does not connect to the current project does not make setup incomplete. Profile status `complete` does not override a remaining relevant blank.
 
