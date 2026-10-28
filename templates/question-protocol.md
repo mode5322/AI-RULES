@@ -14,7 +14,7 @@ Until then, state the necessary point in one short line. Do not show numbered op
 3. End with a final **Other: _______________** custom blank (always the last numbered option).
 4. Mark **exactly one** concrete option (not Other) as **Recommended**.
 5. When helpful, add short **research-friendly suggestion hints** under options (search terms, docs to check, or trade-offs). If a hint states how a technology, website, reference, feature, algorithm, tool, or library works, review its current authoritative source first (`laws/00-core.md`, Current sources).
-6. Wait for the user's choice (or custom answer) before continuing. If the question is asked in Arabic, follow the mixed-script bidi rules in `laws/00-core.md` (Language): isolate Latin spans with backticks (or U+2066…U+2069); do not put each English word on its own line just for direction.
+6. Wait for the user's choice (or custom answer) before continuing. If the question is asked in Arabic, follow the mixed-script bidi rules in `laws/00-core.md` (Language): U+200F (or RLI) for RTL base; U+2066…U+2069 around each Latin span; do not put each English word on its own line just for direction.
 7. Do not batch multiple independent questions into one message unless the user explicitly deferred clarification for this time only (see `templates/deferral.md`).
 8. Prefer the shortest clear option list. Add extra concrete options only when they change the decision; do not pad.
 
