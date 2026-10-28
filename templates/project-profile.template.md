@@ -10,13 +10,13 @@ Laws `01`–`19` remain operating rules. They are not extra setup questions.
 
 How the user deals with the agent.
 
-- Conversation language: _______________
+- Conversation language: Arabic
 - Rules-setup mode: strict-hold | configure-on-request | _______________
-- Arabic mixed-script display: unicode-rtl-lri | unicode-lri-and-backticks | markdown-backticks | line-split-english | rl-isolate-sentence | none | _______________
+- Arabic mixed-script display: unicode-rtl-lri
 
 Do not ask the mode. A blank means `strict-hold`. Ask only when the user asks to change it.
 
-`Arabic mixed-script display` is relevant when Conversation language is Arabic or another right-to-left language. Otherwise record `none` and do not ask. When the user asks to configure it (including «ضبط قاعدة نص اللغة العربية»), run the viewer test in `laws/00-core.md` (Language) before storing a value. Until set, Arabic replies default to `unicode-rtl-lri`.
+`Arabic mixed-script display` is relevant when Conversation language is Arabic or another right-to-left language. Otherwise record `none` and do not ask. When the user asks to configure it (including «ضبط قاعدة نص اللغة العربية»), run the viewer test in `laws/00-core.md` (Language) before storing a value. Until set, Arabic replies default to `unicode-rtl-lri`. This origin profile records `unicode-rtl-lri` after the viewer test (format 1) confirmed correct rendering for the maintainer.
 
 ## System design
 
