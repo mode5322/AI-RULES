@@ -54,15 +54,14 @@ The agent fetches the pack, places `laws/` and `templates/` at the project root,
 
 ### Bring a newer pack into a project that is already synced
 
-Run method 1 or method 2 again. Say: "Sync the new upstream rules with the rules already configured in this project. Do not erase a configured value."
+Run method 1 or method 2 again with the same «ثبّت وزامن» / "Install and sync" phrases. That command already includes the merge contract (`laws/00-core.md`, Install and sync; `laws/11-change-management.md`):
 
-The agent must then (`laws/11-change-management.md`):
-
-1. Keep every configured value.
-2. Add new laws and new hard rules from the newer pack.
-3. Ask only about a new **Behavior** or **System design** field the project uses.
-4. State the source revision in the reply.
-5. Leave the filled copy in the consuming project. Do not push it back to this public origin.
+1. Keep every configured **Behavior** / **System design** value.
+2. Keep rules/skills the user added that are not part of this pack.
+3. Delete obsolete profile fields that no longer exist in the newer `templates/project-profile.template.md`.
+4. Add new laws, hard rules, and new profile blanks from the newer pack.
+5. Ask only about a new relevant blank the project uses.
+6. State the source revision in the reply. Do not push the filled copy back to this public origin.
 
 ### One-time skip
 
@@ -76,7 +75,7 @@ Shorter install notes are also in `USAGE.md`.
 - **Four operating additions** — law precedence and setup resume (`laws/00-core.md`); upstream merge that keeps filled settings (`laws/11-change-management.md`); product right-to-left layout separate from chat lines (`laws/03-ui.md`).
 - **Current sources** — before a technology, website, reference, feature, algorithm, tool, or library is mentioned or used, its authoritative source is reviewed and the work follows what that source says now (`laws/00-core.md`).
 - **Very strict** — no execution until required questions/checks complete, except explicit **for this time only** deferral.
-- **Install and sync** — the only setup entry. Method 1: copy the rules folder into the project root, then tell the agent to install and sync. Method 2: send the repository URL with the same command. The agent writes code-backed database, framework, connection, and libraries in English, records `none` for an unused part, and does not ask about it. See `laws/00-core.md`.
+- **Install and sync** («ثبّت وزامن») — the only setup entry and the update path. Keeps configured values and user-added non-pack rules; removes obsolete profile fields; adds new pack rules/blanks; syncs code-backed System design. See `laws/00-core.md` and `laws/11-change-management.md`.
 - **Question protocol** — the option list appears only when a decision is necessary and the user says «عرض خيارات» or "Show options". Otherwise one short line. Deferral and ignore settings are not asked (`templates/question-protocol.md`, `templates/deferral.md`).
 - **Show settings** — «عرض الإعدادات» shows the categories only, plus a completed/remaining table. Naming a category, such as «عرض إعدادات قواعد السلوك» or «عرض إعدادات قواعد تصميم النظام», lists only that category’s settings and values (`laws/00-core.md`).
 - **Rules-setup modes** — `strict-hold` (default: hold work until configured) or `configure-on-request` (configure only when asked; no hold for blanks). Fixed phrase for the latter: "Stop the question protocol until I ask to configure the rules" (see `templates/deferral.md`).

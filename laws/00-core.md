@@ -105,6 +105,16 @@ Before mentioning, recommending, configuring, or implementing any technology, we
 
 Two methods. Both end in the same agent procedure. Copying files, or sending a URL, does not by itself fill **Behavior** and **System design**.
 
+**Built-in merge behavior:** every «ثبّت وزامن» / "Install and sync" run — first install or later update — MUST follow this merge contract (details also in `11-change-management.md`). Reviewers and agents MUST treat install-and-sync as including this contract; it is not an optional extra phrase.
+
+1. **Keep** every configured **Behavior** and **System design** value. MUST NOT overwrite a concrete value with a blank, example, or placeholder from the public origin.
+2. **Keep** project-local rules and skills the user added that are **not** part of this pack (for example extra files under `.cursor/rules/` or `.cursor/skills/`). MUST NOT delete them.
+3. **Remove** obsolete profile variables: any **Behavior** or **System design** field that exists in the project profile but is **absent** from the newer pack’s `templates/project-profile.template.md` MUST be deleted from the project profile. Those are retired upstream settings, not user-owned custom rules.
+4. **Add** new law files, hard rules, pack `.cursor/rules/` / `.cursor/skills/`, and any new **Behavior** / **System design** blanks from the newer pack.
+5. **Apply** replaced pack text from the newer revision. A configured profile value stays; it does not keep a deleted upstream rule alive unless it is an explicit documented override under Law precedence.
+6. **Ask** only about a new relevant blank the project needs. Do not re-ask configured settings. Do not ask unrelated blanks.
+7. State the source revision in the reply. Do not push the filled project back to the public origin.
+
 #### Method 1 — copied folder
 
 1. The user copies the rules pack folder (the folder that contains `laws/`) into the consuming project root.
@@ -119,15 +129,16 @@ The public origin URL is `https://github.com/mode5322/AI-RULES`.
 #### What the agent does
 
 1. Resolve the source. Method 1: the copied folder at the project root that contains `laws/00-core.md`. Method 2: fetch that URL read-only. Do not add the rules origin as a remote that can receive a push of the filled project.
-2. Install at the consuming project root:
-   - Place `laws/` and `templates/` there. If they already exist, keep configured **Behavior** and **System design** values (`11-change-management.md`).
-   - Place the pack’s `.cursor/rules/` and `.cursor/skills/` there. Do not delete project rules that are not part of the pack.
+2. Install at the consuming project root (subject to the **Built-in merge behavior** above):
+   - Place `laws/` and `templates/` there.
+   - Place the pack’s `.cursor/rules/` and `.cursor/skills/` there. Do not delete project rules/skills that are not part of the pack.
    - If `AGENTS.md` or `CLAUDE.md` is missing, copy it from the pack. If the project already has that file, do not replace it.
    - If the pack sits in a subfolder, the installed copy is the root `laws/` folder. Do not leave the only copy inside a subfolder the editor will not load.
-3. Sync onto the current project, in English:
+3. Sync onto the current project, in English (and apply the merge contract):
+   - Preserve configured profile values; remove obsolete profile fields not in the newer template; add new blanks from the newer template.
    - Write the database, framework, external connection, libraries, and UI components the code already shows.
    - Record `none` for a part the project does not use. Do not ask about it.
-   - Record conversation language from the language the user is speaking.
+   - Record conversation language from the language the user is speaking when that field is still blank.
    - Do not copy secrets, connection strings, keys, or passwords.
 4. Do not push the filled project back to the rules repository.
 5. State the source revision in the reply. Do not add a profile blank for it.
@@ -426,6 +437,7 @@ At the start of every conversation in a consuming project:
 ## Post-change checklist hooks
 
 - [ ] Relevant Behavior and System design settings are configured (unrelated blanks were not asked; `temp-<operation_name>` rule stays fixed)
+- [ ] Install/sync (if run) kept configured values and user-added non-pack rules, removed obsolete profile fields, added new pack rules/blanks, stated revision
 - [ ] Named technologies, sites, references, features, algorithms, tools, and libraries were checked against their current authoritative source
 - [ ] Arabic replies followed Behavior → `Arabic mixed-script display` (default `unicode-rtl-lri` until set); viewer test used when configuring that field
 - [ ] Temporary/scratch agent files used `temp-<operation_name>` and were not committed

@@ -36,9 +36,11 @@ Control how changes are planned, applied, reviewed, and rolled back so the proje
 
 ## Upstream law merge
 
-When a newer copy of this pack is brought into a consuming project, the entry is **Install and sync** in `00-core.md` (copied folder, or repository URL). Then:
+When a newer copy of this pack is brought into a consuming project, the entry is **Install and sync** («ثبّت وزامن») in `00-core.md` (copied folder, or repository URL). That command **always** includes this merge contract — first install or later update. Agents and reviewers MUST evaluate install-and-sync against these bullets; the user does not need a second special phrase.
 
 - MUST NOT replace a configured setting with a blank, example, or placeholder from the public origin.
+- MUST keep project-local rules and skills the user added that are not part of this pack. MUST NOT delete them when placing pack `.cursor/rules/` / `.cursor/skills/`.
+- MUST delete obsolete **Behavior** and **System design** fields from the project profile when those fields are absent from the newer pack’s `templates/project-profile.template.md`. Retired upstream variables are removed; user-added non-pack rules are not profile fields and stay.
 - MUST add new law files and new hard rules from the newer pack. Do not add a fill-in setting outside **Behavior** and **System design**.
 - MUST apply rule text that the newer pack replaced. A configured profile value stays. It does not keep a deleted upstream rule alive unless that value is an explicit documented override, and **Law precedence** in `00-core.md` still applies.
 - A new relevant Behavior or System design blank is unconfigured. Continue with **Resume in a new conversation** in `00-core.md`. Do not re-ask a configured setting, and do not ask a setting the project does not use.
@@ -70,7 +72,7 @@ Ask from this file only when the current task needs this module and the repo doe
 - [ ] Blast radius assessed
 - [ ] Five-point mandatory review done
 - [ ] Rollback idea known for risky changes
-- [ ] Upstream merge kept configured settings and recorded the revision merged
+- [ ] Install/sync merge: kept configured settings; kept user-added non-pack rules; removed obsolete profile fields; added new pack rules/blanks; recorded revision
 
 ## PROJECT-SPECIFIC
 

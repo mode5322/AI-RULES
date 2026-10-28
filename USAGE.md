@@ -57,10 +57,11 @@ Do not push your project-specific filled laws back to the public `AI-RULES` orig
 
 ## Updating from upstream
 
-When a newer pack is copied onto a project that already has filled settings, follow `laws/11-change-management.md` (Upstream law merge):
+Run «ثبّت وزامن» again (method 1 or 2). Install and sync **is** the upstream merge (`laws/00-core.md`, `laws/11-change-management.md`):
 
 1. Keep every configured value. Do not paste origin blanks over them.
-2. Add new laws and new blank settings from the newer pack.
-3. Continue setup only for the new blanks (`laws/00-core.md`, Resume in a new conversation).
-4. Record the upstream revision in the project profile.
-5. Do not push the filled result back to the public origin.
+2. Keep rules/skills the user added that are not part of this pack.
+3. Delete obsolete **Behavior** / **System design** fields missing from the newer profile template.
+4. Add new laws and new blank settings from the newer pack.
+5. Continue setup only for the new relevant blanks (`laws/00-core.md`, Resume in a new conversation).
+6. State the upstream revision in the reply. Do not push the filled result back to the public origin.
