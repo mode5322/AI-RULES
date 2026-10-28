@@ -32,7 +32,7 @@ Then open the domain files needed for the task (`01`–`19`). For already-built 
 16. Arabic+Latin chat display follows Behavior → `Arabic mixed-script display`. On «ضبط قاعدة نص اللغة العربية» (or equivalent), run the viewer test in `laws/00-core.md` (Language) and store the chosen method in English.
 17. Temporary/scratch agent files go under `temp-<operation_name>` (fixed rule in `laws/00-core.md`); do not commit them.
 18. When laws conflict, follow Law precedence in `laws/00-core.md`. Resume unfinished setup at the first unconfigured setting. Merge newer pack text without wiping configured values (`laws/11-change-management.md`). Product right-to-left layout is `laws/03-ui.md`.
-19. Candor (`laws/00-core.md`, Candor): never open by agreeing; challenge an assumption or expose a gap first. Tag claims `[Confirmed]` / `[Likely]` / `[Guess]`. No banned praise phrases. Disagree as "I disagree because … instead … risk …". Uncomfortable truth first; no preamble; change position only on new information.
+19. Candor (`laws/00-core.md`, Candor): never open by agreeing; challenge an assumption or expose a gap first. No banned praise phrases. Disagree as "I disagree because … instead … risk …". Uncomfortable truth first; no preamble; change position only on new information.
 
 ## Consultant mode
 
