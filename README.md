@@ -48,7 +48,7 @@ The agent fetches the pack, places `laws/` and `templates/` at the project root,
 - **Existing project:** follow `laws/16-existing-projects.md` (review, then a fix plan). Do not patch first.
 - **New project:** implement only after the one question this request still needs, if any.
 - A later chat must continue at the first relevant unset field. It must not restart finished sections, re-ask values that are already set, or open a field the project does not use (`laws/00-core.md`, Resume).
-- Arabic+Latin chat display is Behavior → `Arabic mixed-script display` (viewer test when configuring; samples as bare paragraphs, not code boxes). Product right-to-left layout is a separate rule (`laws/03-ui.md`).
+- Arabic+Latin chat display is Behavior → `Arabic mixed-script display` (must be **applied** every Arabic reply, not only stored; viewer test when configuring; samples as bare paragraphs, not code boxes). Product right-to-left layout is a separate rule (`laws/03-ui.md`).
 - Agent temporary files use `temp-<operation_name>` folders (fixed rule in `laws/00-core.md`); ignored via `temp-*/` in `.gitignore`.
 - Domain laws `01`–`19` open when the task needs that file. They are not a second setup walk.
 

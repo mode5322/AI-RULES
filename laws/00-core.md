@@ -24,21 +24,29 @@ Always. Every agent session, every IDE adapter, every task type.
 #### Arabic mixed-script display (Behavior setting)
 
 - The **catalog of display methods** below is fixed. Which method the agent uses is a **Behavior** setting, not a fixed non-setting rule.
-- Profile field (English): `Arabic mixed-script display`.
+- Profile field (English): `Arabic mixed-script display`. Read it from the project profile (for example `templates/project-profile.md` or the consuming project’s profile copy).
 - Relevant when **Conversation language** is Arabic or another right-to-left language. If conversation language is not RTL, record `none` and do not ask.
 - Allowed stored values (English): `unicode-rtl-lri` | `unicode-lri-and-backticks` | `markdown-backticks` | `line-split-english` | `rl-isolate-sentence` | `none` | Other custom English label the user names after the viewer test.
 - Until the setting is configured, for Arabic replies MUST default to `unicode-rtl-lri`.
 - After it is configured, MUST use only the stored method for Arabic (or RTL) conversation replies that embed Latin-script terms. MUST NOT silently switch methods.
 
-**Method catalog (how each stored value formats chat):**
+##### Apply every reply (not storage alone)
 
-| Value | How the agent formats Arabic + Latin |
-|---|---|
-| `unicode-rtl-lri` | Start each Arabic line with U+200F; wrap every Latin span in U+2066…U+2069; Arabic sentence punctuation outside isolates (prefer `۔`) |
-| `unicode-lri-and-backticks` | Same as `unicode-rtl-lri`, and also wrap each Latin span in markdown backticks |
-| `markdown-backticks` | Same-line Arabic; Latin spans in markdown backticks only; no required Unicode isolates |
-| `line-split-english` | Each Arabic sentence on its own line; each Latin term/path on its own line; no Latin inside an Arabic line |
-| `rl-isolate-sentence` | Wrap each Arabic sentence in U+2067…U+2069; wrap each Latin span in U+2066…U+2069 |
+A correct stored value is **not** enough. The gap that breaks chat is failing to **emit** the marks and wrappers on every Arabic (or RTL) reply.
+
+- MUST read `Arabic mixed-script display` at the start of each turn that will reply in Arabic/RTL, then format **that entire reply** with the stored method.
+- MUST apply the method to every Arabic/RTL line in the reply that contains or sits beside Latin-script terms — including lists, short labels, follow-ups, and error text — not only to the first paragraph or to viewer-test samples.
+- MUST NOT claim the setting is “already configured” as a substitute for inserting U+200F / U+2066…U+2069 / backticks (as required by the method) in the outgoing text.
+- MUST NOT switch to another catalog method (for example drifting into `line-split-english` or bare Latin) unless the user changes the stored setting (or runs the viewer test and stores a new value).
+- For methods that use U+200F and/or LRI/PDI, MUST prefer plain paragraphs and simple lists over markdown tables or mixed Arabic+Latin heading lines that strip or reorder isolates in common chat viewers. If a table would break direction, use short labeled paragraphs instead.
+
+##### Method catalog (how each stored value formats chat)
+
+- `unicode-rtl-lri`: Start **each** Arabic/RTL line with U+200F. Wrap **every** Latin span in U+2066 … U+2069. Put Arabic sentence punctuation outside the isolate (prefer `۔`).
+- `unicode-lri-and-backticks`: Start **each** Arabic/RTL line with U+200F. Wrap **every** Latin span as U+2066 + markdown inline code (backticks around the Latin text) + U+2069 — order: LRI, opening backtick(s), Latin span, closing backtick(s), PDI. Punctuation for the Arabic sentence stays outside that whole wrap.
+- `markdown-backticks`: Same-line Arabic; Latin spans in markdown backticks only; no required Unicode isolates.
+- `line-split-english`: Each Arabic sentence on its own line; each Latin term/path on its own line; no Latin inside an Arabic line.
+- `rl-isolate-sentence`: Wrap each Arabic sentence in U+2067 … U+2069; wrap each Latin span in U+2066 … U+2069.
 
 #### Viewer test when configuring this setting
 
@@ -438,7 +446,7 @@ At the start of every conversation in a consuming project:
 - [ ] Relevant Behavior and System design settings are configured (unrelated blanks were not asked; `temp-<operation_name>` rule stays fixed)
 - [ ] Install/sync (if run) kept configured values and user-added non-pack rules, removed obsolete profile fields, added new pack rules/blanks, stated revision
 - [ ] Named technologies, sites, references, features, algorithms, tools, and libraries were checked against their current authoritative source
-- [ ] Arabic replies followed Behavior → `Arabic mixed-script display` (default `unicode-rtl-lri` until set); viewer test used when configuring that field; samples were bare paragraphs (not fenced boxes)
+- [ ] Arabic replies **applied** Behavior → `Arabic mixed-script display` in the outgoing text every turn (default `unicode-rtl-lri` until set); no silent method drift; viewer-test samples were bare paragraphs (not fenced boxes)
 - [ ] Temporary/scratch agent files used `temp-<operation_name>` and were not committed
 - [ ] Reply followed Candor: no opening agreement, no banned phrases, uncomfortable truth first, no preamble
 - [ ] Law precedence applied when two rules overlapped

@@ -16,7 +16,7 @@ How the user deals with the agent.
 
 Do not ask the mode. A blank means `strict-hold`. Ask only when the user asks to change it.
 
-`Arabic mixed-script display` is relevant when Conversation language is Arabic or another right-to-left language. Otherwise record `none` and do not ask. When the user asks to configure it (including «ضبط قاعدة نص اللغة العربية»), run the viewer test in `laws/00-core.md` (Language) before storing a value — samples MUST be bare chat paragraphs, not fenced code boxes. Until set, Arabic replies default to `unicode-rtl-lri`.
+`Arabic mixed-script display` is relevant when Conversation language is Arabic or another right-to-left language. Otherwise record `none` and do not ask. When the user asks to configure it (including «ضبط قاعدة نص اللغة العربية»), run the viewer test in `laws/00-core.md` (Language) before storing a value — samples MUST be bare chat paragraphs, not fenced code boxes. Until set, Arabic replies default to `unicode-rtl-lri`. After it is set, every Arabic/RTL reply MUST emit that method’s marks/wrappers; storing the value alone is not compliance.
 
 ## System design
 
