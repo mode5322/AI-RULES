@@ -118,10 +118,11 @@ Two methods. Both end in the same agent procedure. Copying files, or sending a U
 1. **Keep** every configured **Behavior** and **System design** value. MUST NOT overwrite a concrete value with a blank, example, or placeholder from the public origin.
 2. **Keep** project-local rules and skills the user added that are **not** part of this pack (for example extra files under `.cursor/rules/` or `.cursor/skills/`). MUST NOT delete them.
 3. **Remove** obsolete profile variables: any **Behavior** or **System design** field that exists in the project profile but is **absent** from the newer pack’s `templates/project-profile.template.md` MUST be deleted from the project profile. Those are retired upstream settings, not user-owned custom rules.
-4. **Add** new law files, hard rules, pack `.cursor/rules/` / `.cursor/skills/`, and any new **Behavior** / **System design** blanks from the newer pack.
+4. **Add** new law files, hard rules, pack `.cursor/rules/` / `.cursor/skills/`, and any new **Behavior** / **System design** blanks from the newer pack. That **MUST** include always-on `.cursor/rules/arabic-mixed-script.mdc` and `.cursor/rules/AI-RULES.mdc` at the consuming project root.
 5. **Apply** replaced pack text from the newer revision. A configured profile value stays; it does not keep a deleted upstream rule alive unless it is an explicit documented override under Law precedence.
-6. **Ask** only about a new relevant blank the project needs. Do not re-ask configured settings. Do not ask unrelated blanks.
-7. State the source revision in the reply. Do not push the filled project back to the public origin.
+6. **Force Arabic mixed-script readiness** (required for a complete sync — see **What the agent does**): verify the always-on rule files exist; when Conversation language is Arabic or another RTL language and **Behavior → Arabic mixed-script display** is blank, set it to `unicode-rtl-lri` (do not overwrite a concrete stored method); state in the sync reply that **every new chat** MUST **emit** that method from the first Arabic/RTL reply (storage alone is not compliance).
+7. **Ask** only about a new relevant blank the project needs. Do not re-ask configured settings. Do not ask unrelated blanks.
+8. State the source revision in the reply. Do not push the filled project back to the public origin.
 
 #### Method 1 — copied folder
 
@@ -148,9 +149,18 @@ The public origin URL is `https://github.com/mode5322/AI-RULES`.
    - Record `none` for a part the project does not use. Do not ask about it.
    - Record conversation language from the language the user is speaking when that field is still blank.
    - Do not copy secrets, connection strings, keys, or passwords.
-4. Do not push the filled project back to the rules repository.
-5. State the source revision in the reply. Do not add a profile blank for it.
-6. If one relevant field is still unknown and the current request needs it, ask that one field. Otherwise continue the held request.
+4. **Verify Arabic mixed-script always-on rules (blocking for sync completeness):**
+   - Confirm `.cursor/rules/arabic-mixed-script.mdc` and `.cursor/rules/AI-RULES.mdc` exist at the consuming project root with `alwaysApply: true` (or the editor equivalent that loads them every session).
+   - If either file is missing or empty after place/copy, restore it from the pack source before treating sync as done. MUST NOT report install/sync complete while `arabic-mixed-script.mdc` is absent.
+5. **Configure or keep Arabic mixed-script display when RTL applies:**
+   - If Conversation language is Arabic or another right-to-left language and **Behavior → Arabic mixed-script display** is blank, set it to `unicode-rtl-lri` now (default until the user runs the viewer test and stores another method). MUST NOT overwrite a concrete stored value.
+   - If Conversation language is not RTL, record `none` for that field when blank and do not force an RTL method.
+6. **Emit and state in the sync reply (same turn):**
+   - If this reply is Arabic/RTL, MUST already emit the method from step 5 (or the stored method) in **this** reply — including any `problem-brief` lines; bare paragraphs only, never a fenced code box for that brief.
+   - MUST state: (a) that `arabic-mixed-script.mdc` is present, (b) the English value of **Arabic mixed-script display** now in force, and (c) that **every new conversation** MUST read that setting and **emit** its marks from the **first** Arabic/RTL reply (storage alone is not compliance).
+7. Do not push the filled project back to the rules repository.
+8. State the source revision in the reply. Do not add a profile blank for it.
+9. If one relevant field is still unknown and the current request needs it, ask that one field. Otherwise continue the held request.
 
 ### Law precedence
 
@@ -418,6 +428,7 @@ At the start of every conversation in a consuming project:
 
 - MUST read the profile rules-setup status, held first request, last finished section, and next section.
 - MUST scan for unconfigured settings before any product or code work.
+- **Arabic mixed-script (every new chat):** MUST confirm `.cursor/rules/arabic-mixed-script.mdc` is present. If it is missing after a claimed install/sync, restore it from the pack (or tell the user to re-run «ثبّت وزامن») before product work that needs Arabic replies. MUST read **Behavior → Arabic mixed-script display** (default `unicode-rtl-lri` if blank and Conversation language is Arabic/RTL) and **emit** that method on the **first** Arabic/RTL reply of the conversation — including `problem-brief` — as bare paragraphs. A stored value without marks in the outgoing text is non-compliance.
 - If every **relevant** setting is configured, MUST NOT restart rules setup.
 - If any **relevant** setting is unconfigured, MUST hold product and code work and continue at the first relevant unconfigured setting in section order. Do not resume setup for an unrelated blank.
 - MUST NOT re-ask a setting that is already configured.
@@ -445,9 +456,9 @@ At the start of every conversation in a consuming project:
 ## Post-change checklist hooks
 
 - [ ] Relevant Behavior and System design settings are configured (unrelated blanks were not asked; `temp-<operation_name>` rule stays fixed)
-- [ ] Install/sync (if run) kept configured values and user-added non-pack rules, removed obsolete profile fields, added new pack rules/blanks, stated revision
+- [ ] Install/sync (if run) kept configured values and user-added non-pack rules, removed obsolete profile fields, added new pack rules/blanks, verified `.cursor/rules/arabic-mixed-script.mdc` (+ `AI-RULES.mdc`), set blank Arabic mixed-script display to `unicode-rtl-lri` when Conversation language is RTL, stated emit-every-new-chat + revision in the sync reply
 - [ ] Named technologies, sites, references, features, algorithms, tools, and libraries were checked against their current authoritative source
-- [ ] Arabic replies **applied** Behavior → `Arabic mixed-script display` in the outgoing text every turn (default `unicode-rtl-lri` until set); no silent method drift; viewer-test samples were bare paragraphs (not fenced boxes)
+- [ ] Arabic replies **applied** Behavior → `Arabic mixed-script display` in the outgoing text every turn from the **first** reply of a new chat (default `unicode-rtl-lri` until set); no silent method drift; viewer-test / `problem-brief` samples were bare paragraphs (not fenced boxes)
 - [ ] Temporary/scratch agent files used `temp-<operation_name>` and were not committed
 - [ ] Reply followed Candor: no opening agreement, no banned phrases, uncomfortable truth first, no preamble
 - [ ] Law precedence applied when two rules overlapped

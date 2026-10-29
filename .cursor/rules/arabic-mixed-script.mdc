@@ -5,9 +5,9 @@ alwaysApply: true
 
 # Arabic mixed-script display (every reply)
 
-When the user is speaking Arabic (or another RTL language), or the reply is in Arabic:
+When the user is speaking Arabic (or another RTL language), or the reply is in Arabic — including the **first** reply of a new conversation after Install and sync:
 
-1. Read Behavior → `Arabic mixed-script display` from the project profile. If blank, use `unicode-rtl-lri`.
+1. Read Behavior → `Arabic mixed-script display` from the project profile. If blank, use `unicode-rtl-lri` (Install and sync MUST set that default when Conversation language is RTL).
 2. **Emit** that method in **this** reply. A stored value alone is not compliance.
 3. For `unicode-rtl-lri` and `unicode-lri-and-backticks`:
    - Start **every** Arabic/RTL line with U+200F.

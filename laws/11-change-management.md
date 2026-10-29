@@ -41,8 +41,9 @@ When a newer copy of this pack is brought into a consuming project, the entry is
 - MUST NOT replace a configured setting with a blank, example, or placeholder from the public origin.
 - MUST keep project-local rules and skills the user added that are not part of this pack. MUST NOT delete them when placing pack `.cursor/rules/` / `.cursor/skills/`.
 - MUST delete obsolete **Behavior** and **System design** fields from the project profile when those fields are absent from the newer pack’s `templates/project-profile.template.md`. Retired upstream variables are removed; user-added non-pack rules are not profile fields and stay.
-- MUST add new law files and new hard rules from the newer pack. Do not add a fill-in setting outside **Behavior** and **System design**.
+- MUST add new law files and new hard rules from the newer pack. Do not add a fill-in setting outside **Behavior** and **System design**. That includes always-on `.cursor/rules/arabic-mixed-script.mdc` and `.cursor/rules/AI-RULES.mdc`. Sync is incomplete while `arabic-mixed-script.mdc` is missing.
 - MUST apply rule text that the newer pack replaced. A configured profile value stays. It does not keep a deleted upstream rule alive unless that value is an explicit documented override, and **Law precedence** in `00-core.md` still applies.
+- When Conversation language is Arabic or another RTL language and **Behavior → Arabic mixed-script display** is blank, MUST set it to `unicode-rtl-lri` during install/sync (do not overwrite a concrete stored method). The sync reply MUST state that every new chat emits that method from the first Arabic/RTL reply (`00-core.md`, Install and sync / Resume).
 - A new relevant Behavior or System design blank is unconfigured. Continue with **Resume in a new conversation** in `00-core.md`. Do not re-ask a configured setting, and do not ask a setting the project does not use.
 - MUST state the source revision in the reply. Do not add a profile blank for it.
 - MUST NOT push the filled project laws back to the public origin.

@@ -48,8 +48,8 @@ The agent fetches the pack, places `laws/` and `templates/` at the project root,
 
 - **Existing project:** follow `laws/16-existing-projects.md` (review, then a fix plan). Do not patch first.
 - **New project:** implement only after the one question this request still needs, if any.
-- A later chat must continue at the first relevant unset field. It must not restart finished sections, re-ask values that are already set, or open a field the project does not use (`laws/00-core.md`, Resume).
-- Arabic+Latin chat display is Behavior → `Arabic mixed-script display` (must be **applied** every Arabic reply, not only stored; viewer test when configuring; samples as bare paragraphs, not code boxes). Product right-to-left layout is a separate rule (`laws/03-ui.md`).
+- A later chat must continue at the first relevant unset field. It must not restart finished sections, re-ask values that are already set, or open a field the project does not use. It must also confirm `arabic-mixed-script.mdc` and **emit** Arabic mixed-script marks from the first Arabic reply (`laws/00-core.md`, Resume).
+- Arabic+Latin chat display is Behavior → `Arabic mixed-script display` (must be **applied** every Arabic reply from the first turn of a new chat, not only stored; Install and sync verifies the always-on rule and fills a blank RTL display with `unicode-rtl-lri`; viewer test when configuring; samples as bare paragraphs, not code boxes). Product right-to-left layout is a separate rule (`laws/03-ui.md`).
 - Agent temporary files use `temp-<operation_name>` folders (fixed rule in `laws/00-core.md`); ignored via `temp-*/` in `.gitignore`.
 - Domain laws `01`–`19` open when the task needs that file. They are not a second setup walk.
 
@@ -60,9 +60,10 @@ Run method 1 or method 2 again with the same «ثبّت وزامن» / "Install 
 1. Keep every configured **Behavior** / **System design** value.
 2. Keep rules/skills the user added that are not part of this pack.
 3. Delete obsolete profile fields that no longer exist in the newer `templates/project-profile.template.md`.
-4. Add new laws, hard rules, and new profile blanks from the newer pack.
-5. Ask only about a new relevant blank the project uses.
-6. State the source revision in the reply. Do not push the filled copy back to this public origin.
+4. Add new laws, hard rules, and new profile blanks from the newer pack — including always-on `.cursor/rules/arabic-mixed-script.mdc` (sync incomplete if missing).
+5. When Conversation language is Arabic/RTL and Arabic mixed-script display is blank, set `unicode-rtl-lri`; state in the reply that every new chat must **emit** marks from the first Arabic reply.
+6. Ask only about a new relevant blank the project uses.
+7. State the source revision in the reply. Do not push the filled copy back to this public origin.
 
 ### One-time skip
 
