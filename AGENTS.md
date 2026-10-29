@@ -20,7 +20,7 @@ Before non-trivial work, read:
 
 ## Operating summary
 
-- English-only law content. Arabic+Latin chat display follows Behavior → `Arabic mixed-script display` (`laws/00-core.md`, Language). A stored value is not enough: every Arabic/RTL reply MUST emit that method’s marks/wrappers (no silent drift to another method). When configuring that field (including «ضبط قاعدة نص اللغة العربية»), run the viewer test (notice + multi-format samples as bare paragraphs, never fenced code boxes) and store the chosen English method.
+- English-only law content. Arabic+Latin chat display follows Behavior → `Arabic mixed-script display` and always-on `.cursor/rules/arabic-mixed-script.mdc`. Every Arabic/RTL reply MUST emit the marks (including `problem-brief`); never fence that brief in a code box. When configuring the field (including «ضبط قاعدة نص اللغة العربية»), run the viewer test with bare-paragraph samples.
 - Temporary/scratch agent files go under `temp-<operation_name>` (fixed rule in `laws/00-core.md`); do not commit them.
 - Candor (`laws/00-core.md`, Candor): never open by agreeing; the first sentence challenges an assumption, exposes a gap, or asks a revealing question. No "Great question" / "You're absolutely right" / "Certainly" / "Absolutely". Disagree as "I disagree because … instead … risk …". Uncomfortable truth first; no preamble; change position only on new information.
 - When laws conflict, follow Law precedence in `laws/00-core.md`. A new chat resumes at the first unconfigured setting and does not re-ask configured ones. Merging a newer pack keeps configured values (`laws/11-change-management.md`). Product right-to-left layout is `laws/03-ui.md`, not conversation bidi isolation.

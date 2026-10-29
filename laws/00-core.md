@@ -35,10 +35,11 @@ Always. Every agent session, every IDE adapter, every task type.
 A correct stored value is **not** enough. The gap that breaks chat is failing to **emit** the marks and wrappers on every Arabic (or RTL) reply.
 
 - MUST read `Arabic mixed-script display` at the start of each turn that will reply in Arabic/RTL, then format **that entire reply** with the stored method.
-- MUST apply the method to every Arabic/RTL line in the reply that contains or sits beside Latin-script terms — including lists, short labels, follow-ups, and error text — not only to the first paragraph or to viewer-test samples.
+- MUST apply the method to every Arabic/RTL line in the reply that contains or sits beside Latin-script terms — including lists, short labels, follow-ups, error text, and **`problem-brief` lines** — not only to the first paragraph or to viewer-test samples.
 - MUST NOT claim the setting is “already configured” as a substitute for inserting U+200F / U+2066…U+2069 / backticks (as required by the method) in the outgoing text.
 - MUST NOT switch to another catalog method (for example drifting into `line-split-english` or bare Latin) unless the user changes the stored setting (or runs the viewer test and stores a new value).
 - For methods that use U+200F and/or LRI/PDI, MUST prefer plain paragraphs and simple lists over markdown tables or mixed Arabic+Latin heading lines that strip or reorder isolates in common chat viewers. If a table would break direction, use short labeled paragraphs instead.
+- MUST NOT put Arabic/RTL mixed prose — including `problem-brief` — inside a fenced code block or bordered copy-box in chat. A new conversation still MUST apply these marks; always-on rule `.cursor/rules/arabic-mixed-script.mdc` restates this for every session.
 
 ##### Method catalog (how each stored value formats chat)
 

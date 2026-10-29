@@ -33,15 +33,13 @@ Standardize how agents respond to errors and failures: surface immediately, prop
 
 ## User-facing diagnosis brief (when the user does not know the cause)
 
-When the user asks what went wrong and clearly does **not** already know the cause, MUST lead with this short brief (skill `problem-brief`) before the solutions block:
+When the user asks what went wrong and clearly does **not** already know the cause, MUST lead with this short brief (skill `problem-brief`) before the solutions block. Emit it as **bare chat paragraphs** — MUST NOT wrap it in a fenced code block or UI box (those break Arabic+Latin direction). When the reply is Arabic/RTL, apply Behavior → `Arabic mixed-script display` on every brief line (`laws/00-core.md`).
 
-```text
 مكان المشكلة = <path or URL where the failure appears>
 سبب المشكلة = ملف (<filename>), <short cause>
 حل المشكلة = <primary fix: move/copy/create what → where>
 حل المشكلة بطريقة أخرى = يجب تعديل <what> في الملف "<file path>" في السطر رقم "<N>"
 يجب أن يكون "<exact expected line, value, or shape>"
-```
 
 Then continue with the solutions template below and wait.
 

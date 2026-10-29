@@ -22,7 +22,8 @@ Works for:
 | `.cursor/skills/conversational-copy/` | Skill: short precise formal UI copy (Arabic: فصحى) |
 | `.cursor/skills/problem-brief/` | Skill: short diagnosis brief when the user does not know the cause |
 | `.cursor/skills/security-audit/` | Vendored multi-phase security audit skill (Cloudflare MIT upstream) |
-| `.cursor/rules/problem-brief.mdc` | Always-on problem-brief format |
+| `.cursor/rules/problem-brief.mdc` | Always-on problem-brief format (bare paragraphs; no code box) |
+| `.cursor/rules/arabic-mixed-script.mdc` | Always-on: emit Arabic mixed-script marks every RTL reply |
 | `.cursor/rules/candor.mdc` | Always-on candor: no opening agreement, structured disagreement |
 
 ## How to use
