@@ -48,18 +48,17 @@ MUST run this procedure (do not skip the notice or the samples):
 
 1. **Notice (required, before samples):** state that the user must verify how **their** text viewer renders mixed Arabic/English with a short test, because viewers differ (RTL vs LTR base, digit-led paths, punctuation).
 2. **Same meaning, multiple formats:** show one shared Arabic sentence that embeds Latin paths/terms, once per catalog method, each clearly labeled with the English value name. Include at least: `unicode-rtl-lri`, `unicode-lri-and-backticks`, `markdown-backticks`, `line-split-english`, `rl-isolate-sentence`. Use real Unicode characters where the method requires them.
-3. **Wait:** ask which format looks correct in their viewer (one short line). Show the question-protocol option list only after «عرض خيارات» or "Show options", unless the labeled samples already act as the choice set and the user replies with a method name or number.
-4. **Store** the chosen method in English under **Behavior → Arabic mixed-script display**. Then use that method from the next Arabic reply onward.
+3. **Natural paragraphs only (required):** MUST render every viewer-test sample as ordinary chat paragraphs in the reply body. MUST NOT wrap samples in fenced code blocks (triple backticks), `<pre>`, monospace dump boxes, quote-cards, or any UI “box” that adds a border/copy chip around the sample. Labels may be short bold or plain lines above each sample; the sample itself stays bare paragraph text so the user’s viewer is tested — not a code widget.
+4. **Wait:** ask which format looks correct in their viewer (one short line). Show the question-protocol option list only after «عرض خيارات» or "Show options", unless the labeled samples already act as the choice set and the user replies with a method name or number.
+5. **Store** the chosen method in English under **Behavior → Arabic mixed-script display**. Then use that method from the next Arabic reply onward.
 
-Fixed sample sentence for the test (same meaning in every format):
+Fixed sample sentence for the test (same meaning in every format; shown here as documentation only — in chat, emit it as a bare paragraph, never inside a fence):
 
-> بعد مراجعة laws/00-core.md يفعّل الوكيل مسار security-audit عبر 18-security-tooling.md ثم يمرّر النتائج إلى 19-vuln-discovery-and-remediation.md.
+بعد مراجعة laws/00-core.md يفعّل الوكيل مسار security-audit عبر 18-security-tooling.md ثم يمرّر النتائج إلى 19-vuln-discovery-and-remediation.md.
 
-Example rendering for `unicode-rtl-lri` (marks are real U+200F / U+2066 / U+2069):
+Example bare-paragraph rendering for `unicode-rtl-lri` (marks are real U+200F / U+2066 / U+2069; do not fence this in chat):
 
-```text
 ‏بعد مراجعة ⁦laws/00-core.md⁩ يفعّل الوكيل مسار ⁦security-audit⁩ عبر ⁦18-security-tooling.md⁩ ثم يمرّر النتائج إلى ⁦19-vuln-discovery-and-remediation.md⁩۔
-```
 
 ### Candor
 
@@ -439,7 +438,7 @@ At the start of every conversation in a consuming project:
 - [ ] Relevant Behavior and System design settings are configured (unrelated blanks were not asked; `temp-<operation_name>` rule stays fixed)
 - [ ] Install/sync (if run) kept configured values and user-added non-pack rules, removed obsolete profile fields, added new pack rules/blanks, stated revision
 - [ ] Named technologies, sites, references, features, algorithms, tools, and libraries were checked against their current authoritative source
-- [ ] Arabic replies followed Behavior → `Arabic mixed-script display` (default `unicode-rtl-lri` until set); viewer test used when configuring that field
+- [ ] Arabic replies followed Behavior → `Arabic mixed-script display` (default `unicode-rtl-lri` until set); viewer test used when configuring that field; samples were bare paragraphs (not fenced boxes)
 - [ ] Temporary/scratch agent files used `temp-<operation_name>` and were not committed
 - [ ] Reply followed Candor: no opening agreement, no banned phrases, uncomfortable truth first, no preamble
 - [ ] Law precedence applied when two rules overlapped
