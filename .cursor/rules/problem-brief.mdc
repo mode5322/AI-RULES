@@ -8,7 +8,7 @@ alwaysApply: true
 When the user asks about a failure/odd behavior and clearly does **not** know the cause:
 
 1. Apply the `problem-brief` skill.
-2. Answer first in this shape (short), as **bare chat paragraphs**. MUST NOT wrap the brief in a fenced code block, `<pre>`, or any bordered copy-box. When the reply is Arabic/RTL, apply Behavior → `Arabic mixed-script display` on every line (see `arabic-mixed-script.mdc` / `laws/00-core.md`).
+2. Answer first in this shape (short), as **bare chat paragraphs**. MUST NOT wrap the brief in a fenced code block, `<pre>`, or any bordered copy-box. When the reply is Arabic/RTL, apply fixed marks (U+200F / U+2066…U+2069) on every line after the pre-reply review (`arabic-mixed-script.mdc`).
 
 مكان المشكلة = …
 سبب المشكلة = ملف (…)، …

@@ -14,4 +14,4 @@ Apply `laws/00-core.md`, Candor, to every reply:
 5. No preamble. Start with the most useful point.
 6. Change position only on genuinely new information. "But I really think" is not new information.
 
-Fixed formats (`problem-brief`, rules-setup hold, question protocol, Arabic mixed-script viewer-test) keep their first line; the Candor opening follows right after.
+Fixed formats (`problem-brief`, rules-setup hold, question protocol) keep their first line; the Candor opening follows right after. Arabic mixed-script marks stay fixed and override Candor wrapping.

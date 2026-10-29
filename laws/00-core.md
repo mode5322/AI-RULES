@@ -19,55 +19,25 @@ Always. Every agent session, every IDE adapter, every task type.
 - MUST write all law file content and agent law responses that enforce these laws in **English**.
 - Settings questions MUST be asked in the language the user is speaking.
 - If the user answers in Arabic, MUST store the setting value in English.
-- Law files stay English. Conversation mixed-script display follows the **Behavior** setting `Arabic mixed-script display` (see below). A fenced block that is entirely English may stay one block.
+- A fenced block that is entirely English may stay one block.
 
-#### Arabic mixed-script display (Behavior setting)
+#### Arabic mixed-script (fixed — not a setting)
 
-- The **catalog of display methods** below is fixed. Which method the agent uses is a **Behavior** setting, not a fixed non-setting rule.
-- Profile field (English): `Arabic mixed-script display`. Read it from the project profile (for example `templates/project-profile.md` or the consuming project’s profile copy).
-- Relevant when **Conversation language** is Arabic or another right-to-left language. If conversation language is not RTL, record `none` and do not ask.
-- Allowed stored values (English): `unicode-rtl-lri` | `unicode-lri-and-backticks` | `markdown-backticks` | `line-split-english` | `rl-isolate-sentence` | `none` | Other custom English label the user names after the viewer test.
-- Until the setting is configured, for Arabic replies MUST default to `unicode-rtl-lri`.
-- After it is configured, MUST use only the stored method for Arabic (or RTL) conversation replies that embed Latin-script terms. MUST NOT silently switch methods.
+These rules are **fixed**. MUST NOT ask which method to use. MUST NOT disable them. Always-on: `.cursor/rules/arabic-mixed-script.mdc`.
 
-##### Apply every reply (not storage alone)
+When the user speaks Arabic (or another RTL language), or the reply is Arabic/RTL — every reply, including the first of a new chat:
 
-A correct stored value is **not** enough. The gap that breaks chat is failing to **emit** the marks and wrappers on every Arabic (or RTL) reply.
+1. **Pre-reply review (blocking):** draft → check marks → fix if needed → send only after pass. MUST NOT send an Arabic/RTL reply that failed the check.
+2. **U+200F** at the start of **every** Arabic/RTL line.
+3. **U+2066 … U+2069** around **every** Latin term/path only. MUST NOT leave bare Latin inside an Arabic line. Arabic punctuation stays outside the isolate (prefer `۔`).
+4. Bare paragraphs and simple lists. MUST NOT put mixed Arabic (including `problem-brief`) in a fenced code box or bordered copy-box.
+5. Prefer short labeled paragraphs over tables that strip isolates.
 
-- MUST read `Arabic mixed-script display` at the start of each turn that will reply in Arabic/RTL, then format **that entire reply** with the stored method.
-- MUST apply the method to every Arabic/RTL line in the reply that contains or sits beside Latin-script terms — including lists, short labels, follow-ups, error text, and **`problem-brief` lines** — not only to the first paragraph or to viewer-test samples.
-- MUST NOT claim the setting is “already configured” as a substitute for inserting U+200F / U+2066…U+2069 / backticks (as required by the method) in the outgoing text.
-- MUST NOT switch to another catalog method (for example drifting into `line-split-english` or bare Latin) unless the user changes the stored setting (or runs the viewer test and stores a new value).
-- For methods that use U+200F and/or LRI/PDI, MUST prefer plain paragraphs and simple lists over markdown tables or mixed Arabic+Latin heading lines that strip or reorder isolates in common chat viewers. If a table would break direction, use short labeled paragraphs instead.
-- MUST NOT put Arabic/RTL mixed prose — including `problem-brief` — inside a fenced code block or bordered copy-box in chat. A new conversation still MUST apply these marks; always-on rule `.cursor/rules/arabic-mixed-script.mdc` restates this for every session.
-
-##### Method catalog (how each stored value formats chat)
-
-- `unicode-rtl-lri`: Start **each** Arabic/RTL line with U+200F. Wrap **every** Latin span in U+2066 … U+2069. Put Arabic sentence punctuation outside the isolate (prefer `۔`).
-- `unicode-lri-and-backticks`: Start **each** Arabic/RTL line with U+200F. Wrap **every** Latin span as U+2066 + markdown inline code (backticks around the Latin text) + U+2069 — order: LRI, opening backtick(s), Latin span, closing backtick(s), PDI. Punctuation for the Arabic sentence stays outside that whole wrap.
-- `markdown-backticks`: Same-line Arabic; Latin spans in markdown backticks only; no required Unicode isolates.
-- `line-split-english`: Each Arabic sentence on its own line; each Latin term/path on its own line; no Latin inside an Arabic line.
-- `rl-isolate-sentence`: Wrap each Arabic sentence in U+2067 … U+2069; wrap each Latin span in U+2066 … U+2069.
-
-#### Viewer test when configuring this setting
-
-Trigger when the user asks to configure this field, including: «ضبط قاعدة نص اللغة العربية»، «ضبط عرض النص العربي»، «اختبار عارض النصوص»، "Configure Arabic language text rule", "Configure Arabic mixed-script display".
-
-MUST run this procedure (do not skip the notice or the samples):
-
-1. **Notice (required, before samples):** state that the user must verify how **their** text viewer renders mixed Arabic/English with a short test, because viewers differ (RTL vs LTR base, digit-led paths, punctuation).
-2. **Same meaning, multiple formats:** show one shared Arabic sentence that embeds Latin paths/terms, once per catalog method, each clearly labeled with the English value name. Include at least: `unicode-rtl-lri`, `unicode-lri-and-backticks`, `markdown-backticks`, `line-split-english`, `rl-isolate-sentence`. Use real Unicode characters where the method requires them.
-3. **Natural paragraphs only (required):** MUST render every viewer-test sample as ordinary chat paragraphs in the reply body. MUST NOT wrap samples in fenced code blocks (triple backticks), `<pre>`, monospace dump boxes, quote-cards, or any UI “box” that adds a border/copy chip around the sample. Labels may be short bold or plain lines above each sample; the sample itself stays bare paragraph text so the user’s viewer is tested — not a code widget.
-4. **Wait:** ask which format looks correct in their viewer (one short line). Show the question-protocol option list only after «عرض خيارات» or "Show options", unless the labeled samples already act as the choice set and the user replies with a method name or number.
-5. **Store** the chosen method in English under **Behavior → Arabic mixed-script display**. Then use that method from the next Arabic reply onward.
-
-Fixed sample sentence for the test (same meaning in every format; shown here as documentation only — in chat, emit it as a bare paragraph, never inside a fence):
-
-بعد مراجعة laws/00-core.md يفعّل الوكيل مسار security-audit عبر 18-security-tooling.md ثم يمرّر النتائج إلى 19-vuln-discovery-and-remediation.md.
-
-Example bare-paragraph rendering for `unicode-rtl-lri` (marks are real U+200F / U+2066 / U+2069; do not fence this in chat):
+Reference shape (emit as a bare paragraph when demonstrating; never fence):
 
 ‏بعد مراجعة ⁦laws/00-core.md⁩ يفعّل الوكيل مسار ⁦security-audit⁩ عبر ⁦18-security-tooling.md⁩ ثم يمرّر النتائج إلى ⁦19-vuln-discovery-and-remediation.md⁩۔
+
+If the user asks «اختبار عارض النصوص» / "viewer test", show that one reference paragraph once (bare), and confirm the fixed rule — do not offer alternate methods.
 
 ### Candor
 
@@ -82,7 +52,7 @@ Applies to every conversation reply.
 5. **No preamble.** MUST NOT open with framing such as "There are several ways to look at this". MUST start with the most useful thing that can be said.
 6. **Hold position.** When the user pushes back, MUST NOT change position unless the user supplies genuinely new information or evidence. Restating belief ("but I really think…") is not new information.
 
-When a fixed output format owns the first line (`problem-brief`, the rules-setup hold, a question-protocol block, or the Arabic mixed-script viewer-test block), MUST keep that format and put the Candor opening in the first sentence after it. Candor does not override Language or the stored `Arabic mixed-script display` method.
+When a fixed output format owns the first line (`problem-brief`, the rules-setup hold, or a question-protocol block), MUST keep that format and put the Candor opening in the first sentence after it. Candor does not override Language or the fixed Arabic mixed-script marks.
 
 ### Strictness
 
@@ -120,7 +90,7 @@ Two methods. Both end in the same agent procedure. Copying files, or sending a U
 3. **Remove** obsolete profile variables: any **Behavior** or **System design** field that exists in the project profile but is **absent** from the newer pack’s `templates/project-profile.template.md` MUST be deleted from the project profile. Those are retired upstream settings, not user-owned custom rules.
 4. **Add** new law files, hard rules, pack `.cursor/rules/` / `.cursor/skills/`, and any new **Behavior** / **System design** blanks from the newer pack. That **MUST** include always-on `.cursor/rules/arabic-mixed-script.mdc` and `.cursor/rules/AI-RULES.mdc` at the consuming project root.
 5. **Apply** replaced pack text from the newer revision. A configured profile value stays; it does not keep a deleted upstream rule alive unless it is an explicit documented override under Law precedence.
-6. **Force Arabic mixed-script readiness** (required for a complete sync — see **What the agent does**): verify the always-on rule files exist; when Conversation language is Arabic or another RTL language and **Behavior → Arabic mixed-script display** is blank, set it to `unicode-rtl-lri` (do not overwrite a concrete stored method); state in the sync reply that **every new chat** MUST **emit** that method from the first Arabic/RTL reply (storage alone is not compliance).
+6. **Force Arabic mixed-script readiness** (required for a complete sync): verify `arabic-mixed-script.mdc` exists; delete obsolete profile field `Arabic mixed-script display` if present (retired — marks are fixed); sync reply MUST already use U+200F / U+2066…U+2069 when Arabic, and state that every new chat runs the pre-reply mark review.
 7. **Ask** only about a new relevant blank the project needs. Do not re-ask configured settings. Do not ask unrelated blanks.
 8. State the source revision in the reply. Do not push the filled project back to the public origin.
 
@@ -149,18 +119,11 @@ The public origin URL is `https://github.com/mode5322/AI-RULES`.
    - Record `none` for a part the project does not use. Do not ask about it.
    - Record conversation language from the language the user is speaking when that field is still blank.
    - Do not copy secrets, connection strings, keys, or passwords.
-4. **Verify Arabic mixed-script always-on rules (blocking for sync completeness):**
-   - Confirm `.cursor/rules/arabic-mixed-script.mdc` and `.cursor/rules/AI-RULES.mdc` exist at the consuming project root with `alwaysApply: true` (or the editor equivalent that loads them every session).
-   - If either file is missing or empty after place/copy, restore it from the pack source before treating sync as done. MUST NOT report install/sync complete while `arabic-mixed-script.mdc` is absent.
-5. **Configure or keep Arabic mixed-script display when RTL applies:**
-   - If Conversation language is Arabic or another right-to-left language and **Behavior → Arabic mixed-script display** is blank, set it to `unicode-rtl-lri` now (default until the user runs the viewer test and stores another method). MUST NOT overwrite a concrete stored value.
-   - If Conversation language is not RTL, record `none` for that field when blank and do not force an RTL method.
-6. **Emit and state in the sync reply (same turn):**
-   - If this reply is Arabic/RTL, MUST already emit the method from step 5 (or the stored method) in **this** reply — including any `problem-brief` lines; bare paragraphs only, never a fenced code box for that brief.
-   - MUST state: (a) that `arabic-mixed-script.mdc` is present, (b) the English value of **Arabic mixed-script display** now in force, and (c) that **every new conversation** MUST read that setting and **emit** its marks from the **first** Arabic/RTL reply (storage alone is not compliance).
-7. Do not push the filled project back to the rules repository.
-8. State the source revision in the reply. Do not add a profile blank for it.
-9. If one relevant field is still unknown and the current request needs it, ask that one field. Otherwise continue the held request.
+4. **Verify Arabic mixed-script always-on (blocking):** confirm `.cursor/rules/arabic-mixed-script.mdc` and `.cursor/rules/AI-RULES.mdc` exist (`alwaysApply: true`). Restore from pack if missing. MUST NOT report sync complete while `arabic-mixed-script.mdc` is absent. Remove obsolete profile field `Arabic mixed-script display` if still present.
+5. **Emit in the sync reply:** if Arabic/RTL, run the pre-reply mark review and emit U+200F / U+2066…U+2069 in **this** reply. State that marks are fixed and every new chat reviews before send.
+6. Do not push the filled project back to the rules repository.
+7. State the source revision in the reply. Do not add a profile blank for it.
+8. If one relevant field is still unknown and the current request needs it, ask that one field. Otherwise continue the held request.
 
 ### Law precedence
 
@@ -307,7 +270,7 @@ A **setting** is a fill-in line in the project profile under **Behavior** or **S
 A setting is **relevant** only when the current project already uses that part, or the user’s current request needs it.
 
 - Conversation language is relevant. If the user is already speaking a language, record it in English and do not ask.
-- Arabic mixed-script display is relevant when Conversation language is Arabic or another right-to-left language. Otherwise record `none` and do not ask. When configuring it (including «ضبط قاعدة نص اللغة العربية»), MUST run the viewer test in Language before storing a value.
+- Arabic mixed-script marks are **fixed** (Language). They are not a profile setting and MUST NOT be asked.
 - UI components are relevant when the project has an interface, or the current request designs a button, a form, or a screen. Record names the repo already shows, in English, and do not ask the user to list them. When the user designs a new one, add it to **System design → UI components** and implement it once. The parts that vary are inputs. Do not copy the element for each use. If the project has no interface, record `none` and do not ask.
 - Rules-setup mode is not a question. A blank means `strict-hold`. Ask only when the user asks to change it.
 - Database, framework, and external connection are relevant only when the repo already has them, or the current request needs them. If the project does not use that part, record `none` in English and do not ask.
@@ -316,7 +279,7 @@ A setting is **relevant** only when the current project already uses that part, 
 
 A setting that is not relevant MUST NOT be asked, MUST NOT be listed as incomplete, and MUST NOT hold work. Show it only when the user asks, including «عرض الإعدادات غير المتصلة» or "Show unrelated settings", or when they name that setting and ask to configure it. If the project later gains that part, the setting becomes relevant then. Do not pre-ask it.
 
-Law files `01`–`19` stay operating rules. Their `PROJECT-SPECIFIC` blanks are not required setup questions. The `temp-<operation_name>` temporary-folder rules are fixed and are not a setting. Arabic mixed-script **methods** are fixed in Language; the chosen method is Behavior → `Arabic mixed-script display`.
+Law files `01`–`19` stay operating rules. Their `PROJECT-SPECIFIC` blanks are not required setup questions. The `temp-<operation_name>` temporary-folder rules and Arabic mixed-script marks are fixed and are not settings.
 
 A setting is **configured** only when its placeholder is replaced with a concrete value. `N/A: <reason>` is a concrete value when that setting truly does not apply. These are not configured: `_______________`, a blank, `not set`, `undecided`, `TBD`, or any skip.
 
@@ -351,7 +314,7 @@ When the user asks to configure the rules (or chooses to start configuration):
 
 - Walk sections in order: **Behavior**, then **System design**.
 - One section per turn. Stay on that section across turns until every **relevant** setting in it is configured. Do not open the next section in the same message. Skip a section that has no relevant question.
-- One relevant unconfigured setting per turn. Ask it in the user’s language, in one short line, and wait. Show the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not batch settings. Do not ask a setting that does not connect to the current project. Do not ask deferral or ignore settings. When configuring `Arabic mixed-script display`, MUST run the viewer test in Language (notice + multi-format samples) before storing a value.
+- One relevant unconfigured setting per turn. Ask it in the user’s language, in one short line, and wait. Show the option list only after «عرض خيارات» or "Show options". Store an Arabic answer in English. Do not batch settings. Do not ask a setting that does not connect to the current project. Do not ask deferral or ignore settings. Do not ask about Arabic mixed-script marks (fixed).
 - Do not stop while any relevant setting remains unconfigured, unless the user pauses or defers **for this time only**.
 - A section is finished when every **relevant** setting in it is configured. Skip a section that has no relevant question.
 - MUST NOT leave a setting as `not set`, blank, or `_______________` to finish faster.
@@ -398,9 +361,9 @@ Example when no category is named:
 
 | Category | Completed | Remaining | Total |
 |---|---|---|---|
-| Behavior | 1 | 2 | 3 |
+| Behavior | 1 | 1 | 2 |
 | System design | 3 | 3 | 6 |
-| Total | 4 | 5 | 9 |
+| Total | 4 | 4 | 8 |
 ```
 
 Example when the user asks for Behavior:
@@ -408,7 +371,6 @@ Example when the user asks for Behavior:
 ```markdown
 1. Conversation language — Arabic
 2. Rules-setup mode — _______________
-3. Arabic mixed-script display — unicode-rtl-lri
 ```
 
 Example when the user asks for System design:
@@ -428,7 +390,7 @@ At the start of every conversation in a consuming project:
 
 - MUST read the profile rules-setup status, held first request, last finished section, and next section.
 - MUST scan for unconfigured settings before any product or code work.
-- **Arabic mixed-script (every new chat):** MUST confirm `.cursor/rules/arabic-mixed-script.mdc` is present. If it is missing after a claimed install/sync, restore it from the pack (or tell the user to re-run «ثبّت وزامن») before product work that needs Arabic replies. MUST read **Behavior → Arabic mixed-script display** (default `unicode-rtl-lri` if blank and Conversation language is Arabic/RTL) and **emit** that method on the **first** Arabic/RTL reply of the conversation — including `problem-brief` — as bare paragraphs. A stored value without marks in the outgoing text is non-compliance.
+- **Arabic mixed-script (every new chat):** MUST confirm `.cursor/rules/arabic-mixed-script.mdc` is present (restore from pack or re-run «ثبّت وزامن» if missing). Before the first Arabic/RTL reply, run the pre-reply mark review and emit U+200F / U+2066…U+2069. Sending without that review is non-compliance.
 - If every **relevant** setting is configured, MUST NOT restart rules setup.
 - If any **relevant** setting is unconfigured, MUST hold product and code work and continue at the first relevant unconfigured setting in section order. Do not resume setup for an unrelated blank.
 - MUST NOT re-ask a setting that is already configured.
@@ -456,9 +418,9 @@ At the start of every conversation in a consuming project:
 ## Post-change checklist hooks
 
 - [ ] Relevant Behavior and System design settings are configured (unrelated blanks were not asked; `temp-<operation_name>` rule stays fixed)
-- [ ] Install/sync (if run) kept configured values and user-added non-pack rules, removed obsolete profile fields, added new pack rules/blanks, verified `.cursor/rules/arabic-mixed-script.mdc` (+ `AI-RULES.mdc`), set blank Arabic mixed-script display to `unicode-rtl-lri` when Conversation language is RTL, stated emit-every-new-chat + revision in the sync reply
+- [ ] Install/sync (if run) kept configured values and user-added non-pack rules, removed obsolete profile fields (including retired `Arabic mixed-script display`), verified `arabic-mixed-script.mdc`, stated fixed marks + pre-reply review + revision
 - [ ] Named technologies, sites, references, features, algorithms, tools, and libraries were checked against their current authoritative source
-- [ ] Arabic replies **applied** Behavior → `Arabic mixed-script display` in the outgoing text every turn from the **first** reply of a new chat (default `unicode-rtl-lri` until set); no silent method drift; viewer-test / `problem-brief` samples were bare paragraphs (not fenced boxes)
+- [ ] Arabic replies passed pre-reply mark review (U+200F every Arabic line; U+2066…U+2069 every Latin term) from the first reply of a new chat; `problem-brief` bare paragraphs only
 - [ ] Temporary/scratch agent files used `temp-<operation_name>` and were not committed
 - [ ] Reply followed Candor: no opening agreement, no banned phrases, uncomfortable truth first, no preamble
 - [ ] Law precedence applied when two rules overlapped

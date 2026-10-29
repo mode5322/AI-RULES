@@ -23,7 +23,7 @@ Works for:
 | `.cursor/skills/problem-brief/` | Skill: short diagnosis brief when the user does not know the cause |
 | `.cursor/skills/security-audit/` | Vendored multi-phase security audit skill (Cloudflare MIT upstream) |
 | `.cursor/rules/problem-brief.mdc` | Always-on problem-brief format (bare paragraphs; no code box) |
-| `.cursor/rules/arabic-mixed-script.mdc` | Always-on: emit Arabic mixed-script marks every RTL reply |
+| `.cursor/rules/arabic-mixed-script.mdc` | Always-on fixed marks: U+200F + LRI/PDI; pre-reply review |
 | `.cursor/rules/candor.mdc` | Always-on candor: no opening agreement, structured disagreement |
 
 ## How to use
@@ -48,8 +48,8 @@ The agent fetches the pack, places `laws/` and `templates/` at the project root,
 
 - **Existing project:** follow `laws/16-existing-projects.md` (review, then a fix plan). Do not patch first.
 - **New project:** implement only after the one question this request still needs, if any.
-- A later chat must continue at the first relevant unset field. It must not restart finished sections, re-ask values that are already set, or open a field the project does not use. It must also confirm `arabic-mixed-script.mdc` and **emit** Arabic mixed-script marks from the first Arabic reply (`laws/00-core.md`, Resume).
-- Arabic+Latin chat display is Behavior → `Arabic mixed-script display` (must be **applied** every Arabic reply from the first turn of a new chat, not only stored; Install and sync verifies the always-on rule and fills a blank RTL display with `unicode-rtl-lri`; viewer test when configuring; samples as bare paragraphs, not code boxes). Product right-to-left layout is a separate rule (`laws/03-ui.md`).
+- A later chat must continue at the first relevant unset field. It must not restart finished sections, re-ask values that are already set, or open a field the project does not use. It must also confirm `arabic-mixed-script.mdc` and run the pre-reply mark review on the first Arabic reply (`laws/00-core.md`, Resume).
+- Arabic+Latin chat marks are **fixed** (U+200F every Arabic line; U+2066…U+2069 every Latin term) — not a Behavior setting. Product right-to-left layout is a separate rule (`laws/03-ui.md`).
 - Agent temporary files use `temp-<operation_name>` folders (fixed rule in `laws/00-core.md`); ignored via `temp-*/` in `.gitignore`.
 - Domain laws `01`–`19` open when the task needs that file. They are not a second setup walk.
 
@@ -60,10 +60,9 @@ Run method 1 or method 2 again with the same «ثبّت وزامن» / "Install 
 1. Keep every configured **Behavior** / **System design** value.
 2. Keep rules/skills the user added that are not part of this pack.
 3. Delete obsolete profile fields that no longer exist in the newer `templates/project-profile.template.md`.
-4. Add new laws, hard rules, and new profile blanks from the newer pack — including always-on `.cursor/rules/arabic-mixed-script.mdc` (sync incomplete if missing).
-5. When Conversation language is Arabic/RTL and Arabic mixed-script display is blank, set `unicode-rtl-lri`; state in the reply that every new chat must **emit** marks from the first Arabic reply.
-6. Ask only about a new relevant blank the project uses.
-7. State the source revision in the reply. Do not push the filled copy back to this public origin.
+4. Add new laws, hard rules, and new profile blanks — including always-on `arabic-mixed-script.mdc` (sync incomplete if missing). Remove retired field `Arabic mixed-script display`.
+5. Ask only about a new relevant blank the project uses.
+6. State the source revision in the reply. Do not push the filled copy back to this public origin.
 
 ### One-time skip
 
@@ -73,7 +72,7 @@ Shorter install notes are also in `USAGE.md`.
 
 ## Core behaviors (encoded in laws)
 
-- **English only** for law file content. Arabic mixed-script chat methods live in `laws/00-core.md`; the chosen method is stored under Behavior after a viewer test.
+- **English only** for law file content. Arabic mixed-script chat marks are fixed in `laws/00-core.md` (U+200F / U+2066…U+2069; pre-reply review).
 - **Four operating additions** — law precedence and setup resume (`laws/00-core.md`); upstream merge that keeps filled settings (`laws/11-change-management.md`); product right-to-left layout separate from chat lines (`laws/03-ui.md`).
 - **Current sources** — before a technology, website, reference, feature, algorithm, tool, or library is mentioned or used, its authoritative source is reviewed and the work follows what that source says now (`laws/00-core.md`).
 - **Very strict** — no execution until required questions/checks complete, except explicit **for this time only** deferral.

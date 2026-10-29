@@ -19,15 +19,14 @@ Read in order:
 
 ## Enforce
 
-- **Every Arabic/RTL reply:** follow always-on `arabic-mixed-script.mdc` — read Behavior → `Arabic mixed-script display`, then **emit** that method’s U+200F / U+2066…U+2069 / backticks in this reply (`laws/00-core.md`, Language). Storage alone is not compliance. No silent method drift. Viewer-test and `problem-brief` samples MUST be bare paragraphs, never fenced code boxes.
-- English-only for law content. When configuring Arabic mixed-script display (including «ضبط قاعدة نص اللغة العربية»), run the viewer test (notice + multi-format samples as bare paragraphs) and store the chosen English method.
+- **Every Arabic/RTL reply (fixed):** before send, review marks per `arabic-mixed-script.mdc` — U+200F every Arabic line; U+2066…U+2069 every Latin term only. Fail → fix → re-check. Never send without pass. `problem-brief` stays bare paragraphs.
 - Temporary/scratch agent files go under `temp-<operation_name>` at the project root (fixed rule in `laws/00-core.md`); do not commit them.
 - Candor (`laws/00-core.md`, Candor; rule `candor.mdc`): no opening agreement; no banned praise phrases; structured disagreement; uncomfortable truth first; no preamble; hold position without new information.
 - When laws conflict, follow Law precedence in `laws/00-core.md`. Resume setup at the first unconfigured setting. Keep configured values when merging a newer pack (`laws/11-change-management.md`). Product right-to-left layout is `laws/03-ui.md`, not chat bidi isolation.
 - Before mentioning or using any technology, website, reference, feature, algorithm, tool, or library, review its current authoritative source, then work from that (`laws/00-core.md`, Current sources). Do not present an unchecked detail as current.
 - Do not execute until required questions/checks complete, unless user defers **for this time only**.
-- Consuming project: setup and updates use **Install and sync** («ثبّت وزامن», `laws/00-core.md`). Keep configured values and user-added non-pack rules; remove obsolete profile fields; add new pack rules/blanks **including** always-on `arabic-mixed-script.mdc`; if Conversation language is Arabic/RTL and Arabic mixed-script display is blank, set `unicode-rtl-lri`; sync reply MUST state emit-from-first-reply in every new chat; sync code-backed System design (`11-change-management.md`). Store an Arabic answer in English.
-- **Resume:** every new chat confirms `arabic-mixed-script.mdc` is present, reads Arabic mixed-script display, and emits marks on the first Arabic/RTL reply (`laws/00-core.md`, Resume).
+- Consuming project: **Install and sync** («ثبّت وزامن») keeps configured values and user rules; removes obsolete fields (including retired `Arabic mixed-script display`); adds pack rules including `arabic-mixed-script.mdc`; syncs code-backed System design (`11-change-management.md`).
+- **Resume:** confirm `arabic-mixed-script.mdc`; pre-reply mark review on first Arabic reply.
 - Question-protocol option lists only when a decision is necessary and the user says «عرض خيارات» or "Show options" (`templates/question-protocol.md`). Otherwise one short line. Do not ask deferral or ignore settings.
 - When the user asks to show rule settings and names no category, show the categories only, then the completed/remaining table. When the user names **Behavior** or **System design**, list only that category’s settings and values (`laws/00-core.md`, Show settings).
 - Rules-setup mode: `strict-hold` (default hold) or `configure-on-request` (no hold; configure only when the user asks). Fixed phrase for `configure-on-request`: "Stop the question protocol until I ask to configure the rules" / «إيقاف بروتوكول الأسئلة إلى أن أطلب ضبط إعدادات القواعد».

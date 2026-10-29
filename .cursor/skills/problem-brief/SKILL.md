@@ -15,7 +15,7 @@ When the user asks about a failure or odd behavior and **does not already know t
 
 Emit as **bare paragraphs** in the chat reply. MUST NOT wrap the brief in a fenced code block (triple backticks), `<pre>`, monospace dump box, or any UI box with a border/copy chip. Those boxes reverse Arabic+Latin in common chat viewers.
 
-When the conversation is Arabic/RTL, apply Behavior → `Arabic mixed-script display` (`laws/00-core.md`) on **every** brief line (U+200F / LRI / backticks as required by the stored method). Latin paths and filenames stay isolated per that method; do not leave them bare inside Arabic lines.
+When the conversation is Arabic/RTL, run the pre-reply mark review and apply fixed marks on **every** brief line: U+200F at line start; U+2066…U+2069 around every Latin path/term (`laws/00-core.md`). Do not leave bare Latin inside Arabic lines.
 
 مكان المشكلة = <path or URL where the failure appears>
 سبب المشكلة = ملف (<filename>), <short cause>
